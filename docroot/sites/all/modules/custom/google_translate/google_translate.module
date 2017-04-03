@@ -1,0 +1,40 @@
+<?php
+/**
+* @file
+* A block module that displays the Google translate widget.
+*/
+?>
+
+<?php
+/**
+* Implements hook_block_info().
+*/
+function google_translate_block_info() {
+  $blocks['google_translate'] = array(
+    'info' => t('Google Translate'), //The name that will appear in the block list.
+    
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+ function google_translate_block_view($delta = '') {
+  switch($delta){
+    case 'google_translate':
+      $block['subject'] = '';
+      if(user_access('access content')){
+      $block['content']	= 
+      
+      "<div id='google_translate_element'></div><script>function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}" . '</script>';
+	drupal_add_js('http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'external');
+      }
+  return $block;
+  }
+ }
+

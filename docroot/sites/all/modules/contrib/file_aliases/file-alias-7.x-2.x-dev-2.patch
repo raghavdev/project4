@@ -1,0 +1,405 @@
+diff --git a/file_aliases.install b/file_aliases.install
+index 5d0bdf0..3c80a41 100755
+--- a/file_aliases.install
++++ b/file_aliases.install
+@@ -1,52 +1,23 @@
+-<?php
+-/**
+- * @file
+- * Contains installation functions for the File Aliases module.
+- */
+-
+-/**
+- * Implements hook_schema_alter().
+- *
+- * @param $schema
+- *   The system-wide schema
+- */
+-function file_aliases_schema_alter(&$schema) {
+-  $schema['filefield_paths']['fields']['filealias'] = array(
+-    'type' => 'text',
+-    'size' => 'medium',
+-    'not null' => TRUE,
+-    'serialize' => TRUE,
+-  );
+-}
+-
+-/**
+- * Implements hook_install().
+- */
+-function file_aliases_install() {
+-  db_add_field('filefield_paths', 'filealias', array('type' => 'text', 'size' => 'medium', 'not null' => TRUE, 'serialize' => TRUE));
+-
+-  // Adjust module weight.
+-  db_update('system')
+-    ->fields(array('weight' => 1))
+-    ->condition('name', 'file_aliases')
+-    ->execute();
+-}
+-
+-/**
+- * Implements hook_uninstall().
+- */
+-function file_aliases_uninstall() {
+-  db_drop_field('filefield_paths', 'filealias');
+-  //db_query("DELETE FROM {url_alias} WHERE src LIKE '%s'", 'filefield_paths/alias/%');
+-}
+-
+-/**
+- * Implements hook_update_N().
+- */
+-//function file_aliases_update_6100() {
+-//  $ret = array();
+-//
+-//  $ret[] = update_sql("UPDATE {system} SET weight = 1 WHERE name = 'file_aliases'");
+-//
+-//  return $ret;
+-//}
++<?php
++/**
++ * @file
++ * Contains installation functions for the File Aliases module.
++ */
++
++/**
++ * Implements hook_install().
++ */
++function file_aliases_install() {
++  // Adjust module weight.
++  db_update('system')
++    ->fields(array('weight' => 1))
++    ->condition('name', 'file_aliases')
++    ->execute();
++}
++
++/**
++ * Implements hook_uninstall().
++ */
++function file_aliases_uninstall() {
++  db_query("DELETE FROM {url_alias} WHERE source LIKE 'filefield_paths/alias/%%'");
++}
+diff --git a/file_aliases.module b/file_aliases.module
+index 301e268..6a3b590 100755
+--- a/file_aliases.module
++++ b/file_aliases.module
+@@ -1,130 +1,132 @@
+-<?php
+-/**
+- * @file
+- * Contains core functions for the File Aliases module.
+- */
+-
+-/**
+- * Include additional files.
+- */
+-foreach (module_list() as $module) {
+-  if (file_exists($file = dirname(__FILE__) . "/modules/{$module}.inc")) {
+-    require_once $file;
+-  }
+-}
+-
+-/**
+- * Implements hook_menu().
+- */
+-function file_aliases_menu() {
+-  $items['filefield_paths/alias/%'] = array(
+-    'page callback' => 'file_aliases_load_fid',
+-    'page arguments' => array(2),
+-    'access callback' => TRUE,
+-    'type' => MENU_CALLBACK,
+-  );
+-
+-  return $items;
+-}
+-
+-/**
+- * Implements hook_file_load().
+- */
+-function file_aliases_file_load($files) {
+-  foreach ($files as &$file) {
+-    $filefield_paths_alias = "filefield_paths/alias/{$file->fid}";
+-    if (($alias = drupal_get_path_alias($filefield_paths_alias)) != $filefield_paths_alias) {
+-      $file->uri = file_create_url($alias);
+-    }
+-  }
+-}
+-
+-/**
+- * Implements hook_preprocess_image_style().
+- */
+-function file_aliases_preprocess_image_style(&$variables) {
+-  global $base_url;
+-  $source = drupal_lookup_path('source', str_replace($base_url . base_path(), '', $variables['path']));
+-  $fid = drupal_substr($source, 22);
+-  if ($uri = db_query("SELECT uri FROM {file_managed} WHERE fid = :fid", array(':fid' => $fid))->fetchField()) {
+-    $variables['path'] = $uri;
+-  }
+-}
+-
+-/**
+- * Implements hook_preprocess_image().
+- */
+-function file_aliases_preprocess_image(&$variables) {
+-  if (isset($variables['style_name']) && preg_match("/.*?files\/styles\/{$variables['style_name']}\/(.*?)\/(.*)/", $variables['path'], $matches)) {
+-    if ($fid = db_query("SELECT fid FROM {file_managed} WHERE uri = :uri", array(':uri' => "{$matches[1]}://{$matches[2]}"))->fetchField()) {
+-      $filefield_paths_alias = "filefield_paths/alias/{$fid}";
+-      if (($alias = drupal_get_path_alias($filefield_paths_alias)) != $filefield_paths_alias) {
+-        $variables['path'] = file_create_url($alias) . "?{$variables['style_name']}";
+-      }
+-    }
+-  }
+-}
+-
+-/**
+- * Implements hook_file_url_alter().
+- *
+- * @TODO - Respect 'display alias' checkbox.
+- */
+-function file_aliases_file_url_alter(&$uri) {
+-  if ($fid = db_query("SELECT fid FROM {file_managed} WHERE uri = :uri", array(':uri' => $uri))->fetchField()) {
+-    $filefield_paths_alias = "filefield_paths/alias/{$fid}";
+-    if (($alias = drupal_get_path_alias($filefield_paths_alias)) != $filefield_paths_alias) {
+-      $uri = file_create_url($alias);
+-    }
+-  }
+-}
+-
+-/**
+- * Menu callback; File Alias callback.
+- */
+-function file_aliases_load_fid($fid) {
+-  if (request_uri() == base_path() . "filefield_paths/alias/{$fid}") {
+-    drupal_not_found();
+-    exit;
+-  }
+-
+-  $results = db_select('file_managed', 'f')
+-    ->fields('f', array('filemime', 'uri'))
+-    ->condition('fid', $fid)
+-    ->execute()
+-    ->fetchAll();
+-  $result = current($results);
+-
+-  // Render Image Style preset if applicable.
+-  $uri = explode('?', request_uri());
+-  if (isset($uri[1]) && strpos($result->filemime, 'image') === 0) {
+-    $image_style = $uri[1];
+-    $styles = image_styles();
+-    if (isset($styles[$image_style])) {
+-      $arguments = array_merge(array(image_style_load($image_style), file_uri_scheme($result->uri)), explode('/', str_replace(file_uri_scheme($result->uri) . '://', '', $result->uri)));
+-      call_user_func_array('image_style_deliver', $arguments);
+-    }
+-  }
+-
+-  if (file_uri_scheme($result->uri) == 'private') {
+-    $file = explode('://', $result->uri);
+-    file_download($file[0], $file[1]);
+-  }
+-
+-  else {
+-    header("Content-Type: {$result->filemime}");
+-    header('Cache-Control: public');
+-    readfile($result->uri);
+-  }
+-}
+-
+-/**
+- * Implements hook_file_download().
+- */
+-function file_aliases_file_download($uri) {
+-  $fileinfo = pathinfo(drupal_get_path_alias($_GET['q']));
+-  return array(
+-    'Cache-Control' => 'public',
+-    'Content-Disposition' => "filename='{$fileinfo['basename']}'"
+-  );
+-}
++<?php
++/**
++ * @file
++ * Contains core functions for the File Aliases module.
++ */
++
++/**
++ * Include additional files.
++ */
++foreach (module_list() as $module) {
++  if (file_exists($file = dirname(__FILE__) . "/modules/{$module}.inc")) {
++    require_once $file;
++  }
++}
++
++/**
++ * Implements hook_menu().
++ */
++function file_aliases_menu() {
++  $items['filefield_paths/alias/%'] = array(
++    'page callback' => 'file_aliases_load_fid',
++    'page arguments' => array(2),
++    'access callback' => TRUE,
++    'type' => MENU_CALLBACK,
++  );
++
++  return $items;
++}
++
++/**
++ * Implements hook_file_load().
++ */
++function file_aliases_file_load($files) {
++  foreach ($files as &$file) {
++    $filefield_paths_alias = "filefield_paths/alias/{$file->fid}";
++    if (($alias = drupal_get_path_alias($filefield_paths_alias)) != $filefield_paths_alias) {
++      $file->alias = $alias;
++    }
++  }
++}
++
++/**
++ * Implements hook_preprocess_image_style().
++ */
++function file_aliases_preprocess_image_style(&$variables) {
++  $fid = db_query("SELECT fid FROM {file_managed} WHERE uri = :uri", array(':uri' => "{$variables['path']}"))->fetchField();
++  $filefield_paths_alias = "filefield_paths/alias/{$fid}";
++  if (($alias = drupal_get_path_alias($filefield_paths_alias)) != $filefield_paths_alias) {
++    $variables['alias'] = $alias;
++  }
++}
++
++/**
++ * Implements hook_preprocess_image().
++ */
++function file_aliases_preprocess_image(&$variables) {
++  if (isset($variables['style_name']) && isset($variables['alias'])) {
++    $variables['path'] = file_create_url($variables['alias']) . '?' . $variables['style_name'];
++  }
++}
++
++/**
++ * Implements hook_file_url_alter().
++ *
++ * @TODO - Respect 'display alias' checkbox.
++ */
++function file_aliases_file_url_alter(&$uri) {
++  $fid = db_query('SELECT fid FROM {file_managed} WHERE uri = :uri', array(':uri' => $uri))->fetchField();
++  if (!empty($fid)) {
++    $file = file_load($fid);
++    if (isset($file->alias)) $uri = $file->alias;
++  }
++}
++
++/**
++ * Menu callback; File Alias callback.
++ */
++function file_aliases_load_fid($fid) {
++  if (request_uri() == base_path() . "filefield_paths/alias/{$fid}") {
++    drupal_not_found();
++    exit;
++  }
++
++  $results = db_select('file_managed', 'f')
++    ->fields('f', array('filemime', 'uri'))
++    ->condition('fid', $fid)
++    ->execute()
++    ->fetchAll();
++  $result = current($results);
++
++  // Render Image Style preset if applicable.
++  $uri = explode('?', request_uri());
++  if (isset($uri[1]) && strpos($result->filemime, 'image') === 0) {
++    $image_style = $uri[1];
++    $styles = image_styles();
++    if (isset($styles[$image_style])) {
++      $arguments = array_merge(array(image_style_load($image_style), file_uri_scheme($result->uri)), explode('/', str_replace(file_uri_scheme($result->uri) . '://', '', $result->uri)));
++      call_user_func_array('image_style_deliver', $arguments);
++    }
++  }
++
++  if (file_uri_scheme($result->uri) == 'private') {
++    $file = explode('://', $result->uri);
++    file_download($file[0], $file[1]);
++  }
++
++  else {
++    header("Content-Type: {$result->filemime}");
++    header('Cache-Control: public');
++    readfile($result->uri);
++  }
++}
++
++/**
++ * Implements hook_file_download().
++ */
++function file_aliases_file_download($uri) {
++  $path = drupal_get_path_alias($_GET['q']);
++  $fileinfo = pathinfo($path);
++  return array(
++    'Cache-Control' => 'public',
++    'Content-Disposition' => "filename='{$fileinfo['basename']}'"
++  );
++}
++
++/**
++ * Implements hook_file_delete().
++ */
++function file_aliases_file_delete($file) {
++  $filefield_paths_alias = "filefield_paths/alias/{$file->fid}";
++  path_delete(array('source' => $filefield_paths_alias));
++}
+diff --git a/modules/filefield_paths.inc b/modules/filefield_paths.inc
+index 6c3f0f7..6befe32 100644
+--- a/modules/filefield_paths.inc
++++ b/modules/filefield_paths.inc
+@@ -14,10 +14,10 @@ function file_aliases_filefield_paths_field_settings() {
+       'sql' => 'filealias',
+ 
+       'form' => array(
+-        'file_alias' => array(
++        'value' => array(
++          '#description' => t('The relative URL alias for the file, including file name and extension (if required). Leave empty for no alias.'),
+           '#type' => 'textfield',
+           '#title' => t('File alias'),
+-          '#default_value' => drupal_substr(parse_url(file_create_url(file_default_scheme() . '://'), PHP_URL_PATH) . '[file:ffp-name-only-original].[file:ffp-extension-original]', 1),
+           '#maxlength' => 512,
+           '#size' => 128,
+         ),
+@@ -29,19 +29,27 @@ function file_aliases_filefield_paths_field_settings() {
+ /**
+  * Implements hook_filefield_paths_process_file().
+  */
+-function file_aliases_filefield_paths_process_file($new, &$file, $settings, &$entity, $type, &$update) {
+-  if ($new && !empty($file['field']['filename'])) {
+-    $token_data = array('file' => file_load($file['field']['fid']), $type => $entity);
+-    $file['filealias'] = filefield_paths_process_string($settings['filealias']['value'], $token_data, $settings['filealias']);
+-
+-    $path = "filefield_paths/alias/{$file['field']['fid']}";
+-    $alias = drupal_get_path_alias($path);
+-    if ($alias !== $path) {
+-      path_delete(array('source' => $path));
++function file_aliases_filefield_paths_process_file($type, $entity, $field, $instance, $langcode, &$items) {
++  if (isset($instance['settings']['filefield_paths'])) {
++    $settings = $instance['settings']['filefield_paths'];
++    foreach ($items as &$file) {
++      if ($file['timestamp'] == REQUEST_TIME || $settings['active_updating']) {
++        $filefield_paths_alias = "filefield_paths/alias/{$file['fid']}";
++        if (!empty($settings['file_alias']['value'])) {
++          $token_data = array(
++            'file' => (object) $file,
++            $type => $entity
++          );
++          $alias = filefield_paths_process_string($settings['file_alias']['value'], $token_data, $settings['file_alias']['options']);
++          if ($alias != drupal_get_path_alias($filefield_paths_alias)) {
++            path_delete(array('source' => $filefield_paths_alias));
++            $path = array('source' => $filefield_paths_alias, 'alias' => $alias, 'language' => $langcode);
++            path_save($path);
++          }
++        } else {
++          path_delete(array('source' => $filefield_paths_alias));
++        }
++      }
+     }
+-    path_save($path = array(
+-      'source' => $path,
+-      'alias' => $file['filealias']
+-    ));
+   }
+ }

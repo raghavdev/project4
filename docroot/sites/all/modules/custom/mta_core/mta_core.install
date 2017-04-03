@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for MTA sites.
+ * Implements hook_update()
+ */
+
+/**
+ * Disabling and uninstalling Overlay and Toolbar modules replacing them
+ * with admin_menu and admin_menu_toolbar modules, and enable them.
+ */
+function mta_core_update_7001() {
+  module_disable(array('overlay'));
+  module_disable(array('toolbar'));
+  if(drupal_uninstall_modules(array('overlay', 'toolbar'))){
+    drupal_set_message(t('Overlay and Toolbar succesfully uninstalled.'), 'status');
+  }else{
+    drupal_set_message(t('An error occurred, overlay and toolbar still available.'), 'error');
+  }
+  //if (module_exists('admin_menu')) {
+    module_enable(array('admin_menu', 'admin_menu_toolbar'));
+    variable_set('admin_menu_margin_top', 1);
+    variable_set('admin_menu_position_fixed', 1);
+    variable_set('admin_menu_tweak_modules', 1);
+  //}
+  cache_clear_all();
+}
+
+/**
+ * Enabling Date, Date tools, and Date views modules
+ */
+function mta_core_update_7002() {
+  module_enable(array('date', 'date_tools', 'date_views'));
+  cache_clear_all();
+}

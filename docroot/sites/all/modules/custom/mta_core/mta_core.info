@@ -1,0 +1,8 @@
+name = MTA Core Module
+project = mta_core
+description = The module for update hooks and common functions for the MTA
+package = Our MTA modules
+core = 7.x
+version = "7.x-0.1-beta"
+files[] = upmta.install
+files[] = upmta.module

@@ -1,0 +1,12 @@
+name = CacheFlush
+description = "Allows you to create configurable cache flusher presets."
+package = administration
+core = "7.x"
+configure = admin/config/development/cacheflush
+
+; Information added by Drupal.org packaging script on 2014-03-11
+version = "7.x-2.3"
+core = "7.x"
+project = "cacheflush"
+datestamp = "1394545303"
+

@@ -1,0 +1,4 @@
+name = MTA Message
+description = MTA Messages
+package = MTA
+core = 7.x

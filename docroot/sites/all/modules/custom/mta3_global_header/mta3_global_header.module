@@ -1,0 +1,104 @@
+<?php 
+/**
+* @file
+* mta3_global_header.module
+*/
+?>
+
+<?php
+
+/**
+* Implements hook_permission
+*/
+
+function mta3_global_header_permission() {
+  return array(
+    'administer mta global header' => array(
+      'title' => t('Administer MTA global header'),
+      'description' => t('Update source file for mta global header.'),
+    ),
+  );
+}
+
+/**
+* Implements hook_menu
+*/
+
+function mta3_global_header_menu() {
+	$items['admin/structure/update_global_header'] = array(
+    'title' => 'Update Global Header',
+    'description' => 'Copy changes in Global Header to file for distribution.',
+    'page callback' => 'mta3_global_header_write',
+    'type' => MENU_NORMAL_ITEM,
+	'access arguments' => array('administer mta global header') ,
+  );
+  return $items;
+  }
+
+// there may be a message if simplehtmldom module gets installed, in which case this module weight may need to be adjusted
+if (!function_exists('str_get_html')) {
+  //require_once('simple_html_dom.php');
+}
+
+
+// get the header code and write it to a file
+function mta3_global_header_write() {//dpm('raw_html');
+	
+	// there may be an issue if we are processing this function while viewing the same url as $sourceDomain
+	// perhaps we will need to create a page or URL that is not viewed but can supply the HTML for the header
+	$sourceDomain = 'http://new2dev.mta.info';//'http://mtacurrent.localhost:8080/global-header-target-page';//'http://new2dev.mta.info'; //'http://new.mta.info';'http://mtacurrent.localhost:8080';// //this is the source for the HTML and images
+	$sourceMenuId = 'superfish-1';	
+	
+	// initialize simplehtmldom objects
+	$html = new simple_html_dom();
+	$responsive_desktop_css = new simple_html_dom();
+	$global_styles_css = new simple_html_dom();
+
+	// load files into simplehtmldom
+	$html->load_file($sourceDomain); // the generated HTML
+	$global_styles_css->load_file($sourceDomain . '/sites/all/themes/adaptivetheme/mtadaptive/css/global.styles.css');
+	$responsive_desktop_css->load_file($sourceDomain . '/sites/all/themes/adaptivetheme/mtadaptive/css/responsive.desktop.css');
+
+	
+	// #header-wrapper and #nav-wrapper are the ids of the header and menu at http://new2dev.mta.info/
+	$topbar = $html->find('#header-wrapper', 0); // the zero here is necessary because simplehtmldom returns a collection
+	$navbar = $html->find('#nav-wrapper', 0);
+
+	// prepare Cross Origin Resource Sharing header
+	$header = "<!-- This header necessary using CORS http://www.nczonline.net/blog/2010/05/25/cross-domain-ajax-with-cross-origin-resource-sharing/ -->
+	<?php
+	header('Access-Control-Allow-Origin: *');
+	?>";
+
+	// some more CSS rules that are not in the css files
+	$morestyles = '#google-appliance-block-form{width:100%;height:30px;text-align:right}#block-google-appliance-ga-block-search-form .container-inline div{display: inline;}.element-invisible, #block-google-appliance-ga-block-search-form label, .url-textfield{display:none!important;}#nav-wrapper ul li a, #menu-bar ul li a {padding: 5px 8px;}#nav-wrapper ul li.last, #menu-bar ul li.last {
+    border-right: none;}';
+
+	
+	// prepare the CSS style tag; in case we do not want css, we only have to unset the $global_styles_css var
+	$cssStyles = $global_styles_css ? '<style>' . $global_styles_css . $responsive_desktop_css . $morestyles . '</style>' : '';
+	// replace relative image urls with absolute
+	$cssStyles = str_ireplace("../",$sourceDomain . "/sites/all/themes/adaptivetheme/mtadaptive/",$cssStyles);
+	
+
+	// assemble output from components
+	$output = $header . $topbar . $navbar . $cssStyles;
+
+	//write the file that will be fetched by the script tag embedded in the target site
+    $filename = drupal_get_path('module','mta3_global_header') . "/raw_header.php";
+	$filenaame = "/mnt/www/html/linefeedappdev/docroot/sites/default/files/raw_header.php";
+	file_put_contents($filenaame,$output);
+	
+	// show a message if called by menu
+	if (current_path() == 'admin/structure/update_global_header'){
+		drupal_set_message(t('MTA Global Header file has been updated.'), 'status');
+		drupal_goto('admin/structure');
+	}
+
+}
+
+// uncomment to write the file on every page load
+// ONLY IF THE SOURCE SITE IS DIFFERENT THAN THE SITE WHERE THE MODULE IS DEPLOYED
+// otherwise enabling this could create infinite loop errors
+// ** use the menu item in admin/structure to update the raw_header.php file
+//mta3_global_header_write();

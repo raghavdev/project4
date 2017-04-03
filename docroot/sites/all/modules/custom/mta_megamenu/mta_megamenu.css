@@ -1,0 +1,57 @@
+.megamenu {
+    background: none repeat scroll 0 0 white;
+    display: none;
+    font: 12px Verdana;
+    left: 130px;
+    position: absolute;
+    top: 0;
+    width: 374px;
+    z-index: 100;
+}
+.megamenu-nyct-3 {
+    background: none repeat scroll 0 0 white;
+    display: none;
+    font: 12px Verdana;
+    left: 130px;
+    position: absolute;
+    top: 0;
+    width: 200px;
+    z-index: 100;
+}
+.megamenu-hq-4 {
+    background: none repeat scroll 0 0 white;
+    display: none;
+    font: 12px Verdana;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 250px;
+    z-index: 100;
+}
+.megamenu .column {
+    float: left;
+    margin-right: 5px;
+    width: 180px;
+}
+.megamenu .column h3 {
+    background: none repeat scroll 0 0 #F06B24 !important;
+    font: bold 13px Arial;
+    margin: 0 0 5px;
+}
+.close {
+    background-image: url("/sites/all/themes/mta/images/close-icon.jpg");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    float: right;
+    height: 16px;
+    margin: 5px;
+    width: 52px;
+}
+.close-left {
+    background-image: url("/sites/all/themes/mta/images/close-icon.jpg");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 16px;
+    margin: 5px;
+    width: 32px;
+}

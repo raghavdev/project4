@@ -1,0 +1,9 @@
+name = Block Cache Alter
+description = "Alter the cache settings per block."
+core = 7.x
+package = Performance and Scalability
+
+files[] = blockcache_alter.module
+files[] = blockcache_alter.install
+files[] = blockcache_alter.js
+configure = admin/config/development/performance/blockcache_alter

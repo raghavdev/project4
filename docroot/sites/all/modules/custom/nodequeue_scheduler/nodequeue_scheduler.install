@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @file
+ * Nodequeue scheduler install file
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function nodequeue_scheduler_schema() {
+    $schema['nodequeue_scheduler'] = array(
+      'description' => 'The main table to hold the nodequeue scheduler data.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The foreign key to node.nid',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'qid' => array(
+          'description' => 'The nodequeue queue id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'publish_on' => array(
+          'description' => 'The UNIX UTC timestamp when to publish to nodequeue',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+         'unpublish_on'=> array(
+          'description' => 'The UNIX UTC timestamp when to unpublish to nodequeue',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+          'published' => array(
+          'description' => '1 - published, 0 - not published',
+          'type' => 'int',
+          'size' => 'tiny',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+      ),
+
+      'primary key' => array('nid', 'qid'),
+  );
+  return $schema;
+}
+
+//Add primary key to table nodequeue_scheduler
+//function nodequeue_scheduler_update_7001(){
+//  db_add_primary_key('nodequeue_scheduler', array('nid', 'qid'));
+//}
+

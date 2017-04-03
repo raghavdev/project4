@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the content type news story feature.
+ */
+
+include_once 'content_type_news_story.features.inc';

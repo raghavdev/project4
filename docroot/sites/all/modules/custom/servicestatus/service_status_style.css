@@ -1,0 +1,219 @@
+body{font:13px/1.231 helvetica,arial,clean,sans-serif;font-size:small;font:x-small;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+table{font-size:inherit;font:100%;}
+
+.statusDateTime {
+	font-size: 85%;
+	color: #2f2f56;
+}
+
+.statusheading {
+color:#0055aa;
+margin-bottom:5px;
+font-size:123.1%;
+margin:0;
+font-weight:bold;
+}
+
+/* Draws a 9x9 box for commuter line icons instead of images*/
+.railLineStatus {
+    float: left; 
+    margin: 3px 3px 0 0; 
+    width: 9px; 
+    height: 9px;
+}
+
+#railSquare1 {background-color: #4D5357} /* City Terminal Zone */
+#railSquare2 {background-color: #00985F} /* Babylon Branch */
+#railSquare3 {background-color: #6E3219} /* Far Rockaway Branch */
+#railSquare4 {background-color: #CE8E00} /* Hempstead Branch */
+#railSquare5 {background-color: #FF6319} /* Long Beach Branch */
+#railSquare6 {background-color: #006983} /* Montauk Branch */
+#railSquare7 {background-color: #00AF3F} /* Oyster Bay Branch */
+#railSquare8 {background-color: #0039A6} /* Port Jefferson Branch */
+#railSquare9 {background-color: #C60C30} /* Port Washington Branch */
+#railSquare10 {background-color: #A626AA} /* Ronkonkoma Branch */
+#railSquare11 {background-color: #00A1DE} /* West Hempstead Branch */
+
+#railSquare12 {background-color: #009B3A} /* Hudson Line */
+#railSquare13 {background-color: #0039A6} /* Harlem Line */
+#railSquare15 {background-color: #EE0034} /* New Haven Line */
+#railSquare19 {background-color: #8E258D} /* Pascack Valley Line */
+#railSquare20 {background-color: #FF7900} /* Port Jervis Line */
+
+.subwayIcon_123 { width: 81px; height: 23px; background:url(images/sprite_reg_w.gif) 0 0; }
+.subwayIcon_456 { width: 60px; height: 23px; background:url(images/sprite_reg_w.gif) 60px 0; }
+.subwayIcon_7 { width: 81px; height: 23px; background:url(images/sprite_reg_w.gif) 0 -68px; }
+.subwayIcon_ACE { width: 60px; height: 23px; background:url(images/sprite_reg_w.gif) 60px -22px; }
+.subwayIcon_BDFM { width: 81px; height: 23px; background:url(images/sprite_reg_w.gif) 0 -45px; }
+.subwayIcon_G { width: 60px; height: 23px; background:url(images/sprite_reg_w.gif) 60px -68px; }
+.subwayIcon_H { width: 81px; height: 23px; background:url(images/sprite_reg_w.gif) 82px -68px; }
+.subwayIcon_JZ { width: 60px; height: 23px; background:url(images/sprite_reg_w.gif) 60px -45px; }
+.subwayIcon_L { width: 81px; height: 23px; background:url(images/sprite_reg_w.gif) 0 -90px; }
+.subwayIcon_NQR { width: 81px; height: 23px; background:url(images/sprite_reg_w.gif) 0 -22px; }
+.subwayIcon_S { width: 60px; height: 23px; background:url(images/sprite_reg_w.gif) 60px -90px; }
+.subwayIcon_SIR { width: 81px; height: 23px; background:url(images/sprite_reg_w.gif) 0 22px; }
+
+.subwayCategory {
+	font-size: 93%;
+	font-weight: bold;
+}
+#statusblock-tabs ul {
+	list-style-type: none; 
+	margin: 0 0 5px 0; 
+	padding: 0; 
+	clear: both; 
+
+}
+#statusblock-tabs {
+	border: 1px solid #CCCCCC;
+	clear:both;
+	height:21px;
+	width: 220px;
+	margin-left:-1px;
+	padding: 0;	
+	}
+.subway_Suspended, .bus_Suspended, .rail_Suspended {
+	 color: #996600;  
+}
+
+.subway_Delays, .bus_Delays, .rail_Delays, .BT_Delays {
+	 color: #990033;  
+}
+
+.subway_GoodService, .bus_GoodService, .rail_GoodService, .BT_GoodService {
+	color: #006600;
+}
+
+.subway_PlannedWork, .bus_PlannedWork, .rail_PlannedWork, .BT_PlannedWork {
+	color: #996600; 
+}
+
+.subway_ServiceChange, .bus_ServiceChange, .rail_ServiceChange, .BT_ServiceChange {
+	color: #996600;
+}
+#block-servicestatus-mta-service-status {
+	margin-bottom:10px;
+	margin-top:0;
+	padding:10px 4px;
+	height:425px;
+	width: 220px
+	}
+#block-servicestatus-mta-service-status h2 {
+	margin-bottom:10px;
+}
+
+#bottom-status-box-links {
+    clear: both;
+    margin-bottom: 1px;
+    margin-left:6px;
+    margin-top: 0;
+    height:24px;
+	}
+	
+#bottom-status-box-links ul{
+	padding:0;
+	margin:0;
+	}	
+.subway_Suspended, .bus_Suspended, .rail_Suspended, .BT_Suspended {
+     color: #3C139F; 
+}
+
+
+
+.busLineItem {
+	font-size: 93%;
+	font-weight:bold;
+	color: #333;
+}
+
+.busCategory {
+	font-size: 93%;
+	font-weight: bold;
+}
+
+.RailRoadCompany {
+	font-size: 93%;
+	font-weight: bold;
+	color: #000099;
+        float: left;
+        margin: 3px 0 0;
+}
+
+.railLineItem {
+	font-size: 85%;
+	font-weight: bold;
+	color: #333;
+}
+
+.railCategory {
+	font-size: 85%;
+	font-weight:bold;
+}
+
+
+.BTLineItem {
+	font-size: 93%;
+	font-weight: bold;
+	color: #333;
+}
+
+.BTCategory {
+	font-size: 93%;
+	font-weight:bold;
+}
+
+tr td img {
+	margin-left: 3px;
+}
+
+.weekEndCell
+{
+	border-left:solid silver 1px;
+	border-bottom:solid silver 1px;
+	text-align:center;
+	padding:0px;
+	padding-top:3px;
+	width:67px;
+}
+
+.weekendHeader
+{
+	background-color:#FFCC00;
+	text-align:center;
+	border-left:solid silver 0px;
+	border-bottom:solid silver 1px;
+	border-top:solid silver 0px;
+}
+
+.list_h
+{ 
+	background-image: url("images/arrow-gn.gif");
+	background-position: left center;
+	background-repeat: no-repeat;
+	display: inline;
+	padding-left: 10px;
+	cursor: pointer;
+}
+
+.gw { font-weight: bold; color: #555; font-size: 85%; text-decoration: none; }
+
+.t { display: inline; float: left; border-right: 1px solid #ccc; }
+.tlast { border-right: none;}
+.tdiv { padding: 4px; float: left; cursor:pointer; font-family:Arial; font-size:11px; font-weight:bold; text-align:center; }
+
+.selectedStatusTab { background-color: #00bb11; color:#FFFFFF }
+.notselectedStatusTab { background-color: #fff; color: rgb(85, 85, 85) }
+
+.railStation { width: 87px; float: right; margin: 0; }
+
+.completeOutage { color: #990033; font-weight: bold; width: 220px; text-align: center; float: left; }
+
+.TitleDelay {color: blue;font-size: 14px;font-weight: bold;}
+.DateStyle {color: blue;font-size: 12px;}
+.TitlePlannedWork {color: blue;font-size: 14px;font-weight: bold;}
+
+.plannedWorkDetail { display:  none; }
+.plannedWorkDetailLink { cursor: pointer; text-decoration: underline; }

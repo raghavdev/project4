@@ -1,0 +1,4 @@
+name = service notice
+description = Uses the block hook and to create agency special service notices.
+package = Our MTA modules
+core = 7.x

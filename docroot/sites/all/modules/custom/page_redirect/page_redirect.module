@@ -1,0 +1,330 @@
+<?php
+
+/**
+ * @file
+ * Module file for menu_example.
+ */
+
+/**
+ * @defgroup The MTA page_redirect: Menu
+ * @ingroup The MTA
+ * 
+* This module uses the hook_menu API to accomplish redirects for both the emergency page 
+ * and to catch url requests that should go to non-Drupal servers. By combining both of 
+ * these functions we can control the exact user experience based on various rules.
+ * 
+ * Using this approach, we only need to point our DNS to the new Drupal site and everything 
+ * will be handled in Drupal. We can then create admin roles to quickly turn on and off an emergency page.
+ * 
+ * If the $home_page variable is set to "emergency", the user is directed to the emergency page 
+ * regardless of the requested url.  This will prevent deep-linked bookmarks or search engine 
+ * entry points from bypassing the emergency page.  The module uses a server-side session variable 
+ * to allow users to go to their desired url after they have viewed the emergency page.  
+ * 
+ * Note: only anonymous users are forced to the "emergency" page. 
+ * 
+ * In addition, the module looks at each url request and determines if it exist on a server 
+ * other then this Drupal server.  For every possible request that exists off this server, 
+ * we create a menu item with the leading parameter as the defining variable.
+ * 
+ * For example; "http://our-new-Drupal-site/bandt/html/RFKcapital.html" will be caught by 
+ * the menu item "bandt" and will be redirected to "http://current-non-drupal-server/html/RFKcapital.html"
+ * 
+ * There are exceptions were the "current-non-drupal-server" is a different domain or sub-domain 
+ * then the main so these require slightly more processing to handle them correctly.
+ * 
+ * Each menu item uses a common page call back.  We send the item number zero telling the call back which 
+ * menu item has called it. All the other url parameters are passed by Drupal automatically.
+ * 
+ * This module also handles the administration of the "Banner Scroll"; turning it on or off, as well as the 
+ * message itself.  Since the scroll is accomplished through a Views add on module, we use a custom 
+ * content type to provide the data and filters for views.  The module creates a special node (if one 
+ * doesn't already exist) and publishes or un-publishes it while updating the node's body from the text area
+ * element in the admin form.  If Views doesn't have any published content then the block is not printed.
+ *
+ */
+
+
+
+/**
+ * Implements hook_boot().
+ */
+function page_redirect_boot() {
+/**
+ * if we are set to emergency mode, simply redirect "first time" 
+ * anonymous users to the home page regardless of their requested url.
+ * We store a sever side $_SESSION variable to let them continue with the site
+ * after we've forced them to the home page once.
+ */ 
+  global $user;
+  if (	$user->uid == 0 									// is this user anonymous ?
+  		&& variable_get('home-page','normal')== 'emergency' // are we set to emergency
+  		&& !isset($_SESSION['anonymous-tracker']) 			// have forced them before?
+  		) {
+  	$_SESSION['anonymous-tracker']=REQUEST_TIME;  	// keep track of this user
+  	//$_GET['q']=""; 								// just ignore their requested url
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function page_redirect_menu() {
+// first menu hooks are for the admin screen 
+ 
+  $items['admin/settings/page-redirect'] = array(
+    'title' => 'MTA.info',
+    'description' => 'Set the home page mode and scroll',
+    'page callback' => 'drupal_get_form',
+  	'page arguments' => array('page_redirect_form'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+ 
+// these are the menu hooks for the redirects 
+ 
+  $items['lirr'] = array(
+
+/**	the first part of the url is sent to the call back via the page arguments, 
+*	all other portions of the URL after the base are passed to the page
+*	callback as separate arguments, and are captured by the page callback
+*	in its argument list. The _page_redirect_change_page() function captures
+*	arguments in its function signature and rebuilds a url that can be directed to any server.
+*/
+    'title' => 'Extra Arguments',
+    'description' => 'The page callback can redirect users to an emergency page, weekend page, or a different server',
+    'page callback' => '_page_redirect_change_page',
+ 	'page arguments' => array(0),
+    'access callback' => TRUE,
+    'weight' => 40,
+  );
+
+
+
+  $items['nyct'] = array(
+
+    'title' => 'Extra Arguments',
+    'description' => 'The page callback can redirect users to an emergency page, weekend page, or a different server',
+    'page callback' => '_page_redirect_change_page',
+ 	'page arguments' => array(0),
+    'access callback' => TRUE,
+    'weight' => 40,
+  );
+
+  $items['mnr'] = array(
+
+    'title' => 'Extra Arguments',
+    'description' => 'The page callback can redirect users to an emergency page, weekend page, or a different server',
+    'page callback' => '_page_redirect_change_page',
+ 	'page arguments' => array(0),
+    'access callback' => TRUE,
+    'weight' => 40,
+  );
+  
+    $items['bandt'] = array(
+
+    'title' => 'Extra Arguments',
+    'description' => 'The page callback can redirect users to an emergency page, weekend page, or a different server',
+    'page callback' => '_page_redirect_change_page',
+ 	'page arguments' => array(0),
+    'access callback' => TRUE,
+    'weight' => 40,
+  );
+  
+  $items['capital'] = array(
+
+    'title' => 'Extra Arguments',
+    'description' => 'The page callback can redirect users to an emergency page, weekend page, or a different server',
+    'page callback' => '_page_redirect_change_page',
+ 	'page arguments' => array(0),
+    'access callback' => TRUE,
+    'weight' => 40,
+  );
+  
+    $items['capitaldashboard'] = array(
+
+    'title' => 'Extra Arguments',
+    'description' => 'The page callback can redirect users to an emergency page, weekend page, or a different server',
+    'page callback' => '_page_redirect_change_page',
+ 	'page arguments' => array(0),
+    'access callback' => TRUE,
+    'weight' => 40,
+  );
+
+  
+    $items['capconstr'] = array(
+
+    'title' => 'Extra Arguments',
+    'description' => 'The page callback can redirect users to an emergency page, weekend page, or a different server',
+    'page callback' => '_page_redirect_change_page',
+ 	'page arguments' => array(0),
+    'access callback' => TRUE,
+    'weight' => 40,
+  );
+
+   $items['mta'] = array(
+
+    'title' => 'Extra Arguments',
+    'description' => 'The page callback can redirect users to an emergency page, weekend page, or a different server',
+    'page callback' => '_page_redirect_change_page',
+ 	'page arguments' => array(0),
+    'access callback' => TRUE,
+    'weight' => 40,
+  );
+
+    $items['traveltime'] = array(
+
+    'title' => 'Extra Arguments',
+    'description' => 'The page callback can redirect users to an emergency page, weekend page, or a different server',
+    'page callback' => '_page_redirect_change_page',
+ 	'page arguments' => array(0),
+    'access callback' => TRUE,
+    'weight' => 40,
+  );
+
+  return $items;
+}
+
+
+
+/**
+ * This page callback will redirect the users request to external servers and looks at the emergency 
+ * variable and the user's session data and decides if they should be redirected to the emergency 
+ * weather home page regardless of their requesting url, or ... allowed to go to their desired page 
+ * which may, or may not be, on the non-drupal server.
+ *
+ * it handles 5 levels of requesting url
+ * 
+ * @param $arg1,$arg2,$arg3,$arg4,$arg5 each contain a portion of the requested url
+ *
+ */
+function _page_redirect_change_page($arg1 = NULL, $arg2 = NULL, $arg3 = NULL, $arg4 = NULL, $arg5 = NULL) {
+
+ 	global $user;
+ 	
+	$output ='http://mta.info';  // the base url  TODO should be controlled through an admin screen
+	
+  	
+  // check if arg1 and 2 create special cases that require a different base url 
+  // TODO these special cases should be controlled in an admin screen
+  	if ($arg1 == "mnr" && ($arg2 == "procurement" || $arg2 == "stations")) {
+  		$output = 'http://as0.mta.info';
+  	}
+  	if ($arg1 == 'traveltime'){
+  	  		$output = 'http://traveltime.mta.info';
+   	}
+	$output .= '/'.$arg1 ;
+	  
+	if (!empty($arg2)) {
+		$output .= '/'.$arg2 ;
+	}
+	if (!empty($arg3)) {
+		$output .= '/'.$arg3 ;
+	}
+	if (!empty($arg4)) {
+		$output .= '/'.$arg4 ;
+	}
+	if (!empty($arg5)) {
+		$output .= '/'.$arg5 ;
+	}
+    if ($arg1 == "lirr" && $arg2 == "schedules"){
+  	  		$output = 'http://lirr42.mta.info';
+  	  		// some special cases we do last since these urls don't want any params
+	}
+    
+
+  drupal_goto($output);
+  
+
+}
+/**
+  * Form builder; Create and display the page redirect module
+  * settings form.
+*/
+function page_redirect_form($form, &$form_state) {
+  // Radio buttons
+  $form['home-page'] = array(
+
+  '#type' => 'radios',
+  '#title' => t('Select Home Page Mode'),
+  '#default_value' => variable_get('home-page','normal'),
+  '#description' => t('Sets the Home Page'),
+  '#options' => array('emergency'=>t('Emergency'),'normal'=>t('Normal'),'weekend'=>t('Weekend')),
+);
+
+	// Text area
+  $form['scroll-message'] = array(
+
+  '#type' => 'textarea',
+  '#title' => t('Scroll message'),
+  '#default_value' => variable_get('scroll-message', ""),
+  '#description' => t('The scroll message will be a single line. It will only display plain text'),
+);
+  // Check box
+	$form['enable-scroll'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('Banner scroll'),
+  '#default_value' => variable_get('enable-scroll', false),
+  '#description' => t('Turns on the scroll message'),
+);
+
+// Submit button
+$form['submit'] = array(
+  '#type' => 'submit',
+  '#value' => t('Save settings'),
+);
+
+ return $form;
+}
+/**
+ * Save configuration settings for the page redirect module.
+ */
+ function page_redirect_form_submit($form, &$form_state) {
+  	variable_set('home-page',$form_state['values']['home-page']);
+  	variable_set('site_frontpage',variable_get('home-page','normal'));	// set the site to the new home page
+ 	drupal_set_message(t('The site has been set to '.$form_state['values']['home-page'].' mode'));
+	variable_set('scroll-message',$form_state['values']['scroll-message']);
+ 	variable_set('enable-scroll',$form_state['values']['enable-scroll']);
+  	if (variable_get('enable-scroll',false)== true)	{
+  		$nid = variable_get('scr-mess-nid',0);
+  		page_redirect_create_banner_scroll (variable_get('scroll-message',''),$nid); // create a node with the current message
+ 		drupal_set_message('The scroll is ON and will have the following message:<br />'.variable_get('scroll-message',''));
+  	} else {
+  		if ($nid = variable_get('scr-mess-nid',0)) {  // let's see if we have a ticker content node
+  		
+  			$node = node_load($nid);
+  			if ($node->status == 1) { // is it published ?
+  				$node->status = 0;  // if so, then unpublish it
+  				node_save($node);
+  			}
+   		}
+ 		drupal_set_message(t('The scroll is OFF'));
+  	}
+ 	
+ }
+ function page_redirect_create_banner_scroll ($scr_mess,$nid) {
+	// check if a node already exist
+	 if ($nid) {
+	 	$node = node_load($nid);
+	 	$node->status = 1;		
+	 	$node->body[$node->language][0]['value']   = $scr_mess;
+		$node->body[$node->language][0]['summary'] = text_summary($scr_mess);
+		node_save($node);
+ 	} else {
+	 // It doesn't exist so create a node object.
+		$node = new StdClass();
+		$node->type = 'news_ticker';
+		$node->language = LANGUAGE_NONE;
+		node_object_prepare($node);
+		$node->title = "Temp Scroll Text";   
+		$node->body[$node->language][0]['value']   = $scr_mess;
+		$node->body[$node->language][0]['summary'] = text_summary($scr_mess);
+		$node->body[$node->language][0]['format']  = 2;
+		node_save($node);
+		variable_set('scr-mess-nid',$node->nid); 	
+ 	}
+ }
+ 
+/**
+ * @} End of "defgroup page_redirect".
+ */

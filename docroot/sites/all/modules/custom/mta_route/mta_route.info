@@ -1,0 +1,7 @@
+name = MTA Route Data
+project = "mta_route_data"
+description = "Returns MTA Route Data as JSON."
+core = 7.x
+package = "Our MTA modules"
+version = 7.x
+files[] = mta_route.module

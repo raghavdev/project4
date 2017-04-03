@@ -1,0 +1,82 @@
+<?php
+/**
+* @file
+* A block module that displays the Google translate widget.
+*/
+
+
+
+/**
+* Implements hook_block_info().
+*/
+function google_adsense_block_info() {
+  $blocks['google_adsense'] = array(
+    'info' => t('Google AdSense'), //The name that will appear in the block list.
+    'cache' => DRUPAL_CACHE_PER_ROLE, //Default
+  );
+  
+  $blocks['google_adsense_horizontal'] = array(
+  		'info' => t('Google AdSense Horizontal'), //The name that will appear in the block list.
+  		'cache' => DRUPAL_CACHE_PER_ROLE, //Default
+  );
+  
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+ function google_adsense_block_view($delta = '') {
+  switch($delta){
+    case 'google_adsense':
+      $block['subject'] = '';
+      if(user_access('access content')){
+      $block['content']	= 
+
+		'<div id="Google-skyscraper-ad">
+					<script type="text/javascript">
+		<!--
+		google_ad_client = "pub-0982027042052701";
+		/* 160x600, created 5/6/11 */
+		google_ad_slot = "8916589146";
+		google_ad_width = 160;
+		google_ad_height = 600;
+      		-->
+		      		
+      	</script>		<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>		</div>  ';
+
+            
+      	}
+      	
+      	 break;
+
+      case 'google_adsense_horizontal':
+      $block['subject'] = '';
+      if(user_access('access content')){
+      $block['content']	= 
+
+		'<div id="Google-horizontal-ad">
+	<center><script type="text/javascript"><!--
+		google_ad_client = "ca-pub-0982027042052701";
+		/* Extended Homepage Banner Ad */
+      	google_ad_slot = "8043507503"
+		google_ad_width = 728;
+		google_ad_height = 90;
+      		-->
+				
+      		</script>
+      		<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+      		</script></center>
+      		</div>  ';
+      	     
+      	}
+      		
+      		break;
+     }
+  return $block;
+  }
+ 
+
+
+
+ 

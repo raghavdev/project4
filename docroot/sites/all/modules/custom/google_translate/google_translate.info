@@ -1,0 +1,4 @@
+name = Google translate
+description = A block module that displays the Google translate widget.
+package = Our MTA modules
+core = 7.x

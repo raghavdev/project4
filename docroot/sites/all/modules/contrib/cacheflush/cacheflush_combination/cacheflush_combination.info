@@ -1,0 +1,12 @@
+name = CacheFlush Combination
+description = "Combine presets."
+package = administration
+dependencies[] = cacheflush
+core = "7.x"
+
+; Information added by Drupal.org packaging script on 2014-03-11
+version = "7.x-2.3"
+core = "7.x"
+project = "cacheflush"
+datestamp = "1394545303"
+

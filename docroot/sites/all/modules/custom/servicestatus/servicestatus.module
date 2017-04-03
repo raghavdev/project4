@@ -1,0 +1,278 @@
+<?php
+
+
+function servicestatus_help($path, $arg) {
+  switch ($path) {
+    case "admin/help#servicestatus":
+      return '<p>' . t("Adding Help for the Service Status") . '</p>';
+      break;
+  }
+}
+
+/*
+ * Implementation of hook_block_info().
+ */
+function servicestatus_block_info() 
+{    
+    $blocks['mta-service-status'] = array(
+            'info' => t('MTA Service Status'),
+            'cache' => DRUPAL_NO_CACHE,
+     		// 'cache' => DRUPAL_CACHE_GLOBAL,
+    );
+
+    return $blocks;
+}
+
+function servicestatus_menu()
+{
+    $item['status/%/%'] = array(
+        'title' => "MTA Service Status",
+        'access arguments' => array('access content'),
+        'page callback' => 'getStatusDetails',
+        'page arguments' => array(1,2),
+    );
+
+    $item['service_status_json'] = array(
+        'access arguments' => array('access content'),
+        'page callback' => 'getStatusAsJSON',
+        'delivery callback' => 'drupal_json_output',
+    );
+
+	$item['admin/config/content/servicestatus'] = array(
+    'title' => 'MTA Service Status',
+    'description' => 'Configuration for the MTA Service Status module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('servicestatus_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+	
+	
+    return $item;
+}
+
+/**
+ * Page callback: Current posts settings
+ *
+ * @see servicestatus_menu()
+ */
+function servicestatus_form($form, &$form_state) {
+  $form['servicestatus_feed'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Select a Feed Location'),
+    '#default_value' => variable_get('servicestatus_feed', "http://gms.mtanyct.info/GMS/GMSFeedsService/feeds/servicestatus.xml"),
+    '#size' => 120,
+    '#maxlength' => 120,
+    '#description' => t('The URL of the feed for the service status block to use.'),
+    '#required' => TRUE,
+  );
+
+  return system_settings_form($form);
+}
+
+
+function getStatusDetails($service, $line)
+{
+    $output = '<div id="status_display">';
+    // drupal_add_js('jQuery(document).ready(function () { jQuery("#status_display").mtaService("'.$service.'", "'.$line.'"); });', 'inline');
+
+    if ($service != "subway" && $service != "LIRR" && $service != "MetroNorth" && $service != "bus" && $service != "BT")
+        $output .= 'Invalid input.</div>';
+    else 
+    {
+        $json_str = getStatusAsJSON();
+        $json = json_decode($json_str, TRUE);
+
+        $detailed_message = "";
+
+        if (isset($json[$service]["line"])) 
+        {
+            $data = $json[$service]["line"];
+            
+            $found = FALSE;
+
+            foreach ($data as $index){
+                if (!$found) {
+                    foreach($index as $value){
+                        $line_n = $index['name'];
+
+                        if ($service != "subway") {
+                            $line_n = str_replace(' ', '', $line_n);
+                            $line_n = str_replace('.', '', $line_n);
+                        }
+
+                        if ($line_n == $line){
+                            if ($service == "LIRR" || $service == "MetroNorth")
+                                $detailed_message = generateRailHeading($line_n);
+
+                            if (empty($index['text']))
+                                $detailed_message .= "The Service Status has changed. Please go back to the MTA home page for latest status.";
+                            else
+                                $detailed_message .= $index['text'];                                 
+                            
+                            $found = TRUE;
+                        }
+
+                        if ($found)
+                            break;                               
+                    }
+                } else
+                    break;
+            }
+        }
+        else
+            $detailed_message .= "Couldn't retrieve Service Status Details due to a technical problem.";
+        
+        // dsm ($json);
+        $output .= $detailed_message . '</div>';
+        // $html = html_entity_decode($output);
+    }
+
+    // Run through MTA input filter to translate tokens to images
+    $filteredhtml = check_markup($output, 'full_html'); 
+
+    return $filteredhtml;
+}
+
+function getStatusAsJSON()
+{
+
+    $filePath = "./sites/default/files/servicestatus/servicestatus.xml";
+    $lastUpdate = filemtime($filePath);
+    if(time() - $lastUpdate < 60)
+     {
+     $fileContents= file_get_contents($filePath);
+     }
+     else
+     {
+	 //$fileContents= file_get_contents($filePath);
+	$getfileContents = variable_get('servicestatus_feed', "http://gms.mtanyct.info/GMS/GMSFeedsService/feeds/servicestatus.xml" );
+     $fileContents= file_get_contents($getfileContents);
+	 //$fileContents= file_get_contents("http://gms.mtanyct.info/GMS/GMSFeedsService/feeds/servicestatus.xml");
+     //$fileContents= file_get_contents("http://advisory.mtanyct.info/service/serviceStatus.txt");	 
+     $file = fopen($filePath,"w");
+     fwrite($file,$fileContents);
+     fclose($file);
+     }
+
+
+    $fileContents = str_replace(array("\n", "\r", "\t"), '', $fileContents);
+    $fileContents = trim(str_replace('"', "'", $fileContents));
+    $simpleXml = simplexml_load_string($fileContents);
+    $json = json_encode($simpleXml);
+    
+    // drupal_json_output($json);
+    return $json;
+}
+
+function generateRailHeading($line)
+{
+    switch ($line) {
+        // LIRR
+        case "Babylon":
+            $linename = "Babylon Branch Customers";
+            $color = "#00985F";
+            break;
+        case "CityTerminalZone":
+            $linename = "City Terminal Zone Branch Customers";
+            $color = "#4D5357";
+            break;
+        case "FarRockaway":
+            $linename = "Far Rockaway Branch Customers";
+            $color = "#6E3219";
+            break;                
+        case "Hempstead":
+            $linename = "Hempstead Branch Customers";
+            $color = "#CE8E00";
+            break;
+        case "LongBeach":
+            $linename = "Long Beach Branch Customers";
+            $color = "#FF6319";
+            break;
+        case "Montauk":
+            $linename = "Montauk Branch Customers";
+            $color = "#006983";
+            break;
+        case "OysterBay":
+            $linename = "Oyster Bay Branch Customers";
+            $color = "#00AF3F";
+            break;
+        case "PortJefferson":
+            $linename = "Port Jefferson Branch Customers";
+            $color = "#0039A6";
+            break;
+        case "PortWashington":
+            $linename = "Port Washington Branch Customers";
+            $color = "#C60C30";
+            break;
+        case "Ronkonkoma":
+            $linename = "Ronkonkoma Branch Customers";
+            $color = "#A626AA";
+            break;
+        case "WestHempstead":
+            $linename = "West Hempstead Branch Customers";
+            $color = "#00A1DE";
+            break;
+        // MNR
+        case "Hudson":
+            $linename = "Hudson Line Customers";
+            $color = "#009B3A";
+            break;
+        case "Harlem":
+            $linename = "Harlem Line Customers";
+            $color = "#0039A6";
+            break;
+        case "Wassaic":
+            $linename = "Wassaic Line Customers";
+            $color = "#0039A6";
+            break;                
+        case "NewHaven":
+            $linename = "New Haven Line Customers";
+            $color = "#EE0034";
+            break;
+        case "NewCanaan":
+            $linename = "New Canaan Line Customers";
+            $color = "#EE0034";
+            break;
+        case "Danbury":
+            $linename = "Danbury Line Customers";
+            $color = "#EE0034";
+            break;
+        case "Waterbury":
+            $linename = "Waterbury Line Customers";
+            $color = "#EE0034";
+            break;
+        case "PascackValley":
+            $linename = "Pascack Valley Line Customers";
+            $color = "#8E258D";
+            break;
+        case "PortJervis":
+            $linename = "Port Jervis Line Customers";
+            $color = "#FF7900";
+            break;
+    }
+
+    $heading = '<span style="color:' . $color . ';font-size:large;font-weight:bold">' . $linename . '</span><br/>';
+
+    return $heading;
+}
+
+/*
+ * Implementation of hook_block_view().
+ */
+function servicestatus_block_view($delta ='') 
+{
+    $block = array();
+
+    switch ($delta) 
+    {
+        case 'mta-service-status':
+            $block['title'] = t('Service Status');
+            $block['subject'] = t('');
+
+            $block['content'] = '<div id="status-whole-block"></div>';
+        break;
+    }
+    
+    return $block;
+}

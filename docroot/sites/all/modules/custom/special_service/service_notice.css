@@ -1,0 +1,16 @@
+#block-service-notice-service-notice-nyct,
+#block-service-notice-service-notice-lirr,
+#block-service-notice-service-notice-mnr,
+#block-service-notice-service-notice-bandt,
+#block-service-notice-service-notice-sir  {
+	margin-top:10px;
+	height: 150px;
+	padding: 5px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	overflow:auto;
+	border: 1px solid #B4B4B4;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #f4f4f4;
+}
+

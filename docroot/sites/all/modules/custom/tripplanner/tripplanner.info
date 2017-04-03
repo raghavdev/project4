@@ -1,0 +1,5 @@
+name = tripplanner
+description = Uses the block hook and form API to create the Tripplanner block.
+stylesheets[all][] = tripplanner.css
+package = Our MTA modules
+core = 7.x

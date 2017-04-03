@@ -1,0 +1,177 @@
+<?php
+
+/**
+ * @file alert_redirect.module
+ * TODO: Enter file description here.
+ */
+define('ALERT_REDIRECT_MODE_DISABLED', 0);
+define('ALERT_REDIRECT_MODE_JS', 1);
+define('ALERT_REDIRECT_MODE_BEACON', 2);
+define('ALERT_REDIRECT_MODE_HTTP', 3);
+
+define('ALERT_REDIRECT_SCOPE_NOTLISTED', 0);
+define('ALERT_REDIRECT_SCOPE_LISTED', 1);
+
+/**
+ * Implements hook_init().
+ */
+function alert_redirect_init() {
+  // Ignore logged in users and login pages (/user and /user/*).
+  global $user;
+  if ($user->uid || preg_match('/^user(\/.*)?$/', $_GET['q'])) return;
+
+  $mode = variable_get('alert_redirect_mode', ALERT_REDIRECT_MODE_DISABLED);
+
+  // Execute redirect based on the current redirect mode.
+  switch ($mode) {
+    case ALERT_REDIRECT_MODE_JS:
+    case ALERT_REDIRECT_MODE_BEACON:
+      alert_redirect_init_js($mode);
+      break;
+    case ALERT_REDIRECT_MODE_HTTP:
+      alert_redirect_init_http();
+      break;
+  }
+}
+
+/**
+ * JS/cookie based redirect execution.
+ */
+function alert_redirect_init_js($mode) {
+  // Inject common JS
+  drupal_add_js(drupal_get_path('module','alert_redirect') . '/js/jquery.cookie.js');
+  drupal_add_js(
+    array('alertRedirect' =>
+    array(
+      'cookieDomain' => variable_get('alert_redirect_cookie_domain', ''),
+      'cookieExpiry' => variable_get('alert_redirect_cookie_expiry', 1),
+    ),
+    ),
+    'setting'
+  );
+
+  // Inject redirect code as long as all conditions are met: redirect mode, redirect enabled, page scope met.
+  if (
+    $mode == ALERT_REDIRECT_MODE_JS &&
+    variable_get('alert_redirect_redirect_enabled', 0) &&
+    _alert_redirect_visibility_pages()
+  ) {
+    // Export current alert mode into JS settings.
+    drupal_add_js(
+      array('alertRedirect' =>
+      array(
+        'redirectPersistent' => variable_get('alert_redirect_persistent', 1),
+        'redirectURL' => variable_get('alert_redirect_url', ''),
+      )
+      ),
+      'setting'
+    );
+
+    drupal_add_js(drupal_get_path('module','alert_redirect') . '/js/alert_redirect.js');
+  }
+  // Beacon module should be enabled on the 'alert' site.
+  // All this code does is updating the beacon cookie timestamp if the cookie exists.
+  elseif ($mode == ALERT_REDIRECT_MODE_BEACON) {
+    drupal_add_js(drupal_get_path('module','alert_redirect') . '/js/alert_beacon.js');
+  }
+}
+
+/**
+ * HTTP based redirect execution.
+ */
+function alert_redirect_init_http() {
+  // Don't redirect when using drush.
+  if (drupal_is_cli()) {
+    return;
+  }
+
+  $redirectURL = variable_get('alert_redirect_url', '');
+
+  // Perform redirect as all conditions are met: redirect enabled, redirectURL not empty, page scope met.
+  if (variable_get('alert_redirect_redirect_enabled', 0) && $redirectURL && _alert_redirect_visibility_pages()) {
+    drupal_goto($redirectURL, array(), 302);
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function alert_redirect_menu() {
+  $items['admin/config/system/alert_redirect'] = array(
+    'title' => 'Alert Redirect',
+    'description' => 'Configure Alert Redirect settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('alert_redirect_admin_settings_form'),
+    'access arguments' => array('administer alert redirect'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'alert_redirect.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function alert_redirect_permission() {
+  return array(
+    'administer alert redirect' =>  array(
+      'title' => t('Administer Alert Redirect'),
+      'description' => t('Perform administration tasks for Alert Redirect module.'),
+    ),
+  );
+}
+
+/**
+ * Based on visibility setting this function returns TRUE if redirect code should
+ * be added to the current page and otherwise FALSE.
+ */
+function _alert_redirect_visibility_pages() {
+  static $page_match;
+
+  // Cache visibility result if function is called more than once.
+  if (!isset($page_match)) {
+
+    $visibility = variable_get('alert_redirect_visibility_pages', ALERT_REDIRECT_SCOPE_NOTLISTED);
+    $setting_pages = variable_get('alert_redirect_pages', '');
+
+    // Match path if necessary.
+    if (!empty($setting_pages)) {
+      // Convert path to lowercase. This allows comparison of the same path
+      // with different case. Ex: /Page, /page, /PAGE.
+      $pages = drupal_strtolower($setting_pages);
+      if ($visibility < 2) {
+        // Convert the Drupal path to lowercase
+        $path = drupal_strtolower(drupal_get_path_alias($_GET['q']));
+        // Compare the lowercase internal and lowercase path alias (if any).
+        $page_match = drupal_match_path($path, $pages);
+        if ($path != $_GET['q']) {
+          $page_match = $page_match || drupal_match_path($_GET['q'], $pages);
+        }
+        // When $visibility has a value of 0, the redirect code is injected on
+        // all pages except those listed in $pages. When set to 1, it
+        // is injected only on those pages listed in $pages.
+        $page_match = !($visibility xor $page_match);
+      }
+      elseif (module_exists('php')) {
+        $page_match = php_eval($setting_pages);
+      }
+      else {
+        $page_match = FALSE;
+      }
+    }
+    else {
+      $page_match = TRUE;
+    }
+
+  }
+  return $page_match;
+}
+
+//echo "<pre>"; print_r($_SERVER);
+// Redirect for the PJLStudy page added on: Feb-28-2017
+if($_SERVER['REDIRECT_SCRIPT_URL'] == "/mta/planning/PJLStudy")
+{
+  header("Location: http://web.mta.info/mta/planning/pjlstudy/");
+  exit;
+}

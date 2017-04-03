@@ -1,0 +1,398 @@
+<service>
+<responsecode>0</responsecode>
+<timestamp>10/17/2016 9:29:30 AM</timestamp>
+<subway>
+<line>
+<name>123</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>456</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>7</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>ACE</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>BDFM</name>
+<status>PLANNED WORK</status>
+<text>
+<span class="TitlePlannedWork" >Planned Work</span> <br/> <a class="plannedWorkDetailLink" onclick=ShowHide(135741);> <b>[F] Some northbound trains skip 75 Av, Briarwood, Sutphin Blvd and terminate at Parsons Blvd </a><br/><br/><div id= 135741 class="plannedWorkDetail" >Rush Hours</b>, 6 AM to 10 AM <i>and</i> 3:30 PM to 8:30 PM, Mon to Fri, until Nov 18 <br> <br>For service <i>to</i> skipped stations, 169 St and 179 St, transfer to a Jamaica-bound [F] at 71 Av, <br>Union Tpke, or Parsons Blvd. <br> <br>&#149; Please allow additional travel time for these stations. <br><b> <br></div></b><br/> <br/><br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>9:27AM</Time>
+</line>
+<line>
+<name>G</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>JZ</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>L</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>NQR</name>
+<status>SERVICE CHANGE</status>
+<text>
+<span class="TitleServiceChange" >Service Change</span> <span class="DateStyle"> &nbsp;Posted:&nbsp;10/11/2016&nbsp; 1:11PM </span><br/><br/> <body bgcolor='White' style='font-family:sans-serif;font-size:10pt;'></body> <br/><br/>
+</text>
+<Date>10/11/2016</Date>
+<Time>1:11PM</Time>
+</line>
+<line>
+<name>S</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>SIR</name>
+<status>PLANNED WORK</status>
+<text>
+<span class="TitlePlannedWork" >Planned Work</span> <br/> <a class="plannedWorkDetailLink" onclick=ShowHide(137702);> <b>[SIR] Trains board at the Tottenville-bound platform from Great Kills to Grant City Stations </a><br/><br/><div id= 137702 class="plannedWorkDetail" ></b>Days, 9 AM to 2 PM, Mon to Fri, Oct 17 - 21 <br> <br>&bull; Boarding change includes <b>Great Kills</b>, <b>Bay Terrace</b>, <b>Oakwood Heights</b>, <b>New Dorp</b> and <br> <b>Grant City Stations</b>. <br><b> <br></div></b><br/> <br/><br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>9:27AM</Time>
+</line>
+</subway>
+<bus>
+<line>
+<name>B1 - B84</name>
+<status>SERVICE CHANGE</status>
+<text>
+<span class="TitleServiceChange" >Service Change</span> <span class="DateStyle"> &nbsp;Posted:&nbsp;10/17/2016&nbsp; 8:01AM </span> <br/> <br/> <P><STRONG>B60 </STRONG>buses are detoured due to NYPD activity on Rockaway Av at Livonia Av. </P> <P>Detour is as follows: </P> <P><STRONG>Northbound</STRONG>: Via Rockaway Av, right on Livonia Av, left on Powell St, left on Dumont Av, right on Rockaway Av and regular route. </P> <P>All corresponding stops will be made along the detoured route. </P> <P>Allow additional travel time. </P> <br/> <br/> <span class="TitlePlannedWork" >Planned Detour</span> <br/> <a class="plannedWorkDetailLink" onclick=ShowHide(117571);> <b>B9 buses may experience delays due to track work on the N line between Stillwell Av and 8 Av </a><br/><br/><div id= 117571 class="plannedWorkDetail" ></b>Until further notice <br> <br>&#149; Please allow additional travel time. <br><b> </b></font><a href=http://bustime.mta.info/#b9 target=_blank><img height=30px src=http://web.mta.info/nyct/images/Bus_Time_logo.png></a> <br></div></b><br/> <br/> <br/> <span class="TitlePlannedWork" >Planned Detour</span> <br/> <a class="plannedWorkDetailLink" onclick=ShowHide(132028);> <b>B35/B35</b> LTD<b>, B63 and B70 buses may experience delays due to construction on 5 Av at 39 St </a><br/><br/><div id= 132028 class="plannedWorkDetail" ></b>Until further notice <br> <br>&#149; </font>Please allow additional travel time. <br><b> </b><a href=http://bustime.mta.info/#b9 target=_blank><img height=30px src=http://web.mta.info/nyct/images/Bus_Time_logo.png></a> <br></div></b><br/> <br/> <br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>8:01AM</Time>
+</line>
+<line>
+<name>B100 - B103</name>
+<status>SERVICE CHANGE</status>
+<text>
+<span class="TitleServiceChange" >Service Change</span> <span class="DateStyle"> &nbsp;Posted:&nbsp;10/17/2016&nbsp; 8:01AM </span> <br/> <br/> <P><STRONG>B103-LTD</STRONG> and <STRONG>BM2</STRONG> buses are detoured due to DOT Work on Avenue M between Remsen Av and E. 80 St. </P> <P>Detour is as follows: </P> <P><STRONG>Westbound:</STRONG> Via Avenue M, left on Remsen Av, right on Avenue N, right on E. 80 St and regular route. </P> <P><STRONG>Eastbound</STRONG>: Via E. 80 St, left on Avenue N, left on Remsen Av, right on Avenue N and regular route. </P> <P>Allow additional travel time. </P> <br/> <br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>8:01AM</Time>
+</line>
+<line>
+<name>BM1 - BM5</name>
+<status>SERVICE CHANGE</status>
+<text>
+<span class="TitleServiceChange" >Service Change</span> <span class="DateStyle"> &nbsp;Posted:&nbsp;10/17/2016&nbsp; 8:01AM </span> <br/> <br/> <P><STRONG>B103-LTD</STRONG> and <STRONG>BM2</STRONG> buses are detoured due to DOT Work on Avenue M between Remsen Av and E. 80 St. </P> <P>Detour is as follows: </P> <P><STRONG>Westbound:</STRONG> Via Avenue M, left on Remsen Av, right on Avenue N, right on E. 80 St and regular route. </P> <P><STRONG>Eastbound</STRONG>: Via E. 80 St, left on Avenue N, left on Remsen Av, right on Avenue N and regular route. </P> <P>Allow additional travel time. </P> <br/> <br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>8:01AM</Time>
+</line>
+<line>
+<name>BX1 - BX55</name>
+<status>SERVICE CHANGE</status>
+<text>
+<span class="TitleServiceChange" >Service Change</span> <span class="DateStyle"> &nbsp;Posted:&nbsp;10/17/2016&nbsp; 8:44AM </span> <br/> <br/> <P><STRONG>BX26</STRONG> buses are detoured due to paving on Allerton Av from Bronx Park East to White Plains Rd. </P> <P><STRONG>Eastbound</STRONG>: Via Kazimiroff Blvd, left on Bronx Park East, right on Arnow Av, right on White Plains Rd, left on Allerton Av and regular route. </P> <P><STRONG>Westbound</STRONG>: Via Allerton Av, right on White Plains Rd, left on Arnow Av, left on Bronx Park East, right on Kazimiroff Blvd and regular route. </P> <P>All corresponding stops will be made along the detoured route. </P> <P>Allow additional travel time. </P> <br/> <br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>8:44AM</Time>
+</line>
+<line>
+<name>BXM1 - BXM18</name>
+<status>PLANNED WORK</status>
+<text>
+<span class="TitlePlannedWork" >Planned Detour</span> <br/> <a class="plannedWorkDetailLink" onclick=ShowHide(133109);> <b>BxM10 stop on Morris Park Av at Eastchester Rd temporarily closed </a><br/><br/><div id= 133109 class="plannedWorkDetail" ></b>Until Oct 2018 <br> <br>Due to construction, please use the nearby stop <b>on Eastchester Rd </b>at Morris Park Av in both directions. <br><b> <br></div></b><br/> <br/> <br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>9:27AM</Time>
+</line>
+<line>
+<name>M1 - M116</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Q1 - Q113</name>
+<status>PLANNED WORK</status>
+<text>
+<span class="TitlePlannedWork" >Planned Detour</span> <br/> <a class="plannedWorkDetailLink" onclick=ShowHide(68484);> <b>Q69 - Southbound stop on 28 St between Queens Plaza South and 42 Rd temporarily relocated </a><br/><br/><div id= 68484 class="plannedWorkDetail" ></b>Until further notice <br> <br>Due to construction, please use the nearby temporary stop <b>on 42 Rd</b> between Jackson Av and 28 St. <br></font><b> [TP] <br></div></b><br/> <br/> <br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>9:27AM</Time>
+</line>
+<line>
+<name>QM1 - QM44</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>S40 - S98</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>x1 - x68</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+</bus>
+<BT>
+<line>
+<name>Bronx-Whitestone</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Cross Bay</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Henry Hudson</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Hugh L. Carey</name>
+<status>SERVICE CHANGE</status>
+<text>
+<span class="TitleServiceChange" >Service Change</span> <span class="DateStyle"> &nbsp;Posted:&nbsp;10/17/2016&nbsp; 5:54AM </span><br/><br/> HLC - HOV Lane Open 6 AM to 10 AM. Two-Way Operations in effect. Three (3) lanes Manhattan-bound. One (1) lane Brooklyn-bound. <br/><br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>5:54AM</Time>
+</line>
+<line>
+<name>Marine Parkway</name>
+<status>SERVICE CHANGE</status>
+<text>
+<span class="TitleServiceChange" >Service Change</span> <span class="DateStyle"> &nbsp;Posted:&nbsp;10/10/2016&nbsp;12:23PM </span><br/><br/> Marine Parkway-Gil Hodges Memorial Bridge; One lane closed Rockaway-bound until December 2016. Motorists should allow extra time or use alternate route. <br/><br/>
+</text>
+<Date>10/10/2016</Date>
+<Time>12:23PM</Time>
+</line>
+<line>
+<name>Queens Midtown</name>
+<status>SERVICE CHANGE</status>
+<text>
+<span class="TitleServiceChange" >Service Change</span> <span class="DateStyle"> &nbsp;Posted:&nbsp;10/17/2016&nbsp; 6:26AM </span><br/><br/> QMT - HOV Lane Open 6 AM to 10 AM. Two-Way Operation in effect. Three (3) lanes Manhattan bound. One (1) lane Queens bound. <br/><br/> <span class="TitlePlannedWork" >Planned Work</span> <br/> Queens-Midtown Tunnel downtown exit; One lane closed. Use 37th St tunnel exit for access to 2nd Ave. Motorists should allow extra time and may wish to use an alternate route if possible" Drivers should expect delays and plan accordingly. Motorists can sign up for MTA e-mail or text alerts at <A href="http://www.mta.info">www.mta.info</A> and check the Bridges and Tunnels homepage or Facebook page for the latest information on this planned work. <br/><br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>6:26AM</Time>
+</line>
+<line>
+<name>Robert F. Kennedy</name>
+<status>DELAYS</status>
+<text>
+<span class="TitleDelay">Delays</span> <span class="DateStyle"> &nbsp;Posted:&nbsp;10/17/2016&nbsp; 7:28AM </span><br/><br/> RFK: Manhattan bound delays due to off property volume on the southbound FDR drive and 125th St. & 2nd Ave. <br/><br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>7:28AM</Time>
+</line>
+<line>
+<name>Throgs Neck</name>
+<status>PLANNED WORK</status>
+<text>
+<span class="TitlePlannedWork" >Planned Work</span> <br/> TNB planned work Queens bound one lane closed , expect delays. <br/><br/> <span class="TitleServiceChange" >Service Change</span> <span class="DateStyle"> &nbsp;Posted:&nbsp;10/17/2016&nbsp; 6:23AM </span><br/><br/> TNB: SERVICE CHANGE; BRONX BOUND 1 LANE CLOSED; UNTIL 10 P.M. EXPECT DELAYS. USE BWB OR RFK AS AN ALTERNATE. <br/><br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>8:30AM</Time>
+</line>
+<line>
+<name>Verrazano-Narrows</name>
+<status>PLANNED WORK</status>
+<text>
+<span class="TitlePlannedWork" >Planned Work</span> <br/> VNB: Planned work; Staten Island bound lower level one lane closed, expect delays. <br/><br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>4:57AM</Time>
+</line>
+</BT>
+<LIRR>
+<line>
+<name>Babylon</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>City Terminal Zone</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Far Rockaway</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Hempstead</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Long Beach</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Montauk</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Oyster Bay</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Port Jefferson</name>
+<status>DELAYS</status>
+<text>
+<span class="TitleDelay">Delays</span> <span class="DateStyle"> &nbsp;Posted:&nbsp;10/17/2016&nbsp; 9:22AM </span><br/><br/> The 8:48AM train from Penn due Huntington at 9:54AM is operating 10 minutes late due to congestion caused by a delayed train ahead. <br/><br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>9:22AM</Time>
+</line>
+<line>
+<name>Port Washington</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Ronkonkoma</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>West Hempstead</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+</LIRR>
+<MetroNorth>
+<line>
+<name>Hudson</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Harlem</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Wassaic</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>New Haven</name>
+<status>DELAYS</status>
+<text>
+<span class="TitleDelay">Delays</span> <span class="DateStyle"> &nbsp;Posted:&nbsp;10/17/2016&nbsp; 9:15AM </span><br/><br/> New Haven Line Service continue to experience delays of 10 to 15 minutes due to a disabled train in the vicinity Larchmont. Please listen for announcements at your station. <br/><br/>
+</text>
+<Date>10/17/2016</Date>
+<Time>9:15AM</Time>
+</line>
+<line>
+<name>New Canaan</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Danbury</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Waterbury</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Pascack Valley</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+<line>
+<name>Port Jervis</name>
+<status>GOOD SERVICE</status>
+<text/>
+<Date/>
+<Time/>
+</line>
+</MetroNorth>
+</service>

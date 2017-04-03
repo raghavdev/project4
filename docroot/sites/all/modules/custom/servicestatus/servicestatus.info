@@ -1,0 +1,10 @@
+name = "MTA Service Status"
+description = "MTA Service Status"
+core = 7.x
+; NEW LINE
+configure = admin/config/content/servicestatus
+package = Our MTA modules
+files[] = servicestatus.module 
+stylesheets[all][] = service_status_style.css
+scripts[] = servicestatus.js
+scripts[] = jquery.cookie.js

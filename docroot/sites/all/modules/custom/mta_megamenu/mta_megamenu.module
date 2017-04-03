@@ -1,0 +1,150 @@
+<?php
+
+function mta_megamenu_block_info() {
+  $blocks['mta_megamenu'] = array(
+    'info' => t('mta_megamenu'), //The name that will appear in the block list.
+    'cache' => DRUPAL_NO_CACHE, //Default
+  );
+  $blocks['lirr_megamenu'] = array(
+  		'info' => t('lirr_megamenu'), //The name that will appear in the block list.
+  		'cache' => DRUPAL_NO_CACHE, //Default
+  );
+  $blocks['nyct_megamenu'] = array(
+  		'info' => t('nyct_megamenu'), //The name that will appear in the block list.
+  		'cache' => DRUPAL_NO_CACHE, //Default
+  );
+  $blocks['mnr_megamenu'] = array(
+  		'info' => t('mnr_megamenu'), //The name that will appear in the block list.
+  		'cache' => DRUPAL_NO_CACHE, //Default
+  );
+  $blocks['bandt_megamenu'] = array(
+  		'info' => t('bandt_megamenu'), //The name that will appear in the block list.
+  		'cache' => DRUPAL_NO_CACHE, //Default
+  );
+  $blocks['sir_megamenu'] = array(
+  		'info' => t('sir_megamenu'), //The name that will appear in the block list.
+  		'cache' => DRUPAL_NO_CACHE, //Default
+  );
+  
+  
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+ function mta_megamenu_block_view($delta = '') {
+  switch($delta){
+    case 'mta_megamenu':
+      $block['subject'] = '';
+      if(user_access('access content')){
+      		$path = drupal_get_path('module', 'mta_megamenu');
+      		drupal_add_js($path."/jkmegamenu.js");
+			drupal_add_css($path."/mta_megamenu.css");
+      	      
+   			$block['content']=file_get_contents($path."/mta_megamenu.html");
+   			$block['content'].='<script type="text/javascript">
+			jkmegamenu.definemenu("menuanchor1", "menuone", "click", "left");
+			jkmegamenu.definemenu("menuanchor2", "menutwo", "click", "left");
+			jkmegamenu.definemenu("menuanchor3", "menuthree", "click", "left");
+			jkmegamenu.definemenu("menuanchor4", "menufour", "click", "left");	
+			jkmegamenu.definemenu("menuanchor5", "menufive", "click", "right");
+			jkmegamenu.definemenu("menuanchor6", "menusix", "click", "right");
+			//jkmegamenu.definemenu("menuanchor7", "menuseven", "click", "right");
+			//jkmegamenu.definemenu("menuanchor8", "menueight", "click", "right");
+   			
+		</script>';
+      	}
+  	      	break;
+    
+ 		case 'lirr_megamenu':
+ 			$block['subject'] = '';
+ 			if(user_access('access content')){
+ 				$path = drupal_get_path('module', 'mta_megamenu');
+ 				drupal_add_js($path."/jkmegamenu.js");
+ 				drupal_add_css($path."/mta_megamenu.css");
+ 
+ 				$block['content']=file_get_contents($path."/lirr_megamenu.html");
+ 				$block['content'].='<script type="text/javascript">
+			jkmegamenu.definemenu("menuanchor1", "menuone", "click", "left");
+			jkmegamenu.definemenu("menuanchor2", "menutwo", "click", "left");
+			 
+		</script>';
+       }
+       		break;
+ 	
+ 			case 'nyct_megamenu':
+ 			$block['subject'] = '';
+ 			if(user_access('access content')){
+ 				$path = drupal_get_path('module', 'mta_megamenu');
+ 				drupal_add_js($path."/jkmegamenu.js");
+ 				drupal_add_css($path."/mta_megamenu.css");
+ 			
+ 				$block['content']=file_get_contents($path."/nyct_megamenu.html");
+ 				$block['content'].='<script type="text/javascript">
+			jkmegamenu.definemenu("menuanchor1", "menuone", "click", "left");
+			jkmegamenu.definemenu("menuanchor2", "menutwo", "click", "left");
+			jkmegamenu.definemenu("menuanchor3", "menuthree", "click", "left");
+			 			
+		</script>';
+ 			}
+ 				break;
+ 			
+ 			case 'mnr_megamenu':
+ 				$block['subject'] = '';
+ 				if(user_access('access content')){
+ 					$path = drupal_get_path('module', 'mta_megamenu');
+ 					drupal_add_js($path."/jkmegamenu.js");
+ 					drupal_add_css($path."/mta_megamenu.css");
+ 			
+ 					$block['content']=file_get_contents($path."/mnr_megamenu.html");
+ 					$block['content'].='<script type="text/javascript">
+			jkmegamenu.definemenu("menuanchor1", "menuone", "click", "left");
+			jkmegamenu.definemenu("menuanchor2", "menutwo", "click", "left");
+			
+		</script>';
+ 			}
+ 				break;
+ 			
+ 			case 'bandt_megamenu':
+ 				$block['subject'] = '';
+ 				if(user_access('access content')){
+ 					$path = drupal_get_path('module', 'mta_megamenu');
+ 					drupal_add_js($path."/jkmegamenu.js");
+ 					drupal_add_css($path."/mta_megamenu.css");
+ 			
+ 					$block['content']=file_get_contents($path."/bandt_megamenu.html");
+ 					$block['content'].='<script type="text/javascript">
+			jkmegamenu.definemenu("menuanchor1", "menuone", "click", "left");
+			jkmegamenu.definemenu("menuanchor2", "menutwo", "click", "left");
+			 			
+		</script>';
+ 			}
+ 				break;
+ 				
+ 			case 'sir_megamenu':
+ 				$block['subject'] = '';
+ 				if(user_access('access content')){
+ 					$path = drupal_get_path('module', 'mta_megamenu');
+ 					drupal_add_js($path."/jkmegamenu.js");
+ 					drupal_add_css($path."/mta_megamenu.css");
+ 				
+ 					$block['content']=file_get_contents($path."/sir_megamenu.html");
+ 					$block['content'].='<script type="text/javascript">
+			jkmegamenu.definemenu("menuanchor1", "menuone", "click", "left");
+			jkmegamenu.definemenu("menuanchor2", "menutwo", "click", "left");
+			 
+		</script>';
+ 			}
+ 					break;
+ 		
+   }
+  return $block;
+}
+
+ 
+ 
+ 
+ 
+ 
+

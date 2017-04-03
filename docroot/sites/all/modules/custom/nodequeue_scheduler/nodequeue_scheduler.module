@@ -1,0 +1,348 @@
+<?php
+
+/**
+ * @file
+ * Nodequeue scheduler module
+ * issue http://drupal.org/node/1736388
+ * based on https://github.com/stoshev/nodequeue_scheduler
+ * but modified by wtrager@mtahq.org on 12-12-08 to pub and unpub all queues at once
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function nodequeue_scheduler_permission() {
+  return array(
+    'schedule publishing of nodes to nodequeue' => array(
+      'title' => t('Schedule content publication to nodequeue'),
+      'description' => t('Allows users to schedule content publication to nodequeue'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_cron().
+ */
+function nodequeue_scheduler_cron() {
+  $now = time();
+  $query = db_select('nodequeue_scheduler', 'ns')
+  ->fields('ns')
+  ->condition('publish_on', $now, '<')
+  ->execute();
+  
+  while ($row = $query->fetchObject()) {
+    // unpublish_on = 0 means never unpublish
+    if ($row->published == 1 && $row->unpublish_on < $now && $row->unpublish_on != 0) {
+      nodequeue_subqueue_remove_node($row->qid, $row->nid);
+    }
+    //not published yet
+    elseif ($row->published == 0) {
+      db_update('nodequeue_scheduler')
+        ->fields(array('published' => 1))
+        ->condition('qid', $row->qid, '=')
+        ->condition('nid', $row->nid, '=')
+        ->execute();
+      $queue = nodequeue_load($row->qid);
+      $node = node_load($row->nid);
+      $subqueues = nodequeue_get_subqueues_by_node(array($queue), $node);
+      foreach ($subqueues as $subqueue) {
+        nodequeue_subqueue_add($queue, $subqueue, $node->nid);
+      }
+    }
+  } 
+ db_query("DELETE FROM {nodequeue_scheduler} WHERE publish_on < :now AND unpublish_on < :now AND unpublish_on != 0", array(':now' => $now));
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+
+function nodequeue_scheduler_form_alter(&$form, $form_state) {
+  // Is this a node form and scheduling has been enabled for this node type
+  if (!empty($form['#node_edit_form']) && user_access('schedule publishing of nodes to nodequeue')) {
+    //dsm($form);
+    $node = $form['#node'];
+
+    $form['nodequeue_scheduler_settings'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Nodequeue scheduling options'),
+      '#weight' => 10,
+      '#collapsible' => TRUE,
+      '#collapsed'=> TRUE,
+      '#group' => 'additional_settings',
+    );
+    
+   $form['nodequeue_scheduler_settings']['scheduler_form'] = array(
+      '#prefix' => '<div id="nodequeue-scheduler">',
+      '#suffix' => '</div>',
+    );
+
+   $form['nodequeue_scheduler_settings']['scheduler_form']['already_scheduled'] = array(
+      '#theme' => 'nodequeue_already_scheduled',
+    );
+    // should check if this is a node yet
+    if (isset($node->nid)){
+		    $query = db_select('nodequeue_scheduler', 'ns');
+		    $query->condition('nid', $node->nid)
+		      ->fields('ns')
+		      ->orderBy('publish_on');
+		    $results = $query->execute();
+		 
+		    foreach ($results as $row) {
+		      $queue = nodequeue_load($row->qid);
+		        
+		    $form['nodequeue_scheduler_settings']['scheduler_form']['already_scheduled'][$row->qid]['nodequeue_title'] = array(
+		      '#markup' => $queue->title,  
+		      );
+		    
+		    $form['nodequeue_scheduler_settings']['scheduler_form']['already_scheduled'][$row->qid]['nodequeue_published_on'] = array(
+		      '#markup' => $row->publish_on,  
+		      );
+		
+		    $form['nodequeue_scheduler_settings']['scheduler_form']['already_scheduled'][$row->qid]['nodequeue_unpublished_on'] = array(
+		      '#markup' => $row->unpublish_on,  
+		    );
+		    
+		    $form['nodequeue_scheduler_settings']['scheduler_form']['already_scheduled'][$row->qid]['nodequeue_delete'] = array(
+		      '#type' => 'submit',
+		      '#value' => t('Delete'),  
+		      '#tree' => TRUE,
+		      '#parents' => array('already_scheduled', $row->qid, 'nodequeue_delete'),
+		      '#name' => "delete_$row->qid",
+		      '#submit' => array('nodequeue_scheduler_delete'),
+		      '#ajax' => array(
+		        'callback' => 'nodequeue_scheduler_callback', 
+		        'wrapper' => 'nodequeue-scheduler',   
+		    ), 
+		    ); 
+		   }
+    }
+   $default_queues = array();
+    // if this is a preview then get the values from the form, not the db
+    if (isset($form_state['values']['op']) && $form_state['values']['op'] == t('Preview')) {
+      $default_date = !empty($form_state['values']['nodequeue_publish_on']) ? $form_state['values']['nodequeue_publish_on'] : NULL;
+      foreach ($form_state['values']['nodequeue_publish_queue'] as $key => $value) {
+        if (!empty($value)) {
+          $default_queues[$value] = $value;
+        }
+      }
+    }
+    elseif (isset($node->nid) && $node->nid > 0) {
+      foreach (_nodequeue_scheduler_load($node->nid) as $key => $value) {
+        $default_queues[$key] = $key;
+      }
+    }
+   
+    $form['nodequeue_scheduler_settings']['scheduler_form']['nodequeue_publish_on'] = array(
+      '#type' => 'date_popup',
+      '#title' => t('Publish to nodequeue'),
+      //'#disabled' => ((isset($node->nid)&&$node->nid>0) ? FALSE : TRUE),
+      '#maxlength' => 25,
+      '#date_format' => 'Y-m-d H:i:s',
+     // '#date_year_range' => '0:+10',
+      //'#default_value' => !empty($default_date) ? format_date($default_date, 'custom', 'Y-m-d H:i:s') : '',
+    );
+
+    $form['nodequeue_scheduler_settings']['scheduler_form']['nodequeue_unpublish_on'] = array(
+      '#type' => 'date_popup',
+      '#title' => t('Unpublish to nodequeue'),
+      //'#disabled' => ((isset($node->nid)&&$node->nid>0) ? FALSE : TRUE),
+      '#maxlength' => 25,
+      '#date_format' => 'Y-m-d H:i:s',
+     // '#date_year_range' => '0:+10',
+      //'#default_value' => !empty($default_date) ? format_date($default_date, 'custom', 'Y-m-d H:i:s') : '',
+    );
+    
+    $options = array();
+    $queues = nodequeue_load_queues_by_type($form['#node']->type, 'tab');
+    foreach ($queues as $key => $value) {
+      $options[$value->qid] = !empty($value->subqueue_title) ? $value->subqueue_title : $value->title;
+    }
+
+    $form['nodequeue_scheduler_settings']['scheduler_form']['nodequeue_publish_queue'] = array(
+      '#type' => 'checkboxes',
+      '#title' => t('Nodequeues'),
+      '#options' => $options,
+      //'#disabled' => ((isset($node->nid)&&$node->nid>0) ? FALSE : TRUE),
+      '#default_value' => $default_queues,
+    );
+    
+    $form['nodequeue_scheduler_settings']['nodequeue_submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+    '#name' => 'nodequeue_submit',
+    '#description' => t("Click to schedule the current node to this nodequeue."),
+    '#weight' => 10,
+    '#disabled' => ((isset($node->nid) && $node->nid > 0) ? FALSE : TRUE),
+    '#submit' => array('nodequeue_scheduler_submit'), 
+    '#ajax' => array(
+      'callback' => 'nodequeue_scheduler_callback',
+      'wrapper' => 'nodequeue-scheduler',
+      'method' => 'replace',
+      'effect' => 'fade',
+    ),
+  );
+  }
+}
+
+function nodequeue_scheduler_submit($form, &$form_state) {
+//	dsm($form_state);
+  if ($form_state['values']['nodequeue_submit']) {
+     _nodequeue_scheduler_schedule($form['#node']->nid, $form_state['values']['nodequeue_publish_queue'], 
+             $form_state['values']['nodequeue_publish_on'], $form_state['values']['nodequeue_unpublish_on']);  
+   }
+  //next two rows have no effect, investigate
+  $form_state['input']['nodequeue_publish_on'] = array();
+  $form_state['input']['nodequeue_unpublish_on'] = array();
+  $form_state['rebuild'] = TRUE;
+}
+
+function _nodequeue_scheduler_schedule($nodeid, $queueids, $publish_on, $unpublish_on) {
+//dsm($publish_on);
+//dsm($unpublish_on);
+	
+	if (!empty($publish_on)) {
+    if (empty($unpublish_on)) {
+      $unpublish_time = 0;
+    }
+    else {
+      $unpublish_time = strtotime($unpublish_on);
+    }
+    $time = strtotime($publish_on);
+    $now = time();
+    if ($now < $time && ($now < $unpublish_time || $unpublish_time == 0)) {
+      if ($unpublish_time < $time && $unpublish_time != 0) {        
+        drupal_set_message(t('Unpublish time is previous to publish time.'), 'error');
+        return;
+      }
+      if (count($queueids)> 0) {
+      	foreach($queueids as $queueid){
+	        $query = db_select('nodequeue_scheduler', 'ns');
+	        $query->condition('nid', $nodeid)
+	          ->condition('qid', $queueid)
+	          ->fields('ns');
+	        $result = $query->execute();
+	        if ($result->rowCount() == 0) {
+	          db_insert('nodequeue_scheduler')
+	            ->fields(array(
+	                'nid' => $nodeid,
+	                'qid' => $queueid,
+	                'publish_on' => $time,
+	                'unpublish_on' => $unpublish_time,
+	            ))
+	          ->execute();
+	        } else {
+          drupal_set_message(t("The current node is already scheduled to the selected nodequeue."), 'error');
+          }
+        }
+    
+      }
+    }else {
+      drupal_set_message(t("Publish or unpublish date have passed."), 'error');
+    }
+  }
+}
+
+function nodequeue_scheduler_callback($form, &$form_state) {
+  return $form['nodequeue_scheduler_settings']['scheduler_form'];
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function nodequeue_scheduler_node_insert($node) {
+  _nodequeue_scheduler_schedule($node->nid, $node->nodequeue_publish_queue, $node->nodequeue_publish_on, $node->nodequeue_unpublish_on);
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function nodequeue_scheduler_node_update($node) {
+    _nodequeue_scheduler_schedule($node->nid, $node->nodequeue_publish_queue, $node->nodequeue_publish_on, $node->nodequeue_unpublish_on);
+}
+
+//Unschedule node from nodequeue
+function nodequeue_scheduler_delete($form, &$form_state) {
+  if (isset($form_state['triggering_element']['#name']) && (strstr($form_state['triggering_element']['#name'], 'delete_'))) {
+    $qid = substr($form_state['triggering_element']['#name'], 7);
+    _nodequeue_scheduler_unschedule($form['#node']->nid, $qid);
+  }
+  $form_state['rebuild'] = TRUE;
+}
+
+function _nodequeue_scheduler_unschedule($nodeid, $queueid) {
+  if (!empty($queueid)) {
+    //remove from nodequeue if already published
+     nodequeue_subqueue_remove_node($queueid, $nodeid);
+          db_delete('nodequeue_scheduler')
+            ->condition('nid', $nodeid)
+            ->condition('qid', $queueid )
+            ->execute();
+  }
+}
+
+function nodequeue_scheduler_theme() {
+  return array(
+    'nodequeue_already_scheduled' => array(
+      'render element' => 'form',
+    ),
+  );
+}
+
+function theme_nodequeue_already_scheduled($variables) {
+  $form = $variables['form'];
+  $header = array('Nodequeue', 'Publish on', 'Unpublish on', 'Unschedule');
+  $rows = array();
+  foreach (element_children($form) as $key) {
+  
+    $unpublish_on = drupal_render($form[$key]['nodequeue_unpublished_on']);
+    if ($unpublish_on != 0) $unpublish_on = format_date($unpublish_on);
+    else $unpublish_on = "Not specified";
+    
+    $row = array(
+      'data' => array(
+        array('data' => drupal_render($form[$key]['nodequeue_title'])),
+        array('data' => format_date(drupal_render($form[$key]['nodequeue_published_on']))),
+        array('data' => $unpublish_on),
+        array('data' => drupal_render($form[$key]['nodequeue_delete'])),
+      ),
+    );
+
+    if (isset($form[$key]['#attributes'])) {
+      $row = array_merge($row, $form[$key]['#attributes']);
+    }
+    $rows[] = $row;
+  }
+  $output = theme('table', array('header' => $header, 'rows' => $rows));  
+  $output .= drupal_render_children($form);
+  return $output;
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function nodequeue_scheduler_node_delete($node) {
+  _nodequeue_scheduler_delete($node);
+}
+
+/**
+ * Helper function to load nodequeue scheduler data from DB.
+ */
+function _nodequeue_scheduler_load($node) {
+  $result = array();
+  $query = db_select('nodequeue_scheduler', 'ns')
+    ->fields('ns')
+  	->condition('nid', $node, '=')
+    ->execute();
+  while ($row = $query->fetchObject()) {
+    $result[$row->qid] = $row->publish_on;
+  }
+  return $result;
+}
+
+/**
+ * Helper function to delete nodequeue scheduler data from DB.
+ */
+function _nodequeue_scheduler_delete($node) {
+  db_query("DELETE FROM {nodequeue_scheduler} WHERE nid=:nid", array(':nid' => $node->nid));
+}

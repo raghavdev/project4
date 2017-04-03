@@ -1,0 +1,6 @@
+name = MTA Global Header
+description = Distribute header code to other sites via AJAX for MTA Drupal version 3
+dependencies[] = simplehtmldom
+package = Our MTA modules
+core = 7.x
+version = 7.x-1.x-dev

@@ -1,0 +1,108 @@
+/* Trip Planner Styles */
+/* Also see mytrip.php */
+
+
+/*
+#block-tripplanner-tripplanner {
+	width: 220px;
+	height: 474px;
+	padding: 3px;
+	border: 1px solid #B4B4B4;
+    border-radius: 5px 5px 5px 5px;
+	}
+*/	
+	
+#block-tripplanner-tripplanner{
+	position:inherit;
+	height: 425px;
+	width: 230px;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+}
+
+#mytrip table { margin-bottom: margin-top:5px; 0px; background-color:#fff; }
+#mytrip td { padding: 3px; }
+#mytrip td.rightAlign { text-align: right; }
+#mytrip label {display:inline; font-weight:normal;}	
+		
+	
+/*
+
+#mytrip { 
+	
+	height: 433px;
+    margin-top: -8px;
+    padding: 0 3px, 0 3px;
+    }
+    */
+	
+#mytrip { 
+	margin-top:0;
+	padding:10px;
+	height: 423px;
+	width:208px;
+}
+
+/* Display Trip Planner Plus logo image as H2 */
+
+.tp-logo, .tp-logo span {
+	width:149px;
+	height:22px;
+	background-image: url("/sites/all/themes/mta/images/Trip_logo_mta.jpg");
+	background-repeat: no-repeat;
+	background-position: -3px 0; 
+	padding-bottom:4px;
+	}
+
+
+h2.tp-logo span {
+	display:block;
+	position:relative;
+	z-index:1;
+	 }
+
+h2.tp-logo {
+	overflow:hidden; {
+    font-size: 1.5em;
+    line-height: 2em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+	 }
+/* IE5 Mac Hack \*/ h1 { overflow: hidden; } /*/ h1 { text-indent: -100em; } /* End Hack */
+
+
+#mytrip table {
+	margin-top:5px;
+	background-color:#fff;
+	 }
+
+#mytrip td {
+	padding: 3px;
+	}
+
+#mytrip td.rightAlign {
+	text-align: right;
+	}
+
+#mytrip label {
+	display:inline;
+	font-weight:normal;
+	}
+
+
+/*
+#tpForm {
+	font-size: 100%;
+	
+}
+*/
+
+#tpForm .txtDestinationInput {
+	font-size: 3px;
+}
+
+
+#tp-footer .list_h {
+		padding-top:2px;
+		font-size:85%;
+	}

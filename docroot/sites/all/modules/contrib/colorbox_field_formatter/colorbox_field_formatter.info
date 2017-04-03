@@ -1,0 +1,12 @@
+name = "Colorbox Field Formatter"
+description = "todo"
+core = "7.x"
+package = "colorbox"
+dependencies[] = "colorbox"
+
+; Information added by Drupal.org packaging script on 2015-06-14
+version = "7.x-1.0+3-dev"
+core = "7.x"
+project = "colorbox_field_formatter"
+datestamp = "1434276781"
+

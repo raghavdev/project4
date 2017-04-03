@@ -1,0 +1,13 @@
+name = CacheFlush Rules
+description = "Provide rules integration for the Cacheflush module."
+package = administration
+dependencies[] = cacheflush
+dependencies[] = rules
+core = "7.x"
+
+; Information added by Drupal.org packaging script on 2014-03-11
+version = "7.x-2.3"
+core = "7.x"
+project = "cacheflush"
+datestamp = "1394545303"
+

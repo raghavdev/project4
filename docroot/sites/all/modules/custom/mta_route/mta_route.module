@@ -1,0 +1,340 @@
+<?php
+
+	function mta_route_menu() {
+		
+		$items['mta_route'] = array(
+			'access callback'   => true, 
+			'page callback'     => 'mta_route_data',
+			'delivery callback' => 'drupal_json_output' 
+		);
+		
+		$items['mta_fares'] = array(
+			'access callback'   => true, 
+			'page callback'     => 'mta_fares_data',
+			'delivery callback' => 'drupal_json_output' 
+		);
+	
+		return $items;
+	}
+	
+	function mta_route_data($fromstation, $tostation, $requestdate, $requesttime, $requestampm, $sortby) 
+	{ 		
+		
+		set_mycustom_api_headers();  // calling headers
+		
+		$requestdate = str_replace("-","/", $requestdate);
+		
+		$reqURL = 'http://lirr42.mta.info/index.php';
+		$postData = Array ( 
+								"FromStation" => $fromstation, 
+								"ToStation" => $tostation, 
+								"RequestDate" => $requestdate, 
+								"RequestTime" => $requesttime, 
+								"RequestAMPM" => $requestampm, 
+								"sortBy" => $sortby, 
+								"schedules" => "Schedules"
+							);							
+		$arrRouteData = array();
+		$errorMsg = array();
+		
+		$quertString = http_build_query($postData);
+		
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $reqURL);
+		curl_setopt($ch, CURLOPT_USERAGENT,'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/32.0.1700.107 Chrome/32.0.1700.107 Safari/537.36');
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $quertString);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_COOKIESESSION, true);
+		curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookie-name');  //could be empty, but cause problems on some hosts
+		curl_setopt($ch, CURLOPT_COOKIEFILE, '/var/www/ip4.x/file/tmp');  //could be empty, but cause problems on some hosts
+		
+		$routeData = NULL;
+		
+		$noDataMessage = '<tr><td>Error - The departing date you have entered has already passed and is unavailable. Please check your entry.</td></tr>';
+		
+		if($sortby == 1)
+			$routeData = '<h2>Departing Schedules</h2>';
+		else
+			$routeData = '<h2>Arrivel Schedules</h2>';
+			
+		$routeData.= '<table class="table table-striped">';
+		
+		if(!curl_error($ch)) 
+		{
+			$getCurlReqData = curl_exec($ch);
+			$getCurlInfoData = curl_getinfo($ch);
+		}
+		else
+			$getCurlReqData = NULL;			
+
+		if(!empty($getCurlReqData)) 
+		{
+			if(!empty($getCurlInfoData['redirect_url']))
+			{				
+				curl_setopt($ch, CURLOPT_URL, $getCurlInfoData['redirect_url']);
+				curl_setopt($ch, CURLOPT_POST, false);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, "");
+				
+				if (!curl_error($ch)) 
+				{
+					$getRouteData = curl_exec($ch);				
+					$nextInfo = curl_getinfo($ch);					
+				}
+				else
+					$routeData = $noDataMessage;
+					
+				if(!empty($getRouteData)) 
+				{						
+					if(!empty($getRouteData))
+					{
+						$strtext = '<div class="span-70" style="margin-bottom: 20px;" >';
+						$strPos = strpos($getRouteData,$strtext);
+						
+						$endtext = '<div class="span-72">';
+						$endPos  = strpos($getRouteData,$endtext); 
+						
+						$tillLength = $endPos - $strPos; 
+						$htmlDomData = substr($getRouteData, $strPos, $tillLength);
+						
+						$dom = new DOMDocument;
+						$dom->loadHTML($htmlDomData);
+				
+						$getTDsData = $dom->getElementsByTagName('td');
+						foreach ($getTDsData as $tdData) 
+						{
+							$arrTDData[] = trim($tdData->nodeValue);
+						}			
+
+						$arrTDRData = array_slice($arrTDData, 3);
+																															
+						$routeData.= '<tr><td colspan=6>'.$arrTDData[0].'</td></tr>';
+						
+						$routeData.= '<tr style="background-color:#ccc;">
+											<td>Depart</td>
+											<td>Arrive</td>	
+											<td>Transfer</td>
+											<td>Leaves</td>
+											<td>Trip Duration</td>
+											<td>&nbsp;</td>
+										</tr>
+										<tr>';
+						
+						$num = 1;
+						
+						foreach($arrTDRData as $key => $value)
+						{
+							if($key & 1)
+								continue;
+							
+							$routeData.= '<td>'.$value.'</td>';
+						
+							if($num == 6):
+								$routeData.= '</tr><tr>';
+								$num = 0;
+							endif;
+							$num++;
+
+						}
+						
+						$routeData.= '</tr>';
+												
+						if(!empty($arrTDData[1]))
+						{
+							curl_setopt($ch, CURLOPT_URL, 'http://lirr42.mta.info/schedules.php?action=next');
+							curl_setopt($ch, CURLOPT_POST, false);
+							curl_setopt($ch, CURLOPT_POSTFIELDS, "");
+							
+							if (!curl_error($ch)) {
+								$getDataNext = curl_exec($ch);				
+								$curlInfo = curl_getinfo($ch);
+							}
+							
+							$strtext = '<div class="span-70" style="margin-bottom: 20px;" >';
+							$strPos = strpos($getDataNext, $strtext);
+							
+							$endtext = '<div class="span-72">';
+							$endPos  = strpos($getDataNext, $endtext); 
+							
+							$tillLength = $endPos - $strPos; 
+							$dataNext = substr($getDataNext, $strPos, $tillLength);
+							
+							$dom = new DOMDocument;
+							$dom->loadHTML($dataNext);
+					
+							$domTD = $dom->getElementsByTagName('td');
+							foreach ($domTD as $tdData) 
+							{
+								$arrayTDNext[] = trim($tdData->nodeValue);
+							}
+														
+							$arrTDNext = array_slice($arrayTDNext, 3);
+																
+							$num = 1;
+							foreach($arrTDNext as $key => $value)
+							{
+								if($key & 1)
+									continue;
+								
+								$routeData.= '<td>'.$value.'</td>';
+						
+								if($num == 6):
+									$routeData.= '</tr><tr>';
+									$num = 0;
+								endif;
+								
+								$num++;
+							}
+						}						
+						$routeData.= '</tr></table>';
+					}
+				}
+				else
+					$routeData = $noDataMessage;
+			}
+			else
+				$routeData = $noDataMessage;
+		}
+		
+		curl_close($ch);
+				
+		echo drupal_json_encode(array('routedata' => $routeData));
+		
+		return NULL;
+	}
+	
+	function mta_fares_data($fromstation, $tostation, $requestdate, $requesttime, $requestampm, $sortby) 
+	{ 		
+		
+		set_mycustom_api_headers();  // calling headers
+		
+		$requestdate = str_replace("-","/",$requestdate);
+
+		
+		$reqURL = 'http://lirr42.mta.info/index.php';
+		$postData = Array ( 
+								"FromStation" => $fromstation, 
+								"ToStation" => $tostation, 
+								"RequestDate" => $requestdate, 
+								"RequestTime" => $requesttime, 
+								"RequestAMPM" => $requestampm, 
+								"sortBy" => $sortby, 
+								"fares" => 'Fares'
+							);							
+		$arrRouteData = array();
+		$errorMsg = array();
+		
+		$quertString = http_build_query($postData);
+		
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $reqURL);
+		curl_setopt($ch, CURLOPT_USERAGENT,'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/32.0.1700.107 Chrome/32.0.1700.107 Safari/537.36');
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $quertString);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_COOKIESESSION, true);
+		curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookie-name');  //could be empty, but cause problems on some hosts
+		curl_setopt($ch, CURLOPT_COOKIEFILE, '/var/www/ip4.x/file/tmp');  //could be empty, but cause problems on some hosts
+		
+		$routeData = NULL;
+		
+		$noDataMessage = '<tr><td>Error - The departing date you have entered has already passed and is unavailable. Please check your entry.</td></tr>';
+		
+		$routeData = '<h2>Ticket & Fare</h2>';
+		$routeData.= '<table class="table table-striped">';
+		
+		if(!curl_error($ch)) 
+		{
+			$getCurlReqData = curl_exec($ch);
+			$getCurlInfoData = curl_getinfo($ch);
+		}
+		else
+			$getCurlReqData = NULL;			
+
+		if(!empty($getCurlReqData)) 
+		{
+			if(!empty($getCurlInfoData['redirect_url']))
+			{				
+				curl_setopt($ch, CURLOPT_URL, $getCurlInfoData['redirect_url']);
+				curl_setopt($ch, CURLOPT_POST, false);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, "");
+				
+				if (!curl_error($ch)) 
+				{
+					$getRouteData = curl_exec($ch);				
+					$nextInfo = curl_getinfo($ch);					
+				}
+				else
+					$routeData = $noDataMessage;
+					
+				if(!empty($getRouteData)) 
+				{						
+					if(!empty($getRouteData))
+					{
+						$strtext = '<div class="span-70" style="margin-bottom: 20px;" >';
+						$strPos = strpos($getRouteData,$strtext);
+						
+						$endtext = '<div class="span-73">';
+						$endPos  = strpos($getRouteData,$endtext); 
+						
+						$tillLength = $endPos - $strPos; 
+						$htmlDomData = substr($getRouteData, $strPos, $tillLength);
+						
+						$dom = new DOMDocument;
+						$dom->loadHTML($htmlDomData);
+				
+						$getTDsData = $dom->getElementsByTagName('td');
+						foreach ($getTDsData as $tdData) 
+						{
+							$arrTDData[] = trim($tdData->nodeValue);
+						}			
+
+						$arrTDRData = array_slice($arrTDData, 5);
+																															
+						$routeData.= '<tr><td colspan=4>'.$arrTDData[0].'</td></tr>';
+						
+						$routeData.= '<tr style="background-color:#ccc;">
+											<td>Type of Ticket</td>
+											<td>Station/TVM</td>	
+											<td>On Board</td>
+											<td>WebTicket</td>
+										</tr>
+										<tr>';
+						$num = 1;
+						
+						foreach($arrTDRData as $key => $value)
+						{
+							$routeData.= '<td>'.$value.'</td>';
+						
+							if($num == 4):
+								$routeData.= '</tr><tr>';
+								$num = 0;
+							endif;
+							$num++;
+
+						}
+										
+						$routeData.= '</tr></table>';
+					}
+				}
+				else
+					$routeData = $noDataMessage;
+			}
+			else
+				$routeData = $noDataMessage;
+		}
+				
+		echo drupal_json_encode(array('routedata' => $routeData));
+		
+		return NULL;
+	}
+	
+	
+	function set_mycustom_api_headers()
+	{
+		drupal_add_http_header('Content-Type', 'application/json');
+		drupal_add_http_header('Access-Control-Allow-Origin', "*");
+		drupal_add_http_header('Access-Control-Allow-Methods', 'GET');
+	}
+	
+	

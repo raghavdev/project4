@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Time Sensitive Link feature.
+ */
+
+include_once 'time_sensitive_link.features.inc';

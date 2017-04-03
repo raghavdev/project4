@@ -1,0 +1,117 @@
+<?php
+
+function service_notice_block_info() {
+  $blocks['service_notice_nyct'] = array(
+    'info' => t('service_notice_nyct'), //The name that will appear in the block list.
+    'cache' => DRUPAL_NO_CACHE, //Default
+  );
+  $blocks['service_notice_lirr'] = array(
+  		'info' => t('service_notice_lirr'), //The name that will appear in the block list.
+  		'cache' => DRUPAL_NO_CACHE, //Default
+  );
+  $blocks['service_notice_mnr'] = array(
+  		'info' => t('service_notice_mnr'), //The name that will appear in the block list.
+  		'cache' => DRUPAL_NO_CACHE, //Default
+  );
+  $blocks['service_notice_bandt'] = array(
+  		'info' => t('service_notice_bandt'), //The name that will appear in the block list.
+  		'cache' => DRUPAL_NO_CACHE, //Default
+  );
+  $blocks['service_notice_sir'] = array(
+  		'info' => t('service_notice_sir'), //The name that will appear in the block list.
+  		'cache' => DRUPAL_NO_CACHE, //Default
+  );
+  $blocks['service_notice_fake'] = array(
+      'info' => t('service_notice_fake'), //The name that will appear in the block list.
+      'cache' => DRUPAL_NO_CACHE, //Default
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+ function service_notice_block_view($delta = '') {
+  switch($delta){
+    		case 'service_notice_nyct':
+ 			$block['subject'] = '';
+ 			if(user_access('access content')){
+ 				$path = drupal_get_path('module', 'service_notice');
+ 				drupal_add_css($path."/service_notice.css");
+  				$block['content']=service_notice_file_get_contents('http://www.mta.info/supplemental/nyct/blurb.php');
+
+       	}
+       		break;
+
+ 			case 'service_notice_lirr':
+ 			$block['subject'] = '';
+ 			if(user_access('access content')){
+ 				$path = drupal_get_path('module', 'service_notice');
+ 				drupal_add_css($path."/service_notice.css");
+ 				$content=service_notice_file_get_contents('http://www.mta.info/supplemental/lirr/extra.php');
+ 				//$block['content'] = "EXTRA<br />";
+ 				if(!$content) {
+ 					$content=service_notice_file_get_contents('http://www.mta.info/supplemental/lirr/blurb.php');
+ 					//$block['content'] = "BLURB<br />";
+ 				}
+ 				$block['content'] = $content;
+ 			}
+ 				break;
+
+ 			case 'service_notice_mnr':
+ 				$block['subject'] = '';
+ 				if(user_access('access content')){
+ 					$path = drupal_get_path('module', 'service_notice');
+ 					drupal_add_css($path."/service_notice.css");
+ 					$block['content']=service_notice_file_get_contents('http://www.mta.info/supplemental/mnr/blurb.php');
+
+ 			}
+ 				break;
+
+ 			case 'service_notice_bandt':
+ 				$block['subject'] = '';
+ 				if(user_access('access content')){
+ 					$path = drupal_get_path('module', 'service_notice');
+ 					drupal_add_css($path."/service_notice.css");
+ 					$block['content']=service_notice_file_get_contents('http://www.mta.info/supplemental/bandt/blurb.php');
+
+ 			}
+ 				break;
+
+ 			case 'service_notice_sir':
+ 				$block['subject'] = '';
+ 				if(user_access('access content')){
+ 					$path = drupal_get_path('module', 'service_notice');
+ 					drupal_add_css($path."/service_notice.css");
+ 					$block['content']=service_notice_file_get_contents('http://www.mta.info/supplemental/sir/blurb.php');
+
+ 			}
+ 				break;
+
+      case 'service_notice_fake':
+        $block['subject'] = '';
+        if(user_access('access content')){
+          $path = drupal_get_path('module', 'service_notice');
+          drupal_add_css($path."/service_notice.css");
+          $block['content']=service_notice_file_get_contents('http://www.mta.info/supplemental/fake/blurb.php');
+
+      }
+        break;
+
+   }
+  return $block;
+}
+function service_notice_file_get_contents($file_path){
+	$file_content = file_get_contents($file_path);
+	// find and replace relative paths with absolutes
+	$file_content = str_replace('src="/','src="http://www.mta.info/',$file_content);
+  $file_content = str_replace('href="/','href="http://www.mta.info/',$file_content);
+	return $file_content;
+}
+
+
+
+
+
+

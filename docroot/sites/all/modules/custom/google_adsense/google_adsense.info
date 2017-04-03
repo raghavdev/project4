@@ -1,0 +1,4 @@
+name = Google AdSense
+description = A block module that displays the Google ads.
+package = Our MTA modules
+core = 7.x

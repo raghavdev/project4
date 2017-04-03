@@ -1,0 +1,31 @@
+<?php
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+
+function mta_core_ctools_plugin_directory($owner, $plugin) {
+  if ($owner == 'feeds_tamper') {
+    return 'plugins';
+  }
+}
+
+/**
+ * Invoked after a feed source has been parsed, before it will be processed.
+ *
+ * @param $source
+ *  FeedsSource object that describes the source that has been imported.
+ * @param $result
+ *   FeedsParserResult object that has been parsed from the source.
+ */
+function mta_core_feeds_after_parse(FeedsSource $source, FeedsParserResult $result) {
+  if ($source->id == "eotf") {
+    foreach($result->items as $item=>&$field){
+      $xsize = count($field["xpathparser:11"]);
+      for($i = 0; $i <= $xsize; $i++){
+        if(empty($field["xpathparser:11"][$i])) {
+          unset($field["xpathparser:11"][$i]);
+        }
+      }//*/
+    }
+  }
+}

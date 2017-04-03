@@ -1,0 +1,29 @@
+<?php 
+/**
+* @file
+* mta3_global_header.install
+*/
+?>
+
+<?php
+
+/**
+* Implements hook_install
+*/
+
+// simplehtmldom module displays a message and fails if it loads after this one
+// so this module weight needs to be adjusted "heavier"
+
+function mta3_global_header_install() {
+	$weight = db_select('system', 's')
+		  ->fields('s', array('weight'))
+		  ->condition('name', 'simplehtmldom', '=')
+		  ->execute()
+		  ->fetchField();
+	if(isset($weight)) {
+		db_update('system')
+		->fields(array('weight' => $weight +1))
+		->condition('name', 'mta_global_header', '=')
+		->execute();
+	}
+}

@@ -1,0 +1,5 @@
+name = Alert Redirect
+description = Redirects users to the 'alert' site in case of an emergency event.
+core = 7.x
+configure = admin/config/system/alert_redirect
+version = 7.x-1.x-dev

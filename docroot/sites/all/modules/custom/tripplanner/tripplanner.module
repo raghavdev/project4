@@ -1,0 +1,46 @@
+<?php
+/**
+* @file
+* A block .
+*/
+?>
+
+<?php
+/**
+ * Implements hook_init().  setup the tripplanner autocomplete callback data
+ */
+
+/**
+* Implements hook_block_info().
+*/
+function tripplanner_block_info() {
+  $blocks['tripplanner'] = array(
+    'info' => t('Tripplanner'), //The name that will appear in the block list.
+    'cache' => DRUPAL_NO_CACHE, //Default
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+ function tripplanner_block_view($delta = '') {
+  switch($delta){
+    case 'tripplanner':
+      $block['subject'] = '';
+      if(user_access('access content')){
+      	$path = drupal_get_path('module', 'tripplanner');
+    	//drupal_add_js("http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js");
+      	drupal_add_js(drupal_get_path('module', 'jquery_update') . "/replace/ui/ui/minified/jquery.ui.core.min.js");
+      	drupal_add_js(drupal_get_path('module', 'jquery_update') . "/replace/ui/ui/minified/jquery.ui.datepicker.min.js");
+      	drupal_add_css(drupal_get_path('module', 'jquery_update') . "/replace/ui/themes/base/jquery.ui.core.css");
+      	drupal_add_css(drupal_get_path('module', 'jquery_update') . "/replace/ui/themes/base/jquery.ui.theme.css");
+      	drupal_add_css(drupal_get_path('module', 'jquery_update') . "/replace/ui/themes/base/jquery.ui.datepicker.css");
+      	drupal_add_js($path."/tripPlanner/initTP.js");
+      	$block['content'] =file_get_contents($path."/tripPlanner/mytrip.php");
+      	$block['content'].=file_get_contents($path."/tripPlanner/SmartTrip.js");
+      }
+
+  return $block;
+  }
+ }

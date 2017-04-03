@@ -1,0 +1,54 @@
+<?php 
+
+	function mta_message_menu() {
+		
+		$items['mta_message_json'] = array(
+			'access callback'   => TRUE, 
+			'title' => 'mta message json',
+			'delivery callback' => 'drupal_json_output', 
+			'page callback' => 'mta_message_json',
+	  	);
+		
+	  	return $items;
+	}
+	
+	
+	function mta_message_json() 
+	{
+		
+		set_mycustom_api_headers();  // calling headers
+		
+		$data_array = array();
+	  	
+		$query = "SELECT *
+				FROM 
+				node, field_data_body
+				WHERE node.nid = field_data_body.entity_id AND (( (node.status = '1') AND (node.type IN  ('news_ticker')) ))
+				LIMIT 10 OFFSET 0";
+				
+		$result = db_query($query);
+		
+		$strBody = NULL;
+		
+		foreach ($result as $row) 
+		{
+			$strBody = $row->body_value;
+		}		
+		
+		$data_array['nodes']['node']['body'] = $strBody;
+		
+	  	echo drupal_json_encode($data_array);
+		
+		return NULL;
+	
+	}
+
+
+	function set_mycustom_api_headers()
+	{
+		drupal_add_http_header('Content-Type', 'application/json');
+		drupal_add_http_header('Access-Control-Allow-Origin', "*");
+		drupal_add_http_header('Access-Control-Allow-Methods', 'GET');
+	}
+ 
+	

@@ -1,0 +1,12 @@
+name = CacheFlush Advanced
+description = "Provide advanced options for the Cacheflush module."
+package = administration
+dependencies[] = cacheflush
+core = "7.x"
+
+; Information added by Drupal.org packaging script on 2014-03-11
+version = "7.x-2.3"
+core = "7.x"
+project = "cacheflush"
+datestamp = "1394545303"
+

@@ -1,0 +1,102 @@
+<?php
+
+/**
+ * @file
+ * Cacheflush Cloner combination.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function cacheflush_combination_menu() {
+
+  $items['admin/config/development/cacheflush/combine'] = array(
+    'title' => 'Create preset combination',
+    'type' => MENU_LOCAL_ACTION,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('cacheflush_combine_preset_form', 5),
+    'access arguments' => array('cacheflush development combine'),
+    'weight' => 1,
+    'file' => 'cacheflush_combination.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function cacheflush_combination_form_cacheflush_list_preset_form_alter(&$form, &$form_state, $form_id) {
+
+  $form['preset_list']['#tree'] = TRUE;
+
+  $cache_presets = variable_get('cacheflush_preset_list', array());
+  $options = array(
+    'normal' => array(),
+    'label' => array(),
+    'combined' => array(),
+  );
+
+  foreach ($form['preset_list']['#options'] as $id => $value) {
+
+    if ($id >= 5 && isset($cache_presets[$id]['#combined'])) {
+      $actions = explode('|', $form['preset_list']['#options'][$id]['operations']);
+      $sep = $list = '';
+      foreach ($actions as $key => $button) {
+        if ($key == 0) {
+          $button = l(t('Edit'), "admin/config/development/cacheflush/combine/$id");
+        }
+        else {
+          $sep = ' | ';
+        }
+        $list .= $sep . $button;
+      }
+      $value['operations'] = $list;
+      $options['combined'][$id] = $value;
+    }
+    else {
+      $options['normal'][$id] = $value;
+    }
+  }
+
+  if ($options['combined']) {
+    $options['label']['label'] = array(
+      'title' => array(
+        'data' => '<b>Combination</b>',
+      ),
+      'operations' => 'label',
+    );
+
+    $result = array_merge(array(array()), $options['normal'], $options['label'], $options['combined']);
+    unset($result[0]);
+    $form['preset_list']['#options'] = $result;
+  }
+}
+
+/**
+ * Implements hook_preprocess_table().
+ */
+function cacheflush_combination_preprocess_table(&$variables) {
+
+  // Changing the checkbox header to Status string.
+  if (isset($variables['attributes']['id']) && $variables['attributes']['id'] == 'cachefulsher_preset_list') {
+    foreach ($variables['rows'] as $key => $value) {
+      if ($value['data'][2] == 'label') {
+        $variables['rows'][$key]['data'][0] = $variables['rows'][$key]['data'][2] = '';
+      }
+    }
+    $variables['header'][0] = t('Status');
+  }
+}
+
+/**
+ * Implements hook_cacheflush_preset_presave_alter().
+ */
+function cacheflush_combination_cacheflush_preset_presave_alter(&$preset_list, $preset_id, $flag) {
+
+  if ($flag == 'preset_status_update') {
+    if (isset($preset_list['label'])) {
+      unset($preset_list['label']);
+    }
+  }
+}
