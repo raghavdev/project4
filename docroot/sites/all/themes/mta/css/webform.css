@@ -1,0 +1,370 @@
+/**
+ * @file
+ * Front-end styling for the display of webforms.
+ */
+input.webform-calendar {
+  display: none;
+  padding: 3px;
+  vertical-align: top;
+}
+html.js input.webform-calendar {
+  display: inline;
+}
+.webform-container-inline label {
+  display: inline;
+  margin-right: 1em;
+}
+.webform-container-inline div,
+.webform-container-inline div.form-item {
+  display: inline;
+}
+.webform-container-inline div.description {
+  display: block;
+}
+.webform-container-inline div.messages {
+  display: block;
+  float: left;
+}
+.webform-container-inline div.ajax-progress-bar div {
+  display: inherit;
+}
+#webform-component-headertrips.webform-component 
+{
+    border-bottom: 1px solid #D0D0D0;
+    margin-bottom: 0;
+    width: 580px;
+}
+#webform-component-headertrips label
+{
+	display:inline-block;
+	width:180px;
+	
+	}
+#edit-submitted-headertrips .form-item,
+#edit-submitted-headertrips .form-item-submitted-headertrips label
+{
+	display:inline-block;
+	text-align: center;
+    width: 51px;
+    font-weight: 700;	
+    
+    }
+#webform-component-headertrips input {
+	display:none;
+	}
+#edit-submitted-headertrips {
+	margin-left:193px;
+	}
+#webform-component-Question2Header {
+	width: 580px;
+	border-bottom: 1px solid #D0D0D0;
+	margin-bottom: 0;
+	}
+	
+	
+#webform-component-Question2Header p {
+		margin-left:193px;
+	
+}
+.question2header-item {
+    display: inline-block;
+    text-align: center;
+    width: 54px;
+	margin: 0;
+    padding: 0;
+    	}	
+#webform-component-Question9Header {
+	width:605px;
+	border-bottom: 1px solid #D0D0D0;
+	margin-bottom: 0;
+	margin-top:0px;
+	height:16px;
+	
+	}
+#webform-component-Question9Header p {
+		margin-left:200px;
+	
+}
+.question9header-item {
+    display: inline-block;
+    text-align: center;
+    width: 40px;
+    	}	
+#webform-component-Question9TopHeader {
+	width:620px;
+	margin-bottom: 0;
+	}
+#webform-component-Question9TopHeader p {
+		margin-bottom: 0;
+		margin-left:200px;
+	
+}
+.question9topheader-item-vd{
+    display: inline-block;
+	padding: 0px;
+    text-align: center;
+	width: 79px;
+	border-left: 1px solid #D0D0D0;
+    
+    	}	
+
+.question9topheader-item-d{
+    display: inline-block;
+	padding: 0px;
+    text-align: center;
+    width: 119px;
+	border-left: 1px solid #D0D0D0;
+ 
+	}	
+.question9topheader-item-s{
+    display: inline-block;
+	padding: 0px;
+    text-align: center;
+	width: 119px;
+	border-left: 1px solid #D0D0D0;
+     
+ }	
+.question9topheader-item-vs{
+    display: inline-block;
+	padding: 0px;
+    text-align: center;
+	width: 83px;
+	border-left: 1px solid #D0D0D0;
+    border-right: 1px solid #D0D0D0;    
+	}	
+
+.webform-grid-option {
+	
+	padding-left:20px;
+	padding-right:20px;
+	padding-bottom:5px;
+	padding-top:5px;
+	
+	
+}
+
+
+div.form-item  .form-item-submitted-subwaytrips,
+div.form-item  .form-item-submitted-lirr,
+div.form-item  .form-item-submitted-nycBus,
+div.form-item  .form-item-submitted-mnrr,
+div.form-item  .form-item-submitted-expressBus,
+div.form-item  .form-item-submitted-siRail
+ {
+	display:inline;
+	width:50px; 
+	padding:0;
+	margin:0;
+}
+div.form-item  .form-item-submitted-subwaysatisfied,
+div.form-item  .form-item-submitted-lirrSatisfied,
+div.form-item  .form-item-submitted-mtaBusSatisfied,
+div.form-item  .form-item-submitted-mnrSatisfied,
+div.form-item  .form-item-submitted-expressBusSatisfied,
+div.form-item  .form-item-submitted-StatenIslandSatisfied,
+div.form-item  .form-item-submitted-mtaBridgesTunnelSatisfied
+ {
+
+	float:left;
+	width:39px; 
+	padding:0;
+	margin:0;
+	margin-right:0px;
+	height:28px;
+	border-left: 1px solid #D0D0D0;
+}
+
+
+#webform-component-subwaylines--subwayline123,
+#webform-component-subwaylines--subwayline456,
+#webform-component-subwaylines--subwayline7,
+#webform-component-subwaylines--subwaylineACE,
+#webform-component-subwaylines--subwaylineBDFM,
+#webform-component-subwaylines--subwaylineJZ,
+#webform-component-subwaylines--subwaylineL,
+#webform-component-subwaylines--subwaylineNQR,
+#webform-component-subwaylines--subwaylineS,
+.form-item-submitted-subwaylines-subwayline123-subwayline123selection-subway123,
+.form-item-submitted-subwaylines-subwayline456-subwayline123selection-subway456,
+.form-item-submitted-subwaylines-subwayline7-subwayline123selection-subway7,
+.form-item-submitted-subwaylines-subwaylineACE-subwayline123selection-subwayACE,
+.form-item-submitted-subwaylines-subwaylineBDFM-subwayline123selection-subwayBDFM,
+.form-item-submitted-subwaylines-subwaylineG-subwayline123selection-subwayG,
+.form-item-submitted-subwaylines-subwaylineJZ-subwayline123selection-subwayJZ,
+.form-item-submitted-subwaylines-subwaylineL-subwayline123selection-subwayL,
+.form-item-submitted-subwaylines-subwaylineNQR-subwayline123selection-subwayNQR,
+.form-item-submitted-subwaylines-subwaylineS-subwayline123selection-subwayS,
+#webform-component-subwaylines--subwayline123--subwayline123markup,
+#webform-component-subwaylines--subwayline456--subwayline456markup,
+#webform-component-subwaylines--subwayline7--subwayline7markup,
+#webform-component-subwaylines--subwaylineACE--subwaylineACEmarkup,
+#webform-component-subwaylines--subwaylineBDFM--subwaylineBDFMmarkup,
+#webform-component-subwaylines--subwaylineG--subwaylineGmarkup,
+#webform-component-subwaylines--subwaylineJZ--subwaylineJZmarkup,
+#webform-component-subwaylines--subwaylineL--subwaylineLmarkup,
+#webform-component-subwaylines--subwaylineNQR--subwaylineNQRmarkup,
+#webform-component-subwaylines--subwaylineS--subwaylineSmarkup,
+#webform-component-subwaylines--subwayline123,
+#webform-component-subwaylines--subwayline456,
+#webform-component-subwaylines--subwayline7,
+#webform-component-subwaylines--subwaylineACE,
+#webform-component-subwaylines--subwaylineBDFM,
+#webform-component-subwaylines--subwaylineG,
+#webform-component-subwaylines--subwaylineJZ,
+#webform-component-subwaylines--subwaylineL,
+#webform-component-subwaylines--subwaylineNQR,
+#webform-component-subwaylines--subwaylineS
+{
+	margin:0px;
+}
+#webform-component-subwaylines--subwayline123--subwayline123selection,
+#webform-component-subwaylines--subwayline456--subwayline456selection,
+#webform-component-subwaylines--subwayline7--subwayline7selection,
+#webform-component-subwaylines--subwaylineACE--subwaylineACEselection,
+#webform-component-subwaylines--subwaylineBDFM--subwaylineBDFMselection,
+#webform-component-subwaylines--subwaylineG--subwaylineGselection,
+#webform-component-subwaylines--subwaylineJZ--subwaylineJZselection,
+#webform-component-subwaylines--subwaylineL--subwaylineLselection,
+#webform-component-subwaylines--subwaylineNQR--subwaylineNQRselection,
+#webform-component-subwaylines--subwaylineS--subwaylineSselection
+ {
+    float: left;
+    margin-bottom:0;
+    margin-right: 5px;
+    margin-top: -2px;
+	}
+
+#webform-component-subwaytrips.form-item,
+#webform-component-lirr.form-item, 
+#webform-component-nycBus.form-item, 
+#webform-component-mnrr.form-item, 
+#webform-component-expressBus.form-item, 
+#webform-component-siRail.form-item 
+
+{
+	margin-top:5px;
+	margin-bottom:5px;
+	padding-bottom:5px;
+	border-bottom: 1px solid #D0D0D0;
+	width:580px;
+	}
+	
+div.form-item .form-item-submitted-subwaytrips,
+div.form-item .form-item-submitted-lirr,
+div.form-item .form-item-submitted-nycbus,
+div.form-item .form-item-submitted-mnrr,
+div.form-item .form-item-submitted-expressbus,
+div.form-item .form-item-submitted-sirail
+ {
+	width:50px;
+	margin:0;
+	}
+	
+#edit-submitted-subwaytrips input,
+#edit-submitted-lirr input,
+#edit-submitted-nycbus input,
+#edit-submitted-mnrr input,
+#edit-submitted-expressbus input,
+#edit-submitted-sirail input
+{
+	display:inline;
+	padding:0;
+	width:50px;
+	}	
+#edit-submitted-subwaytrips,
+#edit-submitted-lirr,
+#edit-submitted-nycbus,
+#edit-submitted-mnrr,
+#edit-submitted-expressbus,
+#edit-submitted-sirail
+{
+/*	display:inline-block;
+	width:380px;*/
+	}		
+#webform-component-subwaytrips.webform-container-inline label,
+#webform-component-lirr.webform-container-inline  label,
+#webform-component-nycBus.webform-container-inline  label,
+#webform-component-mnrr.webform-container-inline  label,
+#webform-component-expressBus.webform-container-inline  label,     
+#webform-component-siRail.webform-container-inline  label 
+{
+	display:inline-block;
+	width:180px;
+	}
+	
+#webform-component-subwaytrips.webform-container-inline label.option,
+#webform-component-lirr.webform-container-inline  label.option,
+#webform-component-nycBus.webform-container-inline  label.option,
+#webform-component-mnrr.webform-container-inline  label.option,
+#webform-component-expressBus.webform-container-inline  label.option,     
+#webform-component-siRail.webform-container-inline  label.option 
+{
+	display:none;
+	width:180px;
+	}
+	
+	
+/* Begin CSS section for satisfaction 
+*/	
+#webform-component-subwaysatisfied.form-item,
+#webform-component-lirrSatisfied.form-item, 
+#webform-component-mtaBusSatisfied.form-item, 
+#webform-component-mnrSatisfied.form-item, 
+#webform-component-expressBusSatisfied.form-item, 
+#webform-component-StatenIslandSatisfied.form-item ,
+#webform-component-mtaBridgesTunnelSatisfied.form-item 
+
+{
+    border-bottom: 1px solid #D0D0D0;
+    border-right: 1px solid #D0D0D0;
+    height: 28px;
+    margin-bottom: 0;
+    margin-top: 0;
+	width:604px;
+	}
+#edit-submitted-subwaysatisfied input,
+#edit-submitted-lirrsatisfied input,
+#edit-submitted-mtabussatisfied input,
+#edit-submitted-mnrsatisfied input,
+#edit-submitted-expressbussatisfied input,
+#edit-submitted-mtabridgestunnelsatisfied input,
+#edit-submitted-statenislandsatisfied input
+
+{
+	float:left;
+	height:28px;
+	width:45px;
+	}
+
+#webform-component-subwaysatisfied.webform-container-inline label,
+#webform-component-lirrSatisfied.webform-container-inline label,
+#webform-component-mtaBusSatisfied.webform-container-inline label,
+#webform-component-mnrSatisfied.webform-container-inline label,
+#webform-component-expressBusSatisfied.webform-container-inline label,  
+#webform-component-mtaBridgesTunnelSatisfied.webform-container-inline label,     
+#webform-component-StatenIslandSatisfied.webform-container-inline label 
+{
+    float: left;
+    height: 18px;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    width: 200px;
+	}	
+	
+#webform-component-subwaysatisfied.webform-container-inline label.option,
+#webform-component-lirrSatisfied.webform-container-inline label.option,
+#webform-component-mtaBusSatisfied.webform-container-inline label.option,
+#webform-component-mnrSatisfied.webform-container-inline label.option,
+#webform-component-expressBusSatisfied.webform-container-inline label.option,  
+#webform-component-mtaBridgesTunnelSatisfied.webform-container-inline label.option,     
+#webform-component-StatenIslandSatisfied.webform-container-inline label.option 
+{
+	
+	display:none;
+	}	
+	
+	
+	

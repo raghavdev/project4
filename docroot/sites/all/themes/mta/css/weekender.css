@@ -1,0 +1,137 @@
+/*Weekender Top Bar */
+
+#weekender_branding {
+	width: 960px;
+	margin-bottom:50px;
+}
+
+#weekender_topbar_left {
+	float: left;
+	}
+	
+#weekender_topbar_center {
+	margin-left: 300px;
+	
+	}
+	
+#weekender_topbar_right {
+	float: right;
+
+	}
+	
+#weekender_banner {
+	background-color: black;
+    height: 84px;
+    left: 0;
+    top: 10px;
+    width: 960px;
+}
+
+#weekender_content_box {
+	
+}
+
+
+
+.divStationNamedisplayRight {
+	font-family:arial; 
+	font-weight:bold;
+	font-size:14px;	
+	line-height:15px;
+	letter-spacing:-1;
+	text-align:right;
+	cursor:default;	
+}
+
+.footerDateText
+{
+	color:#FFFFFF;
+	font-family:arial;
+	font-size:14px;	
+	font-weight:bold;
+}
+
+.footerTellUsText
+{
+	color:#888888;
+	font-family:arial;
+	text-align:right;
+	font-size:14px;
+	text-decoration:none;	
+	font-weight:bold;
+}
+
+.footerAdText
+{
+	color:#ffffff;
+	font-family:arial;
+	text-align:right;
+	font-size:14px;
+	text-decoration:none;	
+	font-weight:bold;
+}
+
+.footerTellUsText a
+{
+	color:#888888;
+}
+.footerTellUsText a:hover
+{
+	color:#ffffff;
+}
+
+.statusHeaderText
+{
+color:#888888;
+font-family:arial;
+font-size:12px;
+line-height:15px;
+cursor:pointer;
+}
+ 
+.rule2 {
+border-bottom: 2px solid black;
+width: 300px;
+}
+
+#contentDiv p.homepageSubhead {
+color: #000000;
+font-family: Arial;
+font-size: 14px;
+font-weight: bold;
+letter-spacing: -1px;
+line-height: 15px;
+text-align: left;
+width: 300px;
+border-top: 1px solid #000;
+padding-top: 4px;
+}
+
+.homepageHeaderText {
+font-family: Arial;
+letter-spacing: -1px;
+font-size: 14px;
+line-height: 15px;
+text-align: left;
+color: #000000;
+font-weight: bold;
+width: 300px;
+margin-bottom: 0;
+padding-bottom: 0;
+}
+
+.node-type-weekender #contentDiv ul {
+color: #000;
+font-size: 12px;
+font-weight: normal;
+line-height: 15px;
+list-style-type: none;
+margin: 10px 0 15px;
+}
+
+.node-type-weekender #contentDiv ul li {
+padding-left: 6px;
+background: url('../images/weekender/bullet.gif') top left no-repeat;
+padding-bottom: 0.5em;
+list-style: none;
+}

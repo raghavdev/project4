@@ -1,0 +1,314 @@
+
+html {
+	margin:0; 
+	padding:0; 
+	border:0; 
+	background-color: #fff;
+	}
+
+#page {
+	width:960px;
+	font:13px/1.231 helvetica,arial,clean,sans-serif;
+	margin: 0 auto;
+	}
+
+#topbar {
+	margin: 0;
+	padding:0;
+	height:90px;
+	}
+
+#block-menu-menu-topbar-links {
+/*	float:right; */
+	}
+
+#block-menu-menu-topbar-links a{
+	display:inline-block;
+
+	color: #000099;
+    font-size: 88%;
+    text-decoration: none;
+	}
+
+#block-menu-menu-topbar-links a:hover{
+	color: #000000;
+	}
+		
+#block-menu-menu-topbar-links ul{
+	margin-left:10px;
+	}	
+
+#block-menu-menu-topbar-links li{
+    background-image: url("../images/arrow-gn.gif");
+    background-position: left -1px;
+    background-repeat: no-repeat;
+    display: inline;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 3px;
+    padding-top: 0;
+	}	
+
+#navbar {
+    position: relative;
+    height:31px;
+    z-index:99;
+	}
+.views-field-field-caption	{
+	width:250px;
+	}
+
+.block-menu {
+	height:auto;
+	}
+
+#breadcrumb {
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom 0;
+	}
+
+.breadcrumb {
+	padding:0;
+	}
+
+#block-google-appliance-ga-related-searches {
+	padding:5px;
+  	border: 1px solid #b4b4b4; 
+  	-moz-border-radius: 5px; 
+  	-webkit-border-radius: 5px; 
+  	border-radius: 5px; 
+  	behavior: url("border-radius.htc"); 
+	}
+
+/* some basic page layout stuff to overide "grid.css" */
+.small-main {width:410px;}
+.mid-main {width:630px;}
+.full-main {width:900px;}
+
+#main-message {
+	margin-left: 10px;
+	}
+
+#main-ad-content {
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+	}
+
+#sidebar_first {
+	margin:0;
+	width:230px;
+	float:left;
+	}
+
+#contentbox {
+	margin-top:10px;
+	}
+
+.span-90 {
+	width:938px;
+	margin:0;
+	}
+
+.span-ad {
+	width:754px;
+	margin-top:10px;
+	float:left;
+	overflow:hidden;
+	}
+
+.span-side-ad {
+    float: left;
+    margin-left: 10px;
+    width: 480px;
+    }
+
+.span-noside-ad {
+	width:auto;
+	margin:0;
+	}
+
+#sidebar_second {
+    float: right;
+    margin: 0;
+    width: 230px;
+	}
+
+#sidebar_second_ad {
+	float:left;
+    margin-left: 10px;
+    margin-right: 0;
+    margin-top: 10px;
+	}			
+
+ul li.leaf {
+    list-style-image: url("../images/arrow-gn.gif");
+    list-style-type: square;
+    font-weight:700;
+	}
+
+#topbar #branding { margin:0; padding:0;	float:left;}
+#topbar #search { margin:4px 15px 0 0; float:right;  padding: 0;}
+#topbar #search ul#topbar-links { margin:10px 0 6px 4px; list-style-type:none; float:right; padding: 0;}
+#topbar #search ul#topbar-links li a { font-size:88%; text-decoration:none; color:#000099; }
+#topbar #search ul#topbar-links li a:visited { color: #000099; }
+#topbar #search ul#topbar-links li a:hover { color: #000; }
+/*
+#topbar #search form#searchform  {	margin:10px 0 0 0; float:right; }
+#topbar #search form#searchform input#searchbutton, #topbar #search form#searchform input#searchinputbox { margin:0; padding:0; float:right; }
+#topbar #search form#searchform input#searchinputbox { margin-right:6px;}
+*/
+
+#edit-search-keys{
+	width:176px;
+	}
+
+#topbar #middle-header {
+	display:none; /* we don't like the stupid scrolling message so hide the whole div */
+	padding-top:15px;
+	float:left;
+	width:550px;
+	height:60px;
+	}
+
+.region-header-middle {
+	height:60px;
+	}
+
+#middle-header .liScroll-container {
+/*		font-size:30px; */
+	display:inline-block;
+	height:60px;
+	width:560px;
+	color:#FF0000;
+	}
+
+#middle-header .liScroll-container .mask {
+/*	font-size:40px; */
+	width:560px;
+	}
+
+#middle-header .liScroll-container ul.liScroll{
+/*	font: normal 22px Verdana; */
+	/* width:1590px; */
+	}	
+
+.views-liScroll-tick-field	{
+/*	font-size:22px; */
+	}
+
+.views-liScroll-item-banner_news {
+/*	font-size:22px; */
+	}	
+
+#middle-header ul.liScroll span {
+    margin: 0 10px 0 0;
+    width: 560px;
+    position: relative;
+	}	
+
+.view-content-banner_news {
+	font-size:30px; 
+	}	
+
+#views-ticker-liScroll-banner_news {
+	/*display:none;*/
+	}
+
+.views-liScroll-tick-field {
+display:none;
+	}
+
+#google-appliance-block-form {
+	display: inline-block; 
+	float: right;
+	margin-top:10px;
+	}
+
+/* styles for top navigation bar */
+
+#horizontalcssmenu, .sf-menu{
+	clear: both;
+	}
+
+.sf-menu.sf-style-default.sf-navbar {
+  width: 100%;
+}
+
+.sf-menu.sf-style-default a {
+	border: none;
+	}
+
+.sf-menu.sf-style-default{ margin: 0; padding: 0; list-style-type: none;}
+.sf-menu.sf-style-default li{	position: relative;	display: inline; float: left; border-left: 1px #aeaeb0 solid;}
+.sf-menu.sf-style-default a, .sf-menu.sf-style-default a:visited { display: block;height:16px; background: #fff url('../images/nav_bg.jpg') top left repeat-x; padding: 10px 0 5px; text-decoration: none; color: #fff; font-weight:bold;	text-align:center; }
+.sf-menu.sf-style-default a:hover{color: #fff; background: #fff url('../images/nav_bg_on.jpg') top left repeat-x;}
+	
+/*Sub level menu*/
+.sf-menu.sf-style-default li ul{     margin-top: -2px; width: 160px; display: block;background-color: #ddd;}
+
+/*Sub level menu list items*/
+.sf-menu.sf-style-default li ul li{display: inline;float: none;border-left: none;}
+
+/* Sub level menu links style */
+.sf-menu.sf-style-default li ul li a, .sf-menu.sf-style-default li ul li a:visited{
+   padding: 10px 3px 5px 8px;
+	width: 160px; /*width of sub menu levels*/
+	font-size:88%;
+	color:#000;
+	background-image: none;	
+	background-color: #ddd;
+	border-width: 0 1px 1px 1px;
+	text-align:left;
+	}
+.sf-menu.sf-style-default li ul li.last a, .sf-menu.sf-style-default li ul li.last a:visited{
+   padding: 10px 3px 15px 8px;
+	width: 160px; /*width of sub menu levels*/
+	font-size:88%;
+	color:#000;
+	background-image: none;	
+	background-color: #ddd;
+	border-width: 0 1px 1px 1px;
+	text-align:left;
+	}
+.sf-menu.sf-style-default li ul li a:hover{
+	background-image: none;	
+	background-color: #ddd;
+	color:#0071C1;
+	}
+	
+.sf-menu.sf-style-default li ul li.last a:hover{
+	padding: 10px 3px 15px 8px;
+	background-image: none;	
+	background-color: #ddd;
+	color:#0071C1;
+	}
+.sf-menu.sf-style-default li.sf-item-1 {border-left:1px none;}
+
+/* we have to set each menu item's width to be perfect for each browser */
+.sf-item-1 {width:71px; border-left:1px none;}
+.sf-item-2 {width:95px;}
+.sf-item-3 {width:113px;}
+.sf-item-4 {width:61px;}
+.sf-item-5 {width:195px;}
+.sf-item-6 {width:123px;}
+.sf-item-7 {width:180px;}
+.sf-item-8 {width:115px;}
+
+
+* html p#iepara{ /*For a paragraph (if any) that immediately follows menu, add 1em top spacing between the two in IE*/
+padding-top: 1em;
+	}
+	
+/* Holly Hack for IE \*/
+* html #horizontalcssmenu ul#cssmenu1 li { float: left; height: 1%; }
+* html #horizontalcssmenu ul#cssmenu1 li a { height: 1%; }
+* html #horizontalcssmenu ul#cssmenu1 li ul li { float: left;}
+/* End */
+
+#breadcrumbs { margin: 20px 0px 0px 20px;}
+
+
+
+	

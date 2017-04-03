@@ -1,0 +1,693 @@
+h2 {
+	color:#0055aa;
+	margin-bottom: 5px; 
+}
+
+
+
+a:link {text-decoration: none; color:#0055aa;}
+a:visited {text-decoration: none; color:#0055aa;}
+a:hover {text-decoration: underline}
+a:active {text-decoration: underline}
+
+/* List Styles */
+/* Horizontal list */
+.list_h
+{ 
+	background-image: url("../images/arrow-gn.gif");
+	background-position: left -1px;
+	background-repeat: no-repeat;
+	display: inline;
+	padding-left: 10px;
+}
+/* Vertical List */
+.list_v
+{ 
+	background-image: url("../images/arrow-gn.gif");
+	background-position: left -2px;
+	background-repeat: no-repeat;
+	padding-left: 10px;
+	list-style-type: none;
+}
+
+ul li.list_h a {font-weight:bold;}
+
+/* unordered list with green arrows */
+ul.arrow { margin-left:0; }
+
+ul.arrow li {
+	list-style-type:none;
+	margin:0;
+	padding-left:12px;
+	margin-bottom:6px;
+	background-image: url('../images/arrow-gn.gif'); 
+	background-repeat: no-repeat;
+/*	background-position: top left;     */
+}
+
+#contentbox ul.arrow li a {font-weight:bold;}
+
+/* Following list styles are used to draw the bottom icons */
+.list_f { 
+	background-image: url("../images/arrow-gn.gif");
+	background-position: 50% left; 
+	background-repeat: no-repeat;
+	display: inline;
+	padding-left: 16px;
+	padding-right: 12px;	
+	font-weight: bold;
+	height: 30px;
+}
+.last_list_f { 
+	border: none;
+	padding-right: 0px;
+}
+.first_list_f { 
+	margin-left: 0px;
+}
+/* End bottom icons list styles */
+
+/* Page Structure Components*/
+#mainbox {
+  width: 960px;
+  margin:0 auto;
+  background-color: #fff;
+  position: relative;  /*Do NOT remove - this style is required to round corners in IE */
+  padding: 0;
+}
+
+#contentbox {
+	margin-top:0;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom:10px;
+	
+	padding: 0;
+}
+
+#copyright p { font-size: 85%; color: #333; margin-bottom: 2px; }
+
+.feature-box { margin-top:10px; padding:10px; height:186px; background: #fff; }
+.feature-box img.162center { padding-left:50px; }
+.feature-box img.center { padding:0 auto; }
+.feature-box h3 { margin: 0; margin-bottom: 5px;}
+.feature-box a { font-weight:bold; color: #0055aa; text-decoration:none; }
+
+/* End Page Structure components */
+
+/* Start primary page blocks */
+
+#waysToPay {
+	height: 183px;
+}
+
+#widgetDiv {
+    height: 424px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    margin-top: 11px;
+    padding: 10px 0;
+    width: 229px;
+}
+
+#widgetDiv #subwayDiv, #widgetDiv #railDiv, #widgetDiv #busDiv, #widgetDiv #BTDiv {float:left; display:none; width:208px; height: 365px;  background-color:#fff;}
+#widgetDiv  table{ margin:0; padding:0; width:202px; height:356px; background-color:#fff; }
+#widgetDiv  table tr, #widgetDiv  table td { margin:0; padding:0; }
+
+
+#news { 
+	margin-top:10px;
+	height:270px;
+	/*height:286px; /*changed for smaller Getting There box*/
+	padding: 10px; 
+	background: #fff;
+	overflow: hidden;
+}
+
+#maps, #maps-narrow, #option1-narrow, #option2-narrow {	
+	margin-top:10px; 
+	padding:7px; 
+	height:73px;
+	background: #fff;
+}
+
+#maps-narrow, #option1-narrow {
+	width: 89px;
+	margin-right:10px;
+	float:left;
+}
+
+#maps-narrow {
+	width: 89px;
+}
+
+#option1-narrow {
+	width: 96px;
+	padding-right:0;
+}
+
+#option2-narrow {	
+	width:99px;
+	float:right;
+}
+
+#capConstruction { float:left; }
+
+#innovation-new, #apps {
+	/*height: 78px;*/
+	height:114px; /*changed for smaller Getting There box*/
+	padding: 10px;
+	float: left;
+	width: 203px;
+	margin-bottom:10px;
+}
+
+#apps { margin-right:10px; }
+
+/*#innovation { 
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 78px; 
+	padding: 10px;
+	float: left;
+	width: 438px;
+}
+
+#innovation h3 { margin: 0; margin-bottom: 5px; }*/
+
+#self-serve, #contact-us {
+	/*height: 25px;*/
+	height: 35px; /*changed for smaller Getting There box*/
+	padding-left:10px;
+	padding-top:10px;
+	float:left;
+	width: 213px;
+}
+
+#self-serve { margin-right:10px; }
+
+/* Riding With Us Styles */
+#riding-links {
+	margin:0;
+	padding: 10px 10px 10px 10px;
+	height:144px; /*changed for smaller Getting There box*/
+	/*height:190px;*/
+	background-color: #fff;
+}
+
+#riding-links #nestedCol1 { margin:0; padding:0; width: 215px; float: left;}
+#riding-links #nestedCol2 { margin:0; padding:0;	width: 215px; float: right; }
+
+#riding-links ul { margin:0; padding:0; float:left; width: 215px; }
+#riding-links li { margin:0; margin-bottom: 10px; padding: 4px 8px 5px; list-style-type:none; width:197px; float:left; font-weight: bold; }
+#riding-links li.text{ 
+width:147px;
+}
+
+
+#riding-links #menuanchor1,
+#riding-links #menuanchor2,
+#riding-links #menuanchor3,
+#riding-links #menuanchor4,
+#riding-links #menuanchor5,
+#riding-links #menuanchor6,
+#riding-links #menuanchor7,
+#riding-links #menuanchor8
+ {
+	background: #fff; border:1px solid #e4e4e4;
+	}
+
+#riding-links #menuanchor1:hover,
+#riding-links #menuanchor2:hover,
+#riding-links #menuanchor3:hover,
+#riding-links #menuanchor4:hover,
+#riding-links #menuanchor5:hover,
+#riding-links #menuanchor6:hover,
+#riding-links #menuanchor7:hover,
+#riding-links #menuanchor8:hover 
+{ 
+	background: #f4f4f4; border:1px solid #b4b4b4; cursor: pointer; 
+	}
+
+.popMenu ul { margin: 5px; margin-left: 8px; }
+.popMenu li { list-style-type: none; margin-bottom: 10px; font-family: Helvetica, Arial, Sans-serif; font-size: 13px; font-weight:bold; color:#000033; }
+.popMenu li ul li { font-weight: normal; color:#000033; }
+.popMenu li a, .popMenu li ul li a { text-decoration:none; color:#000033; }
+.popMenu li a:hover, .popMenu li ul li a:hover { color: #0055aa; }
+.popMenu li ul li { margin:0; padding:0; }
+
+/* End - Riding With Us Styles */
+
+/* End primary page blocks */
+
+#breadcrumbs { display: block; }
+
+#middlecolumn .slide-wrapper p { font-size:101%; line-height:1.2em; margin:0;}
+#fineprint {	text-align: right; float:right; padding-left: 30px; }
+#translation { background-color: #dfe2e3; padding: 5px 15px 5px 15px; border-top: 1px solid #6296c6; }
+#mainbox #contentbox a:link {	color:#0055aa; text-decoration:none; }
+#mainbox #contentbox img.left-align {	float:left;	padding-right: 8px; }
+
+/* Agency Refresh Styles */
+#agency-links {
+	padding: 10px;
+	background: #fff;
+	height:62px;
+}
+
+#agency-links ul { float: left; list-style-type: none; margin: 0; padding: 0;}
+#agency-links  li a{ color: #333; text-decoration: none; }
+
+/* Agency links are presented in two or three columns.*/
+#agency-links #twoCol li { float: left; width: 202px; padding: 5px; display: inline; margin-right: 10px; font-weight: bold; }
+#agency-links #twoCol li.last { margin-right: 0px; }
+#agency-links #threeCol li { float: left; width: 127px; padding: 5px; display: inline; margin-right: 10px; font-weight: bold; }
+#agency-links #threeCol li.last { margin-right: 0px; }
+
+#agency-links #twoCol #menuanchor1,
+#agency-links #twoCol #menuanchor2 {
+	 background: #fff; border:1px solid #e4e4e4; 
+	 }
+#agency-links #twoCol #menuanchor1:hover,
+#agency-links #twoCol #menuanchor2:hover {
+	 background: #e4e4e4; border:1px solid #b4b4b4; 
+	 }
+#agency-links #threeCol #menuanchor1,
+#agency-links #threeCol #menuanchor2,
+#agency-links #threeCol #menuanchor3 {
+	 background: #fff; border:1px solid #e4e4e4; 
+	 }
+#agency-links #threeCol #menuanchor1:hover,
+#agency-links #threeCol #menuanchor2:hover, 
+#agency-links #threeCol #menuanchor3:hover {
+	 background: #e4e4e4; border:1px solid #b4b4b4; 
+	 }
+
+#agency-spnews {
+	margin-top: 10px;
+	padding: 10px;
+	background-color: #f4f4f4;
+	overflow: auto;
+	height: 230px;
+}
+
+#news-agency {
+	margin-top:10px;
+	height:275px;
+	padding: 10px;
+	background: #fff;
+	overflow: hidden;
+}
+
+.heading { float:left; margin:7px;font-size:12px; font-weight:bold; width:400px; color:#0066FF; }
+
+/* Agency div styles */
+#deals { 
+	height: 165px;
+	float: left;
+}
+#WaystoPay { height:175px; }
+
+/* for MTA CC homepage */
+#programs { margin:10px 0; padding:10px 9px; }
+#programs h2 { margin-bottom:0; }
+#programs h3 { margin-top:10px; }
+#programs-hilite { margin-left:20px; border-right-width:1px; border-right-color: #ccc; border-right-style:solid; }
+#programs-hilite-last { margin-left:10px; }
+
+/*.section{ float:left; width:950px; padding:5px;}
+.section{ float:left; padding:5px;}
+.section ul{margin:0px; padding:0px;}
+.section ul li{float:left; list-style:none;}
+.section ul li a{float:left;padding:6px 20px 9px; background: #333333; color:#FFFFFF;}
+.section ul li a:hover{text-decoration:none; background:#666666;}*/
+
+
+/** Region Content Bottom */
+
+#content_bottom {
+	margin-top: 5px;
+	margin-bottom: 0px;
+	width: 460px;
+	border-left: 1px solid #B4B4B4;
+    border-right: 1px solid #B4B4B4;
+	}
+	
+/** Content Bottom Left and Right */
+
+#block-boxes-ways-to-save {
+	margin-top: 10px;
+	margin-left: 20px;
+	height: 180px;	
+	width: 420px;
+	padding-left: 7px;
+	border-bottom: 1px solid #ccc;
+	}
+
+#contentbl {
+	width: 220px;
+	float: left;
+	}
+
+#contentbr {
+	width: 220px;
+	float: right;
+	}
+	
+#block-boxes-fast-track {
+ 	margin-top: 10px;
+	margin-left: 20px;
+    width: 200px;
+ 	}
+ 	
+#boxes-box-hear_from_you {
+	margin-top: 10px;
+	width: 200px;
+	height: 111px;
+	padding-left: 5px;
+	border-left: 1px solid #ccc;
+	}
+	
+/** Postcript Region */
+
+#postscript {
+	width: 469px;
+	}
+
+#postscript_left {
+	float: left;
+	margin-left: 5px;
+	width: 220px;
+	}
+
+#postscript_right {
+	float: right;
+	width: 220px;
+	}
+
+#boxes-box-capitol_program {
+	margin-top: 225px;
+	margin-left: 20px;
+	width: 420px;
+	padding-left: 7px;
+	border-top: 1px solid #ccc;
+ 	}
+	
+ #boxes-box-mta_bus_time {
+	margin-top: 20px;
+	margin-left: 5px;
+	width: 150px;
+	padding:7px;
+	border-bottom: 1px solid #ccc;
+	}
+
+#boxes-box-special_service {
+	margin-top: 30px;
+	padding: 7px;
+	border-Bottom: 1px solid #B4B4B4;
+	}
+	
+#boxes-box-customer_self_service {
+	margin-top: 10px;
+	margin-left: 5px;
+	width:150px;
+	padding: 7px;
+	border-bottom: 1px solid #ccc;
+	}
+	
+#boxes-box-mta_capitol {
+	padding: 7px;
+	}
+	
+#boxes-box-tourism {
+	margin-top: 10px;
+	padding: 7px;
+	border-bottom: 1px solid #ccc;
+	}
+	
+#boxes-box-app_center {
+	margin-top: 13px;
+	padding: 7px;
+	border-bottom: 1px solid #ccc;
+	}
+	
+#boxes-box-gc_centennial {
+	margin-top: 30px;
+	padding: 7px;
+	}
+	
+#boxes-box-advertise_on_metrocard {
+	margin-top: 30px;
+	padding: 7px;
+	border-bottom: 1px solid #ccc;
+	}
+	
+/** Home Page Blocks */
+
+#block-mta-megamenu-lirr-megamenu {
+	height: 85px;
+	}
+	
+/** Agency Special Services Boxes from home page.css */
+
+
+#boxes-box-lirr_special_service {
+	margin-top:10px;
+	height: 150px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border: 1px solid #B4B4B4;
+    border-radius: 5px 5px 5px 5px;
+    }
+ 
+#boxes-box-nyct_special_service {
+	margin-top:10px;
+	height: 150px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border: 1px solid #B4B4B4;
+    border-radius: 5px 5px 5px 5px;
+    } 
+    
+  #boxes-box-bandt_special_service {
+  	margin-top:10px;
+	height: 150px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border: 1px solid #B4B4B4;
+    border-radius: 5px 5px 5px 5px;
+    } 
+    
+ #boxes-box-mnr_special_service {
+  	margin-top:10px;
+	height: 150px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border: 1px solid #B4B4B4;
+    border-radius: 5px 5px 5px 5px;
+    }  
+    
+#footer-navlist {position:relative; margin:10px auto; height:19px;}
+
+#footer-navlist li {margin:0; padding:0 6px 0 0; list-style:none; position:absolute; top:0; }
+
+#footer-navlist li {height:19px; display:block; background-color: transparent;}
+
+#footer-navlist li a {height:19px; display:block; font-weight:bold; background-color: #fff;}
+
+ 
+
+.employment { left:0px; background:url('../images/footer_sprite_new.png') no-repeat 80px 0; width:98px;  }
+
+.shop { left:129px; background:url('../images/footer_sprite_new.png') no-repeat 60px 0; width:100px;  }
+
+.museum { left:258px; background:url('../images/footer_sprite_new.png') no-repeat 55px 0; width:125px;  }
+
+.pim { left:402px; background:url('../images/footer_sprite_new.png') no-repeat 35px 0; width:125px; }
+
+.aft { left:549px; background:url('../images/footer_sprite_new.png') no-repeat 0 0; width:116px; }
+
+.social { left:685px; background:url('../images/footer_sprite_new.png') right no-repeat; -75px 0; width:157px;  }
+
+.anchor1,.anchor2,.anchor3,.anchor4,.anchor5,.anchor6,.anchor7,.anchor8 {
+    float: right;
+    height: 17px;
+    margin-bottom: 0;
+    margin-right: 2px;
+    margin-top: 1px; 
+    width: 26px;
+}
+.anchor1 {
+	background: #fff url("../images/GT_sprites.gif") no-repeat scroll 0 0;
+}
+.anchor2 {
+  background: #fff url("../images/GT_sprites.gif") no-repeat scroll -27px 0;
+}
+.anchor3 {
+  background: #fff url("../images/GT_sprites.gif") no-repeat scroll -54px 0;
+}
+.anchor4 {
+  background: #fff url("../images/GT_sprites.gif") no-repeat scroll -81px 0;
+}
+.anchor5 {
+  background: #fff url("../images/GT_sprites.gif") no-repeat scroll 0 -18px;
+}
+.anchor6 {
+  background: #fff url("../images/GT_sprites.gif") no-repeat scroll -27px -18px;
+}
+.anchor7 {
+  background: #fff url("../images/GT_sprites.gif") no-repeat scroll -54px -18px;
+}
+.anchor8 {
+  background: #fff url("../images/GT_sprites.gif") no-repeat scroll -81px -18px;
+}
+	.mega-text {
+	width:147px;
+	float:left;
+	}
+	 .mega-text-short {
+  width:95px;
+  float:left;
+  }
+
+
+#colorbox  {
+   border-radius: 5px;
+	border: 2px solid #ff6600;
+}
+#cboxWrapper {
+    background: #fff none repeat scroll 0 0;
+  
+	
+}
+
+#block-views-colorbox-lirr-block h2 {
+margin-left:10px;
+padding-top:10px;
+}
+
+
+.view-colorbox-lirr .col-1   {
+border-radius: 5px;
+border:1px solid #e4e4e4;
+float: left; 
+width: 212px; 
+
+display: inline; 
+margin-right: 10px; 
+margin-left:10px;
+font-weight: bold;
+background: #fff;
+
+}
+
+.view-colorbox-lirr .col-2   {
+border-radius: 5px;
+border:1px solid #e4e4e4;
+float: right; 
+width: 207px; 
+
+ 
+
+font-weight: bold;
+background: #fff;
+}
+#mainbox #contentbox  .view-colorbox-lirr .col-1 .views-field-title a:link, #mainbox #contentbox  .view-colorbox-lirr .col-2 .views-field-title a:link {
+color:#000;
+
+
+}
+.view-colorbox-lirr .col-1 .views-field-title a:link {
+color:#000;
+
+display: block;
+background: #fff url("../images/1.gif") no-repeat right;
+padding:5px;
+}
+
+.view-colorbox-lirr .col-2 .views-field-title a:link {
+ 
+color:#000;
+display: block;
+background: #fff url("../images/2.gif") no-repeat right;
+padding:5px;
+}
+
+.view-colorbox-lirr .col-1 a:hover, .view-colorbox-lirr .col-1 a:active {
+padding:5px 5px 5px 5px;
+display: block;
+    
+    color: #000;
+   background: #eee url("../images/1.gif") no-repeat right;
+    
+
+}
+
+.view-colorbox-lirr .col-2  a:hover, .view-colorbox-lirr .col-2 a:active {
+
+padding:5px 5px 5px 5px;
+    display: block;
+     background: #eee url("../images/2.gif") no-repeat right;
+    color: #000;
+    
+       
+
+    
+   
+    
+}
+
+#block-views-colorbox-lirr-block {
+    border: 1px solid #b4b4b4;
+    -moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background: #fff;
+	padding-bottom:15px;
+	}
+	
+.node-type-home-page #cboxLoadedContent .content a:link  {
+color:#000;
+}
+
+#node-304166 h2 {
+display:none;
+
+}
+
+#node-304171 h2 {
+display:none;
+
+}
+
+#colorbox .field-name-body ul li {
+	/*giving UL's LIs generated disc markers*/
+	list-style: none;
+	}
+	
+	
+	
+#block-views-38c4b5dc32254961c9509fd01ae128ce li{
+font-size:13px;
+
+
+}
+
+#block-views-38c4b5dc32254961c9509fd01ae128ce tr.even , #block-views-38c4b5dc32254961c9509fd01ae128ce tr.odd {
+    background-color: #fff;
+    border-bottom: 0px solid #fff;
+    padding: 0.1em 0.6em;
+}
+#block-views-38c4b5dc32254961c9509fd01ae128ce td{
+   line-height:8px;
+}
+#block-views-38c4b5dc32254961c9509fd01ae128ce th {
+    border-bottom: 0px solid #fff;
+    padding-right: 1em;
+    text-align: left;
+	border: none;
+}
+
+#block-views-38c4b5dc32254961c9509fd01ae128ce table {
+  border-collapse:separate ;
+}

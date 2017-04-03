@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>MTA ajax header test page</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"*/></script>
+<link type="text/css" rel="stylesheet" href="http://newdev.mta.info/sites/all/themes/mta/css/topbar.css" media="all" />
+</head>
+<body>
+<script>
+$(document).ready(function($) {
+    $.ajax({
+        url: 'http://newdev.mta.info/mta/header',
+        type: 'POST',
+        async: false,
+        cache: false,
+        timeout: 50000,
+        dataType: 'html',
+        success: function(data) {
+                $('#tophat-header').html(data);
+        },
+        error: function  (jqXHR, textStatus, errorThrown) {
+                $("#tophat-header").html(textStatus + errorThrown);
+                }
+    });
+});
+</script>
+<div id="page">
+<div id="tophat-header">
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<html>
+<head>
+<title>The Weekender</title>
+<script language="javascript" type="text/javascript" src="weekendstatus.js"></script>
+<script language="javascript" type="text/javascript" src="Data/LinesStaticData.js?r=1"></script>
+<script language="javascript" type="text/javascript" src="tileMapSubway.js?r=2"></script>
+</head>
+<body onload="initializeDocumentObjects(); loadFromQueryString(); RenderFlashingIcons();" onmousedown="hideCustomAlert()" style="width:960px; height:330px; margin:0px; padding:0px; overflow:hidden;">
+
+<div id="mapApplication"  style="display:inline; position:absolute; top:0px; left:0px; width:960px; height:630px; -moz-user-select: none; -webkit-user-select: none;" unselectable="on">
+ <div id="mapContainer" style="position:absolute; top:0px; left:0px; width:960px; height:630px; overflow:hidden; cursor:move; background-image:url(http://mta.info/weekender/images/mapTileBackground.gif); -moz-user-select: none; -webkit-user-select: none;" unselectable="on">
+ <img id="a00" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:-325px; left:-325px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a01" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:-325px; left:-69px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a02" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:-325px; left:187px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a03" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:-325px; left:443px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a04" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:-325px; left:699px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+
+
+
+
+ <img id="a10" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:-69px; left:-325px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a11" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:-69px; left:-69px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a12" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:-69px; left:187px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a13" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:-69px; left:443px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a14" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:-69px; left:699px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+
+
+ <img id="a20" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:187px; left:-325px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a21" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:187px; left:-69px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a22" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:187px; left:187px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a23" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:187px; left:443px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a24" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:187px; left:699px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+
+ <img id="a30" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:443px; left:-325px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a31" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:443px; left:-69px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a32" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:443px; left:187px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a33" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:443px; left:443px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a34" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:443px; left:699px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+
+
+ <img id="a40" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:699px; left:-325px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a41" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:699px; left:-69px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a42" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:699px; left:187px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a43" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:699px; left:443px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+ <img id="a44" class="x" onload="showImage(this)" src="http://mta.info/weekender/images/mapTileBackground.gif" style="z-index:0; position:absolute; top:699px; left:699px; width:256px; height:256px; background-color:silver; -moz-user-select: none; -webkit-user-select: none;" unselectable="on"/>
+
+
+
+
+
+ <div style="display:inline; position:absolute; top:0px; left:0px; width:960px; height:630px; background-image:url(http://mta.info/weekender/images/transparentTile.gif); -moz-user-select: none; -webkit-user-select: none;" unselectable="on" onmousedown="mapmousedown(event)" onmousemove="mapmousemove(event)" onmouseup="mapmouseup()" onmouseout="mapmouseup()"></div>
+
+
+
+
+
+
+<div id="ImgDots" style="position:absolute; left:0px; top:0px">
+<script language="javascript" type="text/javascript">
+
+var station_RouteList = "1_1;341;220;B:2_1;341;264;B:3_1;341;308;B:4_1;341;352;B:5_1;341;440;B:6_1;341;484;B:7_1;341;528;B:8_1;341;572;B:9_1;341;616;B:11_1;341;792;B:12_1;341;858;B:13_1;341;924;B:14_1;341;990;B:15_1;341;1034;B:16_1;341;1078;B:17_1;341;1122;B:18_1;341;1166;B:18_2;352;1166;B:18_3;363;1166;B:19_1;341;1254;B:20_1;341;1298;B:21_1;341;1342;B:21_2;352;1342;B:21_3;363;1342;B:22_1;352;1397;B:24_1;495;1540;B:25_1;528;1584;B:25_2;539;1584;B:25_3;550;1584;B:25_7;594;1584;B:25_S;594;1573;B:25_N;572;1584;B:25_Q;583;1584;B:25_R;561;1584;B:26_1;528;1672;B:26_2;539;1672;B:26_3;550;1672;B:27_1;528;1716;B:28_1;528;1760;B:29_1;528;1804;B:30_1;528;1848;B:30_2;539;1848;B:30_3;550;1848;B:31_1;528;1936;B:32_1;528;1980;B:33_1;528;2068;B:34_1;528;2112;B:35_1;528;2156;B:35_2;539;2156;B:35_3;550;2156;B:37_1;583;2332;B:38_1;814;2431;B:5345_F;660;1760;B:5345_M;671;1760;LG:9454_SIR;484;2926;B:9983_2;1188;66;B:9984_2;1188;110;B:9984_5;1199;110;LG:9985_2;1188;154;B:9985_5;1199;154;LG:9986_2;1188;198;B:9986_5;1199;198;LG:9987_2;1188;242;B:9987_5;1199;242;LG:9988_2;1188;286;B:9988_5;1199;286;LG:9989_2;1188;330;B:9989_5;1199;330;LG:9990_2;1188;374;B:9990_5;1199;374;LG:9991_2;1188;418;B:9991_5;1199;418;LG:9992_2;1188;462;B:9992_5;1199;462;LG:9993_2;1188;506;B:9993_5;1199;506;B:9994_2;1188;550;B:9994_5;1199;550;B:9995_2;1188;594;B:9995_5;1199;594;B:9996_2;1188;638;B:9996_5;1199;638;B:9997_2;1188;682;B:9997_5;1199;682;B:9998_2;1188;726;B:9998_5;1199;726;B:9999_2;1188;770;B:9999_5;1199;770;B:10000_2;1166;836;B:10000_5;1166;847;B:10002_2;891;836;B:10002_4;836;825;B:10002_5;891;847;B:10003_2;660;924;B:10003_3;649;924;B:10004_2;660;990;B:10004_3;649;990;B:10005_2;660;1034;B:10005_3;649;1034;B:10006_2;660;1078;B:10006_3;649;1078;B:10007_2;649;2233;B:10007_3;649;2222;B:10008_2;935;2332;B:10008_3;946;2332;B:10009_2;1166;2387;B:10009_3;1166;2376;B:10010_2;1232;2475;B:10010_3;1232;2464;B:10010_4;1232;2453;B:10010_5;1232;2442;LG:10011_2;1309;2475;B:10011_3;1309;2464;B:10012_2;1397;2475;B:10012_3;1397;2464;B:10012_4;1397;2453;B:10012_5;1397;2442;LG:10013_2;1482;2523;B:10013_3;1489;2515;B:10013_4;1497;2507;B:10013_5;1505;2499;LG:10013_B;1520;2484;LG:10013_Q;1513;2492;B:10014_2;1515;2556;B:10014_3;1522;2548;B:10014_4;1522;2548;B:10015_4;1552;2578;B:10015_2;1545;2586;B:10015_3;1552;2578;B:10016_2;1595;2596;B:10016_3;1595;2585;B:10016_4;1595;2585;B:10017_2;1716;2596;B:10017_3;1716;2585;B:10017_4;1716;2574;B:10017_5;1716;2563;LG:10018_2;1807;2626;B:10018_5;1815;2618;LG:10019_2;1840;2659;B:10019_5;1848;2651;LG:10020_2;1873;2692;B:10020_5;1881;2684;LG:10021_2;1906;2725;B:10021_5;1914;2717;LG:10022_2;1939;2758;B:10022_5;1947;2750;LG:10023_2;1972;2791;B:10023_5;1980;2783;LG:10024_2;2005;2824;B:10024_5;2013;2816;LG:10025_3;1793;2563;B:10025_4;1793;2563;B:10026_4;1859;2497;B:10026_3;1859;2497;B:10027_3;1925;2431;B:10027_4;1917;2423;B:10028_3;1991;2365;B:10028_4;1991;2365;B:10029_4;2057;2299;B:10029_3;2057;2299;B:10030_3;2123;2233;B:10030_4;2123;2233;B:10031_4;2189;2167;B:10031_3;2189;2167;B:10032_4;2233;2123;B:10032_3;2233;2123;B:10033_3;2277;2079;B:10033_4;2277;2079;B:10034_4;2321;2035;B:10034_3;2321;2035;B:10035_3;649;858;B:10036_3;583;836;B:10037_4;836;220;B:10038_4;836;286;B:10040_4;836;418;B:10041_4;836;462;B:10042_4;836;506;B:10043_4;836;550;B:10044_4;836;594;B:10045_4;836;638;B:10046_4;836;682;B:10047_4;836;726;B:10048_4;836;770;B:10048_B;847;759;LG:10048_D;847;770;B:10049_4;836;880;B:10049_5;847;880;B:10050_4;836;990;B:10050_5;847;990;B:10050_6;858;990;B:10051_4;836;1254;B:10051_5;847;1254;B:10051_6;858;1254;B:10053_4;836;1584;B:10053_6;858;1584;B:10053_7;825;1584;B:10053_S;825;1573;B:10053_5;847;1584;B:10054_N;803;1848;B:10054_Q;814;1848;B:10054_R;792;1848;B:10054_4;836;1848;B:10054_5;847;1848;B:10054_6;858;1848;B:10054_L;869;1848;B:10055_4;836;2156;B:10055_5;847;2156;B:10055_6;858;2156;B:10057_4;781;2332;B:10057_5;792;2332;B:10058_5;792;2376;B:10058_4;781;2376;B:10059_6;858;2024;B:10060_6;858;1936;B:10061_6;858;1892;B:10062_6;858;1760;B:10063_6;858;1716;B:10064_6;858;1672;B:10065_6;858;1540;B:10066_6;858;1357;B:10067_6;858;1305;B:10068_6;858;1166;B:10069_6;858;1122;B:10070_6;858;1078;B:10071_6;858;1034;B:10072_5;1298;110;B:10073_5;1298;198;B:10074_5;1298;286;B:10075_5;1276;418;B:10076_5;1232;462;B:10077_6;1617;308;B:10077_6D;1609;300;LG:10078_6D;1576;333;LG:10078_6;1584;341;B:10079_6;1551;374;B:10079_6D;1543;366;LG:10081_6D;1477;432;LG:10081_6;1485;440;B:10082_6D;1444;465;LG:10082_6;1452;473;B:10083_6D;1411;498;LG:10083_6;1419;506;B:10084_6;1386;539;B:10085_6;1353;572;B:10086_6;1320;605;B:10087_6;1309;649;B:10088_6D;1298;726;LG:10088_6;1309;726;B:10089_6;1309;770;B:10090_6;1309;825;B:10091_6;1309;880;B:10092_6;1199;902;B:10093_6;1089;902;B:10095_7;2035;990;B:10095_7D;2027;982;LG:10096_7D;1994;1015;LG:10096_7;2002;1023;B:10097_7;1969;1056;B:10098_7;1936;1089;B:10099_7;1903;1122;B:10099_7D;1895;1114;LG:10100_7;1870;1155;B:10101_7;1837;1188;B:10102_7;1804;1221;B:10103_7;1738;1287;B:10104_7;1694;1331;B:10104_7D;1686;1323;LG:10105_7;1650;1375;B:10106_7;1606;1408;B:10107_7;1540;1408;B:10108_7;1474;1408;B:10109_7D;1293;1413;LG:10109_N;1277;1398;B:10109_Q;1285;1406;LG:10109_7;1300;1421;B:10111_7;1210;1584;B:10112_7;1111;1584;B:10113_7;748;1584;B:10114_A;264;484;B:10115_A;264;528;B:10116_A;264;572;B:10117_A;264;616;B:10118_A;264;660;B:10119_C;363;759;B:10119_A;363;759;B:10120_A;396;792;B:10120_C;396;792;B:10121_A;418;858;B:10121_B;440;858;LG:10121_C;429;858;B:10121_D;451;858;B:10122_B;440;924;LG:10122_C;429;924;B:10122_A;429;924;B:10123_A;418;990;B:10123_B;440;990;LG:10123_C;429;990;B:10123_D;451;990;B:10124_B;440;1034;LG:10124_C;429;1034;B:10124_A;429;1034;B:10125_A;429;1078;B:10125_B;440;1078;LG:10125_C;429;1078;B:10126_B;440;1122;LG:10126_C;429;1122;B:10126_A;429;1122;B:10127_A;429;1166;B:10127_B;440;1166;LG:10127_C;429;1166;B:10128_B;440;1254;LG:10128_C;429;1254;B:10128_A;429;1254;B:10129_A;429;1298;B:10129_B;440;1298;LG:10129_C;429;1298;B:10130_B;440;1342;LG:10130_C;429;1342;B:10130_A;429;1342;B:10132_A;429;1584;B:10132_A;418;1584;B:10132_C;429;1584;B:10132_E;440;1584;B:10134_C;429;1760;B:10134_E;440;1760;B:10134_A;429;1760;B:10135_A;429;1848;B:10135_A;418;1848;B:10135_C;429;1848;B:10135_E;440;1848;B:10136_A;616;2024;B:10136_C;616;2024;B:10136_E;627;2024;B:10137_A;605;2068;B:10137_C;616;2068;B:10137_E;627;2068;B:10138_A;671;2156;B:10138_C;682;2156;B:10139_A;825;2255;B:10139_C;825;2244;B:10139_4;781;2255;B:10139_5;792;2255;B:10140_A;1210;2255;B:10140_C;1210;2244;B:10141_R;1298;2398;B:10141_A;1276;2398;B:10141_C;1287;2398;B:10141_F;1265;2398;B:10141_N;1298;2398;B:10142_A;1298;2530;B:10142_C;1298;2519;B:10142_G;1298;2541;B:10143_C;1584;2442;B:10143_A;1584;2442;B:10144_A;1650;2442;B:10144_C;1650;2442;B:10145_C;1694;2442;B:10145_S;1694;2464;B:10145_A;1694;2442;B:10146_A;1779;2384;B:10146_C;1771;2376;B:10147_A;1837;2310;B:10147_C;1837;2310;B:10148_A;1911;2252;B:10148_C;1903;2244;B:10149_C;1969;2178;B:10149_A;1969;2178;B:10150_A;2035;2112;B:10150_C;2035;2112;B:10151_A;2200;2046;B:10151_C;2200;2035;B:10152_C;2247;2016;B:10152_A;2247;2016;B:10153_A;2302;1961;B:10153_C;2302;1961;B:10154_A;2365;1914;B:10154_C;2357;1906;B:10155_A;2420;1859;B:10156_A;2475;1804;B:10157_A;2530;1749;B:10158_A;2585;1694;B:10159_A;2739;1771;B:10160_A;2827;1859;B:10161_A;3007;2039;B:10161_S;3000;2047;B:10162_A;3223;2189;B:10163_A;3223;2123;B:10164_A;3223;2057;B:10165_A;3223;1991;B:10166_A;3223;1925;B:10168_A;2750;1529;B:10169_A;2695;1584;B:10170_A;2640;1639;B:10171_A;3014;2453;B:10171_S;3006;2445;B:10172_A;3069;2398;B:10172_S;3061;2390;B:10173_A;3124;2343;B:10173_S;3116;2335;B:10174_A;3179;2288;B:10174_S;3171;2280;B:10175_D;1986;3252;B:10175_F;2002;3267;B:10175_N;1994;3259;B:10175_Q;2010;3275;B:10176_D;1947;3190;B:10177_D;1881;3146;B:10178_D;1837;3146;B:10179_N;1683;3036;B:10180_D;1518;2904;B:10181_D;1441;2882;B:10181_N;1430;2882;B:10181_R;1419;2882;B:10182_D;1551;2926;B:10183_D;1584;2959;B:10184_D;1617;2992;B:10185_D;1683;3058;B:10186_D;1716;3091;B:10187_D;1749;3124;B:10188_D;1793;3146;B:10189_F;1023;1980;B:10190_B;869;2002;LG:10190_D;869;1991;B:10190_F;869;1980;B:10190_M;869;1969;LG:10191_A;605;1936;B:10191_B;638;1936;LG:10191_C;616;1936;B:10191_D;649;1936;B:10191_E;627;1936;B:10191_F;660;1936;B:10191_M;671;1936;LG:10194_N;627;1657;B:10194_Q;627;1641;B:10194_R;627;1672;B:10194_B;638;1672;LG:10194_D;649;1672;B:10194_F;660;1672;B:10194_M;671;1672;LG:10195_B;638;1584;LG:10195_D;649;1584;B:10195_F;660;1584;B:10195_M;671;1584;LG:10196_B;638;1540;LG:10196_D;649;1540;B:10196_F;660;1540;B:10196_M;671;1540;LG:10197_F;660;1474;B:10198_F;1023;1386;B:10199_F;1166;1386;B:10200_B;1045;2068;B:10200_D;1056;2068;B:10201_B;1416;2379;LG:10201_Q;1408;2387;B:10201_R;1393;2402;B:10201_D;1393;2402;B:10201_N;1393;2402;B:10202_D;1441;2563;B:10202_N;1430;2563;B:10202_R;1419;2563;B:10203_B;935;352;LG:10203_D;946;352;B:10204_B;935;418;LG:10204_D;946;418;B:10205_B;935;462;LG:10205_D;946;462;B:10206_B;935;506;LG:10206_D;946;506;B:10207_B;935;550;LG:10207_D;946;550;B:10208_B;935;594;LG:10208_D;946;594;B:10209_B;935;682;LG:10209_D;946;682;B:10210_B;935;726;LG:10210_D;946;726;B:10211_B;440;792;LG:10211_D;451;792;B:10212_B;539;1496;LG:10212_D;539;1485;B:10212_E;539;1507;B:10213_R;1419;2816;B:10214_D;1419;2750;B:10214_N;1419;2750;B:10214_R;1419;2750;B:10217_D;990;308;B:10218_B;1570;2533;B:10218_Q;1562;2541;B:10219_B;1686;2650;LG:10219_Q;1679;2658;B:10219_S;1694;2642;B:10220_Q;1738;2717;B:10221_B;1779;2742;LG:10221_Q;1771;2750;B:10222_Q;1804;2783;B:10223_Q;1837;2816;B:10224_B;1878;2841;LG:10224_Q;1870;2849;B:10225_Q;1903;2882;B:10226_Q;1936;2915;B:10227_Q;1969;2948;B:10228_B;2010;2973;LG:10228_Q;2002;2981;B:10229_Q;2035;3014;B:10231_B;2109;3072;LG:10231_Q;2101;3080;B:10232_B;2142;3105;LG:10232_Q;2134;3113;B:10233_Q;2120;3165;B:10234_F;2068;3201;B:10234_Q;2076;3209;B:10235_E;2687;1213;B:10235_J;2695;1221;B:10235_Z;2703;1229;LG:10236_E;2632;1268;B:10236_J;2640;1276;B:10236_Z;2648;1284;LG:10237_E;2530;1276;B:10238_E;2332;1276;B:10238_F;2332;1265;B:10239_E;2266;1276;B:10239_F;2266;1265;B:10240_E;2200;1276;B:10240_F;2200;1265;B:10240_M;2200;1254;LG:10240_R;2200;1243;B:10241_M;2134;1254;LG:10241_R;2134;1243;B:10241_E;2134;1243;B:10242_E;2068;1243;B:10242_M;2068;1254;LG:10242_R;2068;1243;B:10243_E;2002;1243;B:10243_M;2002;1254;LG:10243_R;2002;1243;B:10244_E;1936;1243;B:10244_M;1936;1254;LG:10244_R;1936;1243;B:10245_M;1870;1254;LG:10245_R;1870;1243;B:10245_E;1870;1243;B:10246_E;1738;1243;B:10246_M;1738;1254;LG:10246_R;1738;1243;B:10247_E;1672;1243;B:10247_M;1672;1254;LG:10247_R;1672;1243;B:10248_E;1606;1243;B:10248_M;1606;1254;LG:10248_R;1606;1243;B:10249_E;1543;1279;B:10249_M;1551;1287;LG:10249_R;1543;1279;B:10250_E;1488;1334;B:10250_M;1496;1342;LG:10250_R;1488;1334;B:10251_E;1421;1432;B:10251_M;1414;1425;LG:10251_R;1406;1417;B:10252_E;1243;1507;B:10252_M;1232;1496;LG:10253_E;869;1507;B:10253_M;869;1496;LG:10254_E;748;1507;B:10254_M;748;1496;LG:10255_E;627;2255;B:10256_F;2651;1111;B:10257_F;2618;1144;B:10258_F;2585;1177;B:10259_F;2552;1210;B:10260_J;1087;2035;B:10260_M;1102;2019;LG:10260_Z;1087;2046;LG:10260_F;1095;2027;B:10261_F;1136;2068;B:10262_F;1247;2179;B:10263_F;1265;2607;B:10263_G;1276;2607;B:10264_F;1265;2651;B:10264_G;1276;2651;B:10265_F;1265;2695;B:10265_G;1276;2695;B:10266_D;1419;2695;B:10266_N;1419;2695;B:10266_F;1397;2717;B:10266_G;1397;2706;B:10266_R;1419;2695;B:10267_F;1474;2717;B:10267_G;1474;2706;B:10268_F;1617;2728;B:10268_G;1625;2720;B:10269_F;1661;2772;B:10269_G;1669;2764;B:10270_F;1705;2816;B:10270_G;1713;2808;B:10271_F;1738;2849;B:10272_F;1771;2882;B:10273_F;1804;2915;B:10274_F;1837;2948;B:10275_F;1870;2981;B:10276_F;1903;3014;B:10277_F;1936;3047;B:10278_F;1969;3080;B:10279_F;2002;3113;B:10280_F;2035;3146;B:10281_S;1694;2508;B:10282_S;1694;2607;B:10283_G;1265;1518;B:10283_7;1254;1518;B:10284_G;1188;1562;B:10285_G;1188;1716;B:10286_G;1265;1804;B:10287_G;1331;1870;B:10288_G;1419;1958;B:10289_G;1551;2090;B:10290_G;1606;2145;B:10291_G;1694;2288;B:10292_G;1650;2332;B:10293_G;1606;2376;B:10294_G;1562;2420;B:10295_J;2574;1342;B:10295_Z;2582;1350;LG:10296_J;2519;1397;B:10298_J;2409;1507;B:10298_Z;2417;1515;LG:10299_J;2354;1562;B:10301_J;2332;1683;B:10302_J;2332;1749;B:10302_Z;2343;1749;LG:10303_J;2301;1815;B:10303_Z;2309;1823;LG:10304_J;2246;1870;B:10305_J;2191;1925;B:10305_Z;2199;1933;LG:10306_J;2131;1975;B:10308_J;2013;2035;B:10308_Z;2013;2046;LG:10309_J;1925;2035;B:10310_J;1749;2035;B:10312_J;1595;2035;B:10312_M;1595;2024;LG:10313_J;1529;2035;B:10313_M;1529;2024;LG:10314_J;1463;2035;B:10314_M;1463;2024;LG:10315_J;1397;2035;B:10315_M;1397;2024;LG:10315_Z;1397;2046;LG:10317_J;1012;2035;B:10317_Z;1012;2046;LG:10318_J;935;2068;B:10318_Z;946;2068;LG:10319_J;935;2156;B:10319_Z;946;2156;LG:10320_J;858;2255;LG:10320_Z;869;2255;LG:10321_J;858;2332;LG:10321_Z;869;2332;LG:10322_L;2354;2299;B:10323_L;2310;2255;B:10324_L;2266;2211;B:10325_L;2222;2167;B:10326_L;2178;2123;B:10327_L;2145;2090;B:10328_L;2035;1980;B:10329_L;1980;1925;B:10330_L;1925;1870;B:10331_M;1867;1840;B:10331_L;1874;1848;B:10332_L;1727;1848;B:10333_L;1661;1848;B:10334_L;1595;1848;B:10335_L;1529;1848;B:10336_L;1463;1848;B:10337_L;1397;1848;B:10338_L;1265;1848;B:10339_L;1045;1848;B:10340_L;946;1848;B:10343_L;451;1848;B:10344_M;2090;1617;B:10345_M;2035;1672;B:10346_M;1980;1727;B:10347_M;1925;1782;B:10349_M;1804;1903;B:10350_M;1749;1958;B:10352_R;1210;2398;B:10352_N;1210;2398;B:10353_N;1969;3146;B:10354_N;1936;3113;B:10355_N;1903;3080;B:10356_N;1837;3036;B:10357_N;1793;3036;B:10358_N;1749;3036;B:10359_N;1551;3036;B:10360_N;1496;3036;B:10361_N;1430;3014;B:10361_R;1419;3014;B:10362_R;1419;2970;B:10362_N;1419;2970;B:10363_N;1419;2926;B:10363_R;1419;2926;B:10372_N;572;1540;B:10372_Q;583;1540;B:10372_R;561;1540;B:10375_N;1332;1342;B:10375_Q;1340;1350;LG:10376_N;1353;1298;B:10376_Q;1364;1298;LG:10377_N;1353;1254;B:10377_Q;1364;1254;LG:10378_N;1353;1210;B:10378_Q;1364;1210;LG:10379_N;1353;1166;B:10379_Q;1364;1166;LG:10380_N;1353;1122;B:10380_Q;1364;1122;LG:10382_R;1419;3146;B:10383_R;1419;3102;B:10384_R;1419;3058;B:10457_D;1650;3025;B:10459_R;682;2288;B:10459_N;682;2288;B:10460_E;1804;1276;B:10460_F;1804;1265;B:10460_M;1804;1254;LG:10460_R;1804;1243;B:10461_L;1331;1848;B:10556_E;2453;1276;B:10556_F;2453;1265;B:10557_J;1837;2035;B:10557_Z;1837;2046;LG:10558_F;825;1386;B:14995_SIR;583;2651;B:14996_SIR;616;2684;B:14998_SIR;649;2761;B:14999_SIR;616;2794;B:15034_SIR;649;2717;B:15035_SIR;583;2827;B:15036_SIR;550;2860;B:15037_SIR;517;2893;B:15038_SIR;451;2959;B:15039_SIR;418;2992;B:15040_SIR;385;3025;B:15041_SIR;352;3058;B:15042_SIR;319;3091;B:15043_SIR;286;3124;B:15045_SIR;253;3157;B:15046_SIR;220;3190;B:15047_SIR;154;3256;B:15048_SIR;121;3289;B:15049_SIR;88;3322;B:17532_SIR;187;3223;B:17668_SIR;550;2618;B:18023_4;836;352;B:18062_2;1034;836;B:18062_5;1034;847;B:18063_6D;1510;399;LG:18063_6;1518;407;B:18064_F;660;1848;B:18064_M;671;1848;LG:18065_J;2464;1452;B:18065_Z;2472;1460;LG:18085_6;858;2068;B:18086_6D;957;891;LG:18086_6;957;902;B:18129_L;627;1848;B:18130_R;1419;3190;B:18131_A;3223;1859;B:18132_J;2332;1617;B:18132_Z;2343;1617;LG:18134_J;1661;2035;B:18134_M;1661;2024;B:18134_Z;1661;2046;LG:18173_A;2109;2054;B:18173_C;2101;2046;B:18173_J;2086;2030;B:18173_L;2116;2061;B:18173_Z;2093;2038;LG:18189_1;407;1452;B:18189_A;418;1452;B:18189_B;440;1452;LG:18189_C;429;1452;B:18189_D;451;1452;B:18190_R;869;1430;B:18190_4;836;1452;B:18190_5;847;1452;B:18190_6;858;1452;B:18190_N;869;1441;B:18190_Q;869;1452;LG:18192_R;1419;2651;B:18192_D;1419;2651;B:18192_N;1419;2651;B:18239_A;418;1672;B:18239_C;429;1672;B:18239_E;440;1672;B:18242_2;935;2255;B:18242_3;946;2255;B:18538_C;429;1540;B:18538_E;440;1540;B:18538_A;440;1540;B:18563_Q;2068;3047;B:18577_1;341;726;B:18577_A;322;734;B:18577_C;330;726;B:18639_N;803;2068;B:18639_Q;814;2068;B:18639_R;792;2068;B:18643_R;814;2398;B:18643_N;814;2398;B:18644_N;682;2332;B:18644_R;682;2332;B:18646_N;759;2200;B:18646_R;759;2200;B:18648_N;803;2024;B:18648_R;792;2024;B:18650_N;803;1892;B:18650_R;792;1892;B:18656_N;734;1763;B:18656_R;726;1771;B:18658_N;690;1719;B:18658_R;682;1727;B:18664_N;572;1474;B:18664_Q;583;1474;B:18664_R;561;1474;B:18667_N;748;1441;B:18667_Q;748;1452;LG:18667_R;748;1430;B:999990_AIRTRAIN;2843;1843;B:999991_AIRTRAIN;2959;1727;B:999992_AIRTRAIN;3103;1703;B:999993_AIRTRAIN;3174;1744;B:999994_AIRTRAIN;3245;1703;B:999995_AIRTRAIN;3245;1619;B:999996_AIRTRAIN;3174;1579;B:999997_AIRTRAIN;3103;1619;B:999998_AIRTRAIN;3024;1661;B:999999_AIRTRAIN;2682;1318;B"
+
+var rIconArray = new Array()
+rIconArray["1"] = "123"
+rIconArray["2"] = "123"
+rIconArray["3"] = "123"
+rIconArray["4"] = "456"
+rIconArray["5"] = "456"
+rIconArray["6"] = "456"
+rIconArray["6D"] = "456"
+rIconArray["7D"] = "7"
+rIconArray["7"] = "7"
+rIconArray["A"] = "ACE"
+rIconArray["C"] = "ACE"
+rIconArray["E"] = "ACE"
+rIconArray["B"] = "BDFM"
+rIconArray["D"] = "BDFM"
+rIconArray["F"] = "BDFM"
+rIconArray["M"] = "BDFM"
+rIconArray["G"] = "G"
+rIconArray["J"] = "JZ"
+rIconArray["Z"] = "JZ"
+rIconArray["L"] = "L"
+rIconArray["N"] = "NQR"
+rIconArray["Q"] = "NQR"
+rIconArray["R"] = "NQR"
+rIconArray["S"] = "S"
+rIconArray["SIR"] = "ACE"
+
+var s_r = '';
+var r = '';
+
+var imgTag = '';
+var imgSrc = '';    
+var x;
+var y;
+var dotImgtype='';
+var imgname = "normal";
+
+
+var station_RouteArray = station_RouteList.split(":")
+
+for(i=0; i < station_RouteArray.length; i++)
+{
+y = station_RouteArray[i].split(";")[2]
+x = station_RouteArray[i].split(";")[1]
+
+//siva 04/10/13
+y = y - 5;
+x = x - 5;
+
+s_r = station_RouteArray[i].split(";")[0]
+
+var imgType = "";   //siva 04/10/2013 normal or square
+imgType = GetImageType(s_r);
+
+dotImgtype = station_RouteArray[i].split(";")[3];
+r = s_r.split("_")[1]
+if (r == "AIRTRAIN") {
+    imgSrc = "NQR";
+}
+else {imgSrc = rIconArray[r]; }
+
+if (dotImgtype == 'B') 
+{
+	dotImgtype = 'Black';
+	imgname = 'normal';
+}
+if (dotImgtype == 'G') 
+{
+	dotImgtype = 'Grey';
+	imgname = 'normal';
+}
+
+if (dotImgtype == 'LG') 
+{
+    dotImgtype = 'LightGrey';
+
+    //siva 04/10/13
+    if (r == "6D") {
+        if (imgType == 'normal')
+            imgSrc = "456x";
+        else
+            imgSrc = "456xsq";
+    }
+    if (r == "7D") {
+        if (imgType == 'normal')
+            imgSrc = "7x";
+        else
+            imgSrc = "7xsq";
+    }
+
+	imgname = 'LGnormal';
+}
+
+if (dotImgtype == 'W') 
+{
+	dotImgtype = 'White';
+	imgname = 'normal';
+}
+if (dotImgtype == 'D') 
+{
+    dotImgtype = 'Grey';    
+    imgname = 'normal';
+}
+
+imgTag = '<img id="' + s_r + '" src="http://mta.info/weekender/images/routes/11px/' + dotImgtype + '/' + imgSrc + '.gif"  name="' + imgname + '" onmouseover="StationMouseRollOver(this);" onmouseout="StationMouseRollOut(this);" onclick="parent.onImgStationClick(this); "  style="position:absolute;cursor:pointer;left:' + x + 'px;top:' + y + 'px;" class=' + x + '_' + y + '  hundredLeft=' + x + ' hundredTop=' + y + ' alt="" unselectable="on" />'
+document.write(imgTag)
+}
+</script>
+</div>
+ <div id="customAlert" style="display:none; position:absolute; top:240px; left:495px; width:300px; background-color:black; color:white; font-family:arial; font-family:arial; font-weight:bold; font-size:18px; border:solid silver 3px; text-align:center; padding-top:50px; padding-bottom:50px;"> 
+</div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+parent.systemMapLoaded = true;
+</script>
+</html>

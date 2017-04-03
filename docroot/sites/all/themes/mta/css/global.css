@@ -1,0 +1,972 @@
+/* --------------------------------------------------------------
+
+   Blueprint v1.0 reset.css
+   * Resets default browser CSS.
+   Last updated September 29, 2010 
+
+Unsure as to who placed this for Drupal MTA Theme and why it is here - end set below 1/18/13
+-------------------------------------------------------------- */
+
+html { 
+	margin:0; 
+	padding:0; 
+	border:0; 
+	overflow-y:scroll;
+	}
+
+#user-register-form label {
+    display: inline-block; !important
+    font-weight: bold;
+    width: 110px;
+	}
+
+#user-register-form .description {
+    margin-left: 115px;
+	}
+
+body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, code,
+del, dfn, em, q, dl, dt, dd, ol, ul, li,
+fieldset, form, img, label, legend,
+article, aside, dialog, figure, footer, header,
+hgroup, nav, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  
+	}
+#block-superfish-1 ul.menu li {
+    margin: 0 0 0 0;
+}
+.node-page-with-ad p {
+  
+  padding-bottom: 1.5em;
+  
+  font-size: 100%;
+  line-height:18px;
+  
+	}	
+	
+.node-page-with-ad div {
+  
+  padding-bottom: 1.5em;
+  
+  font-size: 100%;
+  line-height:18px;
+  
+	}	
+	
+	
+.node-page-with-ad H2 {margin-top:1em;}
+
+
+.node-page-with-ad .roundedCorners {padding-top:10px;}
+
+.node-news-story .field-name-body p {
+  
+  padding-bottom: 1.5em;
+  
+  font-size: 100%;
+  line-height:18px;
+  
+	}		
+.node-news-story .field-name-body div {
+  
+  padding-bottom: 1.5em;
+  
+  font-size: 100%;
+  line-height:18px;
+  
+	}		
+.node-type-press-release .field-name-body div {
+  
+  padding-bottom: 1.5em;
+  
+  font-size: 100%;
+  line-height:18px;
+  
+	}	
+	
+.node-type-press-release .field-name-body p {
+  
+  padding-bottom: 1.5em;
+  
+  font-size: 100%;
+  line-height:18px;
+  
+	}
+
+#status_display p {
+           
+            margin-bottom:1em;
+
+}
+
+
+	
+/* This helps to make newer HTML5 elements behave like DIVs in older browers */ 
+article, aside, dialog, figure, footer, header,
+hgroup, nav, section {
+    display:block;
+	}
+
+/* Line-height should always be unitless! */
+body {
+  line-height: 1.5;
+  background: #fff; 
+	}
+
+/* Remove possible quote marks (") from <q>, <blockquote>. */
+blockquote:before, blockquote:after, q:before, q:after { content: ''; }
+blockquote, q { quotes: "" ""; }
+
+/* Remove annoying border on linked images. */
+a img { border: none; }
+
+/* Remember to define your own focus styles! */
+:focus { outline: 0; }
+
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1 {
+	/*18px via YUI Fonts CSS foundation*/
+	/*font-size:138.5%;*/ 
+	font-size:136%;	
+	}
+
+h2 {
+	/*16px via YUI Fonts CSS foundation*/
+	font-size:123.1%;
+	margin:0;
+	color:#333;
+	}
+
+h3 {
+	/*14px via YUI Fonts CSS foundation*/
+	font-size:108%;  
+	}
+
+h1, h3 {
+	/* top & bottom margin based on font size */
+	margin:1em 0;
+	}
+
+h4 {
+	margin-top:1em;
+	}
+
+h1,h2,h3,h4,h5,h6,strong {
+	/*bringing boldness back to headers and the strong element*/
+	font-weight:bold; 
+	}
+
+abbr,acronym {
+	/*indicating to users that more info is available */
+	border-bottom:1px dotted #000;
+	cursor:help;
+	} 
+
+em {
+	/*bringing italics back to the em element*/
+	font-style:italic;
+	}
+
+blockquote,dl {
+	/*giving elements room to breath*/
+	margin:1em;
+	}
+
+ol,ul,dl {
+	/*bringing lists on to the page with breathing room */
+	margin-top:0.5em;
+	margin-left:2em;
+	margin-bottom:1.7em;
+	}
+
+ol li {
+	/*giving OL's LIs generated numbers*/
+	list-style: decimal outside;	
+	}
+
+ul li {
+	/*giving UL's LIs generated disc markers*/
+	list-style: disc inside none;
+	}
+
+dl dd {
+	/*providing spacing for definition terms*/
+	margin-left:1em;
+	}
+
+body{font:13px/1.231 helvetica,arial,clean,sans-serif;*font-size:small;*font:x-small; color:#333;}select,input,button,textarea{font:99% helvetica,arial,clean,sans-serif;}
+
+/* END Who placed this for Drupal MTA Theme and why it is here END -->
+
+
+/* `XHTML / HTML4 / HTML5 Reset (originally from 'formalize css') */
+
+html,
+body {
+	background-image: url('../images/grey_bg.jpg');
+	background-repeat: repeat-x;
+	padding:0;
+	margin:0px;
+	}
+
+b,
+strong {
+/*
+	Makes browsers agree.
+	IE + Opera = font-weight: bold.
+	Gecko + WebKit = font-weight: bolder.
+*/
+	font-weight: bold;
+	}
+
+img {
+	font-size: 0;
+	vertical-align: middle;
+	}
+
+li {
+/* 	For IE6 + IE7. */
+	display: list-item;
+	}
+
+
+/* `Widths */
+
+.input_tiny {
+	width: 50px;
+	}
+
+.input_small {
+	width: 100px;
+	}
+
+.input_medium {
+	width: 150px;
+	}
+
+.input_large {
+	width: 200px;
+	}
+
+.input_xlarge {
+	width: 250px;
+	}
+
+.input_xxlarge {
+	width: 300px;
+	}
+
+.input_full {
+	width: 100%;
+	}
+
+/*
+	Added via JS to <textarea> and class="input_full".
+	Applies only to IE7. Other browsers don't need it.
+*/
+.input_full_wrap {
+	display: block;
+	padding-right: 8px;
+	}
+
+/* `UI Consistency */
+
+::-moz-focus-inner {
+	border: 0;
+	}
+
+input[type="search"]::-webkit-search-decoration {
+	display: none;
+	}
+
+input,
+button,
+select,
+textarea {
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background-clip: padding-box;
+	margin: 0;
+	vertical-align: middle;
+	}
+
+button,
+input[type="reset"],
+input[type="submit"],
+input[type="button"] {
+	-webkit-appearance: none;
+	-moz-border-radius: 11px;
+	-webkit-border-radius: 11px;
+	border-radius: 11px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #ddd));
+	background: -moz-linear-gradient(top center, #fff 0%, #ddd 100%);
+	border: 1px solid;
+	border-color: #ddd #bbb #999;
+	cursor: pointer;
+	color: #333;
+	font: bold 12px/1.2 Arial, sans-serif;
+	outline: 0;
+	overflow: visible;
+	padding: 3px 10px 4px;
+	text-shadow: #fff 0 1px 1px;
+	width: auto;
+
+	/* IE7 */
+	*padding-top: 2px;
+	*padding-bottom: 0px;
+	}
+
+button {
+	/* IE7 */
+	*padding-top: 1px;
+	*padding-bottom: 1px;
+	}
+
+button[disabled],
+input[type="reset"][disabled],
+input[type="submit"][disabled],
+input[type="button"][disabled] {
+	color: #888;
+	}
+
+textarea,
+select,
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"] {
+/*	-webkit-appearance: none; */
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: #fff;
+	border: 1px solid;
+	border-color: #848484 #c1c1c1 #e1e1e1;
+	color: #000;
+	outline: 0;
+	padding: 2px 3px;
+	font-size: 13px;
+	font-family: Arial, sans-serif;
+	height: 1.8em;
+
+	/* IE7 */
+	*padding-top: 2px;
+	*padding-bottom: 1px;
+	*height: auto;
+	}
+
+/* 	Separate rule for Firefox. 	Cannot stack with WebKit's. */
+
+input.placeholder_text,
+textarea.placeholder_text {
+	color: #888;
+	}
+
+::-webkit-input-placeholder {
+	color: #888;
+	}
+
+textarea[disabled],
+select[disabled],
+input[type="date"][disabled],
+input[type="datetime"][disabled],
+input[type="datetime-local"][disabled],
+input[type="email"][disabled],
+input[type="month"][disabled],
+input[type="number"][disabled],
+input[type="password"][disabled],
+input[type="search"][disabled],
+input[type="tel"][disabled],
+input[type="text"][disabled],
+input[type="time"][disabled],
+input[type="url"][disabled],
+input[type="week"][disabled] {
+	background-color: #eee;
+	color: #888;
+	}
+
+button:focus,
+button:active,
+input:focus,
+input:active,
+select:focus,
+select:active,
+textarea:focus,
+textarea:active {
+	-moz-box-shadow: #06f 0 0 7px;
+	-webkit-box-shadow: #06f 0 0 7px;
+	box-shadow: #06f 0 0 7px;
+
+	/* for Opera */
+	z-index: 1;
+	}
+
+.is_webkit select {
+	/* Tweaks for Safari + Chrome. */
+	/*background-image: url(../images/select_arrow.gif);*/
+	background-repeat: no-repeat;
+	background-position: right center;
+	padding-right: 20px;
+	}
+
+textarea,
+select[multiple] {
+	height: auto;
+	}
+
+select[multiple],
+.is_webkit select[multiple] {
+	background-image: none;
+	padding: 0;
+	}
+
+textarea {
+  min-height: 40px;
+	overflow: auto;
+	resize: vertical;
+	width: 100%;
+	}
+
+optgroup {
+	color: #000;
+	font-style: normal;
+	font-weight: normal;
+	}
+
+/* `IE6
+
+	Everything below this line is for IE6.
+	Delete it if you don't support it! :)
+
+	Classes are added dynamically via JS,
+	because IE6 doesn't support attribute
+	selectors: .ie6_button, .ie6_input, etc.
+
+	Note: These style rules are somewhat
+	duplicated because IE6 bombs out when
+	it sees attribute selectors. Example:
+
+	.ie6_button {
+		This works in IE6.
+	}
+
+	.ie6_button,
+	input[type=submit] {
+		This doesn't work.
+	}
+--------------------------------------------------------------------------------------------*/
+
+.ie6_button,
+* html button {
+	background: #ddd;
+	border: 1px solid;
+	border-color: #ddd #bbb #999;
+	cursor: pointer;
+	color: #333;
+	font: bold 12px/1.2 Arial, sans-serif;
+	padding: 2px 10px 0px;
+	overflow: visible;
+	width: auto;
+	}
+
+* html button {
+	padding-top: 1px;
+	padding-bottom: 1px;
+	}
+
+.ie6_input,
+* html textarea,
+* html select {
+	background: #fff;
+	border: 1px solid;
+	border-color: #848484 #c1c1c1 #e1e1e1;
+	color: #000;
+	padding: 2px 3px 1px;
+	font-size: 13px;
+	font-family: Arial, sans-serif;
+	vertical-align: top;
+	}
+
+* html select {
+	margin-top: 1px;
+	}
+
+.placeholder_text,
+.ie6_input_disabled,
+.ie6_button_disabled {
+	color: #888;
+	}
+
+.ie6_input_disabled {
+	background: #eee;
+	}
+/* --> End ie6
+/* (originally from 'formalize css') `XHTML / HTML4 / HTML5 Reset End -->
+
+
+/*Creates rounded corners around divs.
+Requires border-radius.htc file
+*/
+.block-statusblock,
+.roundCorners {
+    border: 1px solid #b4b4b4;
+    -moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background: #fff;
+	}
+
+#pageTitleArea {
+	display: inline-block;
+    border-bottom: 1px solid #B4B4B4;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding-top: 10px;
+    width: 915px;
+	}
+
+#pageTitleAreaAd {
+	display: inline-block;
+	border-bottom: 1px solid #B4B4B4;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding-top: 10px;
+    width: 730px;
+	}
+
+h1#page-title  {
+	margin: 0;
+	 display:inline-block;
+	 float:left;
+    color: #0055AA;
+    font-size: 153.9%;
+    width:730px;
+	}
+
+h1#page-title-ad  {
+	margin: 0;
+	 display:inline-block;
+	 float:left;
+    color: #0055AA;
+    font-size: 153.9%;
+    width:565px;
+ 	}	 	
+
+.region-page-title	{
+	float:right;
+	width:160px;
+	margin-top: -2px;
+	 }
+
+.region-footer {
+	text-align:left;
+	padding-bottom:5px;
+	margin-top:-10px;
+	margin-left:13px;
+	}	
+
+/* Use a .box to create a padded box inside a column.  */
+.box {
+  padding: 1.5em;
+  margin-bottom: 1.5em;
+  background: #e7e7e7;
+  border: 1px solid #b4b4b4; 
+  -moz-border-radius: 5px; 
+  -webkit-border-radius: 5px; 
+  border-radius: 5px; 
+/*  behavior: url(../border-radius.htc); */
+	}
+	
+
+
+/* Google Translate Styles */
+
+#google_translate_element {
+	margin-top:1px;
+	margin-left:1px;
+	float:none;
+	}
+
+.goog-te-gadget-simple {
+	border-style:none !important;
+	}
+
+#foot-div {
+	padding-top:10px;
+	}
+.block-google-adsense {
+	margin:6px;
+	}
+
+.node-page-with-ad .content {
+	padding-left:10px;
+	padding-right:10px;
+	}
+
+#Google-skyscraper-ad {
+	border:1px none;
+	}
+	
+	
+/* Press Node Styles */
+
+#press-release-date {
+	
+	float: left;
+	width: 445px;
+	height: 20px;
+	padding:5px 0 5px 5px;
+	color: white;
+	border-bottom: 5px solid;
+	text-align: 
+	border-color: white;
+	background-color: #0039A6;
+}
+
+
+#press-date {
+	float: right;
+	width: 445px;
+	height: 20px;
+	padding:5px 5px 5px 0;
+	color: white;
+	text-align: right;
+	border-bottom: 5px solid;
+	border-color: white;
+	background-color: #0039A6;
+	}
+	
+
+#press-mta-agency {
+	float: left;
+	width: 445px;
+	padding: 10px 0 5px 5px;
+	background-color: #fff;
+	
+	}
+	
+#press-release-urgency {
+	float: right;
+	width: 445px;
+	text-align: right;
+	padding: 10px 5px 5px 0;
+	background-color: #fff;
+	}
+
+#press-release-title {
+	text-align: center;
+	padding-bottom: 8px;
+	background-color: #fff;
+	font-size:153.9%;
+	font-weight: bold;
+	color:#0055AA;
+	border-bottom: 1px solid #B4B4B4;
+	}
+	
+#press-sub-title {
+	text-align: center;
+	font-weight: bold;
+	font-style:italic;
+	font-size: 105%;
+	background-color: #fff;
+	padding-top: 15px;
+	}
+#press-sub-title-2{
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 105%;
+    background-color: #fff;
+    padding-top: 15px;
+}
+
+#press-release-body {
+	background-color: #fff;
+	padding: 10px;
+	margin-bottom: 15px;
+	marging-left: 8px;
+	
+	}
+#press-release-body p img {
+	vertical-align:-2px;
+	
+	}
+#press-release-body h2 {
+	font-size: 110%;
+	font-weight: bold;
+	color:black;
+	}
+
+
+/*Press Release Single & Multi Image(FIELDS) */
+
+.field-name-field-press-single-image img {
+	float: right;
+    margin-left: 5px;
+    padding-right: 10px;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 1px 1px 4px #A5A5A5;
+   
+   	}
+.field-name-field-press-single-image .imgcaption {
+     margin:0px 10px 0px 10px;
+    width: 250px;
+    }   	
+.field-name-field-press-multi-image {
+	width:100%;
+	background-color: #DEE7EB;
+	margin-top:20px;
+	
+   	}
+	
+
+.field-name-field-press-multi-image .field-item.odd {
+	padding: 10px;
+	width:430px;
+	
+	}
+	
+
+.field-name-field-press-multi-image .field-item.even {
+	padding: 10px;
+	float:right;
+	width:430px;
+	
+	}
+
+
+
+.image_field_caption, field-name-field-rotator-horizontal-image {
+  
+  border-left: 4px solid #afafaf;
+}
+
+body.logged-in.node-type-page-with-ad .view-press-release .feed-icon {
+    left: 270px;
+    position: absolute;
+    top: -33px;
+    z-index: 999;
+}
+
+body.not-logged-in.node-type-page-with-ad .view-press-release .feed-icon {
+    left: 270px;
+    position: absolute;
+    top: 75px;
+    z-index: 999;
+}
+
+body.logged-in.node-type-page-with-ad .view-mta-news-stories .feed-icon {
+    left: 160px;
+    position: absolute;
+    top: -32px;
+    z-index: 999;
+}
+
+body.not-logged-in.node-type-page-with-ad .view-mta-news-stories .feed-icon {
+    left: 270px;
+    position: absolute;
+    top: 75px;
+    z-index: 999;
+}
+/* GOOGLE FOOTER AD*/
+#block-google-adsense-google-adsense-horizontal {
+background-color: #fff;
+padding: 20px 0;
+border:1px solid  #e2e2e2;
+
+}
+
+#block-google-adsense-google-adsense-horizontal h2 {
+font-size: 11px;
+color: #333;
+font-weight: normal;
+margin-left: 10px;
+}
+
+
+.field-name-field-press-single-image {
+    float: right;
+    padding: 8px;
+}
+
+
+/* SERVICE NOTICE BLOCK */
+#block-service-notice-service-notice-nyct,
+#block-service-notice-service-notice-lirr,
+#block-service-notice-service-notice-mnr,
+#block-service-notice-service-notice-bandt,
+#block-service-notice-service-notice-sir  {
+        margin-top:10px;
+        height: 150px;
+        padding: 5px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        overflow:auto;
+        border: 1px solid #B4B4B4;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #f4f4f4;
+}
+
+#block-views-blueboxnew-block {
+margin-top:10px;
+        height: 150px;
+        padding: 5px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        overflow:auto;
+        border: 1px solid #B4B4B4;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #f4f4f4;
+}
+
+
+/* MEGA MENU*/
+#menuone {
+position: absolute;
+background: #fff;
+}
+
+#menuone .close {
+background-image: url("/sites/all/themes/mta/images/close-icon.jpg");
+background-repeat: no-repeat;
+cursor: pointer;
+float: right;
+height: 16px;
+margin: 5px;
+width: 52px;
+}
+
+#block-menu-menu-trip-planner-menu  h2 {
+ display: none;
+}
+#block-menu-menu-trip-planner-menu ul.menu {
+margin-left:0px;
+} 
+#block-menu-menu-trip-planner-menu ul li.leaf {
+    border: 1px solid #999999;
+    display: inline-block !important;
+    margin:0 0 0 -5px;
+	padding:0px;
+    font-size: 90%;
+    list-style-image: none;
+    list-style-type: none;
+    min-height: 30px;
+    width: 70px;
+	vertical-align:top;
+}
+
+
+#block-menu-menu-trip-planner-menu ul li.leaf a {
+    display:inline;
+}
+
+#block-menu-menu-trip-planner-menu ul li.first a {
+    
+	color:#fff !important;
+}
+#block-menu-menu-trip-planner-menu ul li.first {
+    background:#00BB11;
+	
+}
+
+.view-homepage-blocks-admin td {
+   border-bottom: #b4b4b4 1px solid;
+
+}
+
+
+
+
+.views-field-field-hpsb-header-1 {
+font-size:123.1%;
+	margin:0;
+	color:#333;
+
+}
+.views-field-field-hpsb-link-1{}
+.views-field-field-hspb-sub-head-1 {}
+.views-field-field-hpsb-link-1b {}
+
+.views-field-field-hpsb-header-2 {}
+.views-field-field-hspb-link-2a {}
+.views-field-field-hspb-link-2b {}
+.views-field-field-hpsb-image-2 {}
+.views-field-field-hspb-sub-head-2 {}
+
+
+.views-field-field-hpsb-header-3 {}
+.views-field-field-hpsb-image-3 {}
+.views-field-field-hpsb-sub-head-3 {}
+.views-field-field-hpsb-link-3 {}
+
+
+.views-field-field-hpsb-header-4 {}
+.views-field-field-hpsb-image-4 {}
+.views-field-field-hpsb-link-4 {}
+.views-field-field-hpsb-sub-head-4 {}
+
+.view-homepage-sideblocks  .views-field-edit-node {}
+
+
+/*#block-views-38c4b5dc32254961c9509fd01ae128ce {
+margin-left:10px;
+}*/
+
+a.gtflag {
+   vertical-align: middle;
+}
+.cke_source {
+    white-space: pre-wrap !important;
+}
+
+.cke_skin_kama textarea.cke_source {
+    white-space: pre-wrap !important;
+}
+
+.page-node-239061 #block-mta-megamenu-mta-megamenu {
+	margin-top:-8px;
+	
+}
+ul li a img {
+vertical-align: -2px;
+}
+
+ul li a img h3 {
+vertical-align: -2px;
+}
+ul.blackdot li {
+Padding-bottom:0.5em;
+}
+
+.node-type-home-page ul.blackdot {
+	margin: 0 0 6px;
+    padding-left: 16px;
+	
+} 
+
+
+.node-type-home-page ul.blackdot li {
+
+    list-style: disc outside none;
+}
+

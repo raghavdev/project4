@@ -1,0 +1,28 @@
+<html>
+<script language="javascript" type="text/javascript">
+function onSystemDiagramClick(e) {    
+	parent.onSystemDiagramClickXY(getPosition(e).x,getPosition(e).y);
+}
+function getPosition(e) 
+{    
+    e = e || window.event;
+    var cursor = {x:0, y:0};
+    if (e.pageX || e.pageY) {
+        cursor.x = e.pageX;
+        cursor.y = e.pageY;
+    } 
+    else {
+        var de = document.documentElement;
+        var b = document.body;
+        cursor.x = e.clientX + 
+            (de.scrollLeft || b.scrollLeft) - (de.clientLeft || 0);
+        cursor.y = e.clientY + 
+            (de.scrollTop || b.scrollTop) - (de.clientTop || 0);
+    }
+    return cursor;
+}
+</script>
+<body style="width:960px; height:630px;">
+<img src="/sites/all/libraries/weekender/images/StationView_home.png" style="position:absolute; top:0px; left:330px; width:630px; height:630px;cursor:pointer;" alt="Click here to enlarge" onclick="onSystemDiagramClick(event);" />
+</body>
+</html>
